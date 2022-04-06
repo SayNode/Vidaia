@@ -1,8 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:vidaia/pages/home_page.dart';
-import 'package:vidaia/pages/login_page.dart';
-import 'package:vidaia/utils/router.gr.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -10,28 +8,21 @@ void main() async {
 
   runApp(
     EasyLocalization(
-        supportedLocales: const [
-          Locale('en', 'US'),
-        ],
+        supportedLocales: const [Locale('en', 'US'),],
         path:
             'assets/translations', // <-- change the path of the translation files
         fallbackLocale: const Locale('en', 'US'),
-        child: MyApp()),
+        child: const MyApp()),
   );
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
-
-  final _appRouter = AppRouter();
+  const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      //router for routing
-      routerDelegate: _appRouter.delegate(),
-      routeInformationParser: _appRouter.defaultRouteParser(),
+    return MaterialApp(
       //Localization
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
@@ -50,6 +41,8 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
+      home: const HomePage(),
     );
   }
 }
+
