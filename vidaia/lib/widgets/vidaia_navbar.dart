@@ -10,7 +10,7 @@ class VidaiaNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomAppBar(
       //shape: shape,
-      color: Colors.blue,
+      color: Colors.green,
       child: IconTheme(
         data: IconThemeData(color: Theme.of(context).colorScheme.onPrimary),
         child: SizedBox(

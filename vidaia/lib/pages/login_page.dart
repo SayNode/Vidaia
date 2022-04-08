@@ -4,7 +4,7 @@ import 'package:flutter_login/flutter_login.dart';
 import 'package:vidaia/utils/router.gr.dart';
 
 const users = {
-  'username': 'password',
+  'muster@example.com': 'password',
 };
 
 class LoginPage extends StatelessWidget {
@@ -44,12 +44,14 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlutterLogin(
+      //userType: LoginUserType.name,
       logo: const AssetImage('assets/images/vidaia-live-sustainably.png'),
       messages: LoginMessages(userHint: 'Username'),
       onLogin: _authUser,
       onSignup: _signupUser,
+      
       onSubmitAnimationCompleted: () {
-        //context.router.push(const HomeRoute());
+        context.router.push(const HomeRoute());
       },
       onRecoverPassword: _recoverPassword,
     );

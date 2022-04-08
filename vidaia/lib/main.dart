@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:vidaia/pages/home_page.dart';
+import 'package:vidaia/utils/router.gr.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -8,27 +8,37 @@ void main() async {
 
   runApp(
     EasyLocalization(
-        supportedLocales: const [Locale('en', 'US'),],
+        supportedLocales: const [
+          Locale('en', 'US'),
+        ],
         path:
             'assets/translations', // <-- change the path of the translation files
         fallbackLocale: const Locale('en', 'US'),
-        child: const MyApp()),
+        child: MyApp()),
   );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
+
+  final _appRouter = AppRouter();
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerDelegate: _appRouter.delegate(),
+      routeInformationParser: _appRouter.defaultRouteParser(),
       //Localization
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       //
       title: 'Flutter Demo',
+
+      debugShowCheckedModeBanner: false,
+
+
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -39,10 +49,8 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
-      home: const HomePage(),
     );
   }
 }
-
