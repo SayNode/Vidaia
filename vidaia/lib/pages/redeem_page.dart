@@ -87,16 +87,20 @@ class _RedeemPageState extends State<RedeemPage>
           return _loadingNewItemsIndicator();
         } else {
           return Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
             child: Container(
-              decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-                colors: [
-                  Colors.blue,
-                  Colors.red,
-                ],
-              )),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15.0),
+                  gradient: const LinearGradient(
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
+                    colors: [
+                      Color(0xFF0b3b2d),
+                      Color(0xFF112823),
+                    ],
+                  )),
             ),
           );
         }

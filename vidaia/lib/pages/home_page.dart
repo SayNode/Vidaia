@@ -27,8 +27,12 @@ class _HomePageState extends State<HomePage> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
-              child: const Center(child: Text('Welcome User', textScaleFactor: 3, textAlign: TextAlign.center,)),
-              color: Colors.grey,
+              child: Center(
+                  child: Text(
+                'Welcome User',
+                style: Theme.of(context).textTheme.headline4,
+                textAlign: TextAlign.center,
+              )),
               height: 100,
               width: 200,
             ),
@@ -38,35 +42,45 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.all(8.0),
             child: CarouselSlider(
               options: CarouselOptions(
-                autoPlay: true,
-                aspectRatio: 2.0,
-                enlargeCenterPage: true,
-              ),
+                  autoPlay: false,
+                  autoPlayInterval: Duration(seconds: 2),
+                  autoPlayAnimationDuration: Duration(seconds: 1),
+                  aspectRatio: 2.0,
+                  enlargeCenterPage: true,
+                  enableInfiniteScroll: false),
               items: [
                 Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
                   child: Container(
-                    decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                      begin: Alignment.topRight,
-                      end: Alignment.bottomLeft,
-                      colors: [
-                        Colors.blue,
-                        Colors.red,
-                      ],
-                    )),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15.0),
+                        gradient: const LinearGradient(
+                          begin: Alignment.topRight,
+                          end: Alignment.bottomLeft,
+                          colors: [
+                            Color(0xFF0b3b2d),
+                            Color(0xFF112823),
+                          ],
+                        )),
                   ),
                 ),
                 Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
                   child: Container(
-                    decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                      begin: Alignment.topRight,
-                      end: Alignment.bottomLeft,
-                      colors: [
-                        Colors.yellow,
-                        Colors.red,
-                      ],
-                    )),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15.0),
+                        gradient: const LinearGradient(
+                          begin: Alignment.topRight,
+                          end: Alignment.bottomLeft,
+                          colors: [
+                            Color(0xFF0b3b2d),
+                            Color(0xFF112823),
+                          ],
+                        )),
                   ),
                 )
               ],

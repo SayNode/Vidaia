@@ -14,7 +14,7 @@ class VidaiScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       drawerEnableOpenDragGesture: false,
-      appBar: AppBar(title: const Text('Appbar')),
+      appBar: AppBar(),
       body: body,
       drawer: const VidaiaDrawer(),
       bottomNavigationBar: const VidaiaNavBar(),

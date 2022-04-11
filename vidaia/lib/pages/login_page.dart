@@ -1,10 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
+import 'package:vidaia/main.dart';
 import 'package:vidaia/utils/router.gr.dart';
 
 const users = {
-  'muster@example.com': 'password',
+  'a@a.com': 'password',
 };
 
 class LoginPage extends StatelessWidget {
@@ -43,17 +44,21 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FlutterLogin(
-      //userType: LoginUserType.name,
-      logo: const AssetImage('assets/images/vidaia-live-sustainably.png'),
-      messages: LoginMessages(userHint: 'Username'),
-      onLogin: _authUser,
-      onSignup: _signupUser,
-      
-      onSubmitAnimationCompleted: () {
-        context.router.push(const HomeRoute());
-      },
-      onRecoverPassword: _recoverPassword,
+    return Container(
+      color: primaryColor,
+      padding: EdgeInsets.all(40),
+      child: FlutterLogin(
+        //userType: LoginUserType.name,
+        logo: AssetImage('assets/images/vidaia-live-sustainably.png'),
+        messages: LoginMessages(userHint: 'Username'),
+        onLogin: _authUser,
+        onSignup: _signupUser,
+
+        onSubmitAnimationCompleted: () {
+          context.router.push(const HomeRoute());
+        },
+        onRecoverPassword: _recoverPassword,
+      ),
     );
   }
 }

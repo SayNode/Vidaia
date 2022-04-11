@@ -78,7 +78,6 @@ class _BuyHistoryPageState extends State<BuyHistoryPage>
 
   Widget buyHistoryPageListView() {
     return ListView.builder(
-      
       primary: false,
       shrinkWrap: true,
       padding: const EdgeInsets.all(20),
@@ -87,26 +86,26 @@ class _BuyHistoryPageState extends State<BuyHistoryPage>
         if (index == items.length) {
           return _loadingNewItemsIndicator();
         } else {
-          return  Padding(
+          return Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
               height: 50,
-               decoration: const BoxDecoration(
-                   gradient: LinearGradient(
-                 begin: Alignment.topRight,
-                 end: Alignment.bottomLeft,
-                 colors: [
-                   Colors.blue,
-                   Colors.red,
-                 ],
-               )),
-             ),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15.0),
+                  gradient: LinearGradient(
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
+                    colors: [
+                      Color(0xFF0b3b2d),
+                      Color(0xFF112823),
+                    ],
+                  )),
+            ),
           );
         }
       },
       //physics: NeverScrollableScrollPhysics(),
       controller: _scrollController,
-
     );
   }
 }

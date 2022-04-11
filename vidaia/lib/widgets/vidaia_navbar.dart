@@ -8,11 +8,12 @@ class VidaiaNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BottomAppBar(
-      //shape: shape,
-      color: Colors.green,
-      child: IconTheme(
-        data: IconThemeData(color: Theme.of(context).colorScheme.onPrimary),
+    return ClipRRect(
+      borderRadius: const BorderRadius.only(
+        topRight: Radius.circular(20),
+        topLeft: Radius.circular(20),
+      ),
+      child: BottomAppBar(
         child: SizedBox(
           height: 60,
           child: Row(
@@ -29,7 +30,8 @@ class VidaiaNavBar extends StatelessWidget {
                 child: Center(
                   child: IconButton(
                     icon: const Icon(Icons.shopping_cart),
-                    onPressed: () => {context.router.push(const BuyHistoryRoute())},
+                    onPressed: () =>
+                        {context.router.push(const BuyHistoryRoute())},
                   ),
                 ),
               ),
@@ -46,6 +48,5 @@ class VidaiaNavBar extends StatelessWidget {
         ),
       ),
     );
-    
   }
 }

@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:vidaia/main.dart';
 
 import '../utils/router.gr.dart';
 
@@ -11,57 +12,90 @@ class VidaiaDrawer extends StatelessWidget {
     return Drawer(
       backgroundColor: Colors.grey.shade200,
       child: Padding(
-        padding: const EdgeInsets.only(top: 50),
+        padding:
+            const EdgeInsets.only(left: 20, right: 20, top: 50, bottom: 20),
         child: Column(children: [
           Row(
             children: [
               CircleAvatar(
-                backgroundColor: Colors.grey.shade400,
+                backgroundColor: primaryColorBright,
+                radius: 35.0,
               ),
-              const Padding(
+              SizedBox(
+                width: 10,
+                height: 100,
+              ),
+              Padding(
                 padding: EdgeInsets.all(8.0),
-                child: Text('UserName'),
+                child: Text(
+                  'UserName',
+                  style: Theme.of(context).textTheme.headline6,
+                ),
               )
             ],
           ),
           const Divider(
-            color: Colors.red,
+            color: primaryColorBright,
             thickness: 1,
           ),
           Material(
             type: MaterialType.transparency,
             child: ListTile(
-              leading: const Icon(Icons.home),
-              title: const Text('Home'),
+              leading: const Icon(
+                Icons.home,
+                color: primaryColorBright,
+              ),
+              title: Text(
+                'Home',
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
               onTap: () => {context.router.push(const HomeRoute())},
             ),
           ),
           Material(
             type: MaterialType.transparency,
             child: ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text('Settings'),
+              leading: const Icon(
+                Icons.settings,
+                color: primaryColorBright,
+              ),
+              title: Text(
+                'Settings',
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
               onTap: () => {context.router.push(const SettingsRoute())},
             ),
           ),
           Material(
             type: MaterialType.transparency,
             child: ListTile(
-              leading: const Icon(Icons.question_mark_rounded),
-              title: const Text('FAQ'),
+              leading: const Icon(
+                Icons.question_mark_rounded,
+                color: primaryColorBright,
+              ),
+              title: Text(
+                'FAQ',
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
               onTap: () => {null},
             ),
           ),
           Expanded(child: Container()),
           const Divider(
-            color: Colors.red,
+            color: primaryColorBright,
             thickness: 1,
           ),
           Material(
             type: MaterialType.transparency,
             child: ListTile(
-              leading: const Icon(Icons.logout_rounded),
-              title: const Text('Logout'),
+              leading: const Icon(
+                Icons.logout_rounded,
+                color: primaryColorBright,
+              ),
+              title: Text(
+                'Logout',
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
               onTap: () => {context.router.push(const LoginRoute())},
             ),
           ),
