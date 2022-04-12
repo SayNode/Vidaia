@@ -24,6 +24,7 @@ const primaryColorBright = Color(0xFF6c9772);
 const primaryColorDark = Color(0xFF112823);
 
 const backgroundColor = Color(0xFFf8faf7);
+const backgroundColorDark = Color(0xFFebeeea);
 
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);

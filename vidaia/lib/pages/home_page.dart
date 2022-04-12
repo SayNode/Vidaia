@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:vidaia/widgets/vidaia_scaffold.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
+import '../widgets/vidaia_carousell_item.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -28,11 +30,12 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.all(8.0),
             child: Container(
               child: Center(
-                  child: Text(
-                'Welcome User',
-                style: Theme.of(context).textTheme.headline4,
-                textAlign: TextAlign.center,
-              )),
+                child: Text(
+                  'Welcome User',
+                  style: Theme.of(context).textTheme.headline4,
+                  textAlign: TextAlign.center,
+                ),
+              ),
               height: 100,
               width: 200,
             ),
@@ -49,40 +52,10 @@ class _HomePageState extends State<HomePage> {
                   enlargeCenterPage: true,
                   enableInfiniteScroll: false),
               items: [
-                Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15.0),
-                        gradient: const LinearGradient(
-                          begin: Alignment.topRight,
-                          end: Alignment.bottomLeft,
-                          colors: [
-                            Color(0xFF0b3b2d),
-                            Color(0xFF112823),
-                          ],
-                        )),
-                  ),
-                ),
-                Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15.0),
-                        gradient: const LinearGradient(
-                          begin: Alignment.topRight,
-                          end: Alignment.bottomLeft,
-                          colors: [
-                            Color(0xFF0b3b2d),
-                            Color(0xFF112823),
-                          ],
-                        )),
-                  ),
-                )
+                VidaiaCarouselItem(),
+                VidaiaCarouselItem(),
+                VidaiaCarouselItem(),
+                VidaiaCarouselItem(),
               ],
             ),
           ),
