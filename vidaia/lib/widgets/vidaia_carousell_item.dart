@@ -7,6 +7,7 @@ class VidaiaCarouselItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.all(5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15.0),
         color: backgroundColorDark,
@@ -16,6 +17,7 @@ class VidaiaCarouselItem extends StatelessWidget {
         children: [
           Expanded(
             child: Container(
+              width: double.maxFinite,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                   topRight: Radius.circular(15),
@@ -39,6 +41,28 @@ class VidaiaCarouselItem extends StatelessWidget {
                 borderRadius: BorderRadius.only(
                   bottomRight: Radius.circular(15),
                   bottomLeft: Radius.circular(15),
+                ),
+              ),
+              child: Container(
+                padding: EdgeInsets.all(10),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Migros Burgdorf",
+                        style: Theme.of(context).textTheme.subtitle1,
+                      ),
+                      Text(
+                        "13.4.2022",
+                        style: Theme.of(context).textTheme.subtitle2,
+                      ),
+                      Text("Collected 10 Vidar",
+                          style: Theme.of(context).textTheme.bodyText1),
+                    ],
+                  ),
                 ),
               ),
             ),

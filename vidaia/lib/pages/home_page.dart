@@ -41,23 +41,34 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           const Padding(padding: EdgeInsets.symmetric(vertical: 20)),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: CarouselSlider(
-              options: CarouselOptions(
-                  autoPlay: false,
-                  autoPlayInterval: Duration(seconds: 2),
-                  autoPlayAnimationDuration: Duration(seconds: 1),
-                  aspectRatio: 2.0,
-                  enlargeCenterPage: true,
-                  enableInfiniteScroll: false),
-              items: [
-                VidaiaCarouselItem(),
-                VidaiaCarouselItem(),
-                VidaiaCarouselItem(),
-                VidaiaCarouselItem(),
-              ],
+          Container(
+            padding: EdgeInsets.only(left: 40),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                "Letzte Einkäufe",
+                style: Theme.of(context).textTheme.headline6,
+                textAlign: TextAlign.left,
+              ),
             ),
+          ),
+          CarouselSlider(
+            options: CarouselOptions(
+              pageSnapping: false,
+              scrollPhysics: PageScrollPhysics(),
+              height: 150,
+              viewportFraction: 0.5,
+              autoPlay: false,
+              autoPlayInterval: Duration(seconds: 2),
+              autoPlayAnimationDuration: Duration(seconds: 1),
+              enableInfiniteScroll: false,
+            ),
+            items: [
+              VidaiaCarouselItem(),
+              VidaiaCarouselItem(),
+              VidaiaCarouselItem(),
+              VidaiaCarouselItem(),
+            ],
           ),
         ],
       ),
