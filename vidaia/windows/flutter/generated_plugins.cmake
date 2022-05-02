@@ -3,6 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  r_crypto
   url_launcher_windows
 )
 

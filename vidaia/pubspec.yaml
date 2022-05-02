@@ -41,6 +41,11 @@ dependencies:
   auto_route: ^3.2.4
   google_fonts: ^2.3.1
 
+
+  # Change this once the devkit is public
+  thor_devkit_dart:
+    path: C:/Users/SayNode/Documents/GitHub/Vidaia/thor_devkit_dart
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
