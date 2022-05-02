@@ -42,9 +42,12 @@ dependencies:
   google_fonts: ^2.3.1
 
 
-  # Change this once the devkit is public
+  # Change this once the devkit is public  
   thor_devkit_dart:
     path: C:/Users/SayNode/Documents/GitHub/Vidaia/thor_devkit_dart
+
+  thor_request_dart:
+    path: C:/Users/SayNode/Documents/GitHub/Vidaia/thor-request.dart/thor_request_dart
 
 dev_dependencies:
   flutter_test:
