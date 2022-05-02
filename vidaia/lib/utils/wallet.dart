@@ -38,9 +38,10 @@ recoverWalletFromWords(List<String> words) {
 }
 
 
-transferVidar(int value, String address, String url) {
+Future<Map> transferVidar(int value, String address, String url) {
   assert(global.wallet != null);
   Connect connect = Connect(url);
-  connect.transferToken(global.wallet!, address, 'tokenContractAddress', BigInt.from(value));
+  //TODO: replace 'tokenContractAddress' with the address for vidar
+  return connect.transferToken(global.wallet!, address, 'tokenContractAddress', BigInt.from(value));
 
 }
