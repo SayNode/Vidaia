@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -27,7 +26,8 @@ class _SettingsPageState extends State<SettingsPage> {
         children: [
           Text(
             'changeLanguage'.tr(),
-            style: const TextStyle(fontSize: 25),
+            style: Theme.of(context).textTheme.headline3,
+
           ),
           DropdownButton(
               hint: Text(

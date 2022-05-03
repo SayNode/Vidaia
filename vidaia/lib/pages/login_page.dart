@@ -46,7 +46,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: primaryColor,
-      padding: EdgeInsets.all(40),
+      padding: const EdgeInsets.all(40),
       child: FlutterLogin(
         //userType: LoginUserType.name,
         logo: const AssetImage('assets/images/vidaia-live-sustainably.png'),

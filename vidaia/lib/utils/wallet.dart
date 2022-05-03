@@ -1,4 +1,3 @@
-import 'package:thor_devkit_dart/crypto/keystore.dart';
 import 'package:thor_devkit_dart/crypto/mnemonic.dart';
 import 'package:thor_request_dart/connect.dart';
 import 'package:thor_request_dart/wallet.dart';

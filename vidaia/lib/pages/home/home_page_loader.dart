@@ -13,6 +13,7 @@ class HomePage2 extends StatefulWidget {
 }
 
 class _HomePage2State extends State<HomePage2> {
+  @override
   void initState() {
     super.initState();
   }

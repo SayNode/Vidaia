@@ -806,7 +806,7 @@ packages:
   thor_request_dart:
     dependency: "direct main"
     description:
-      path: "C:/Users/SayNode/Documents/GitHub/Vidaia/thor-request.dart/thor_request_dart"
+      path: "C:/Users/SayNode/Documents/GitHub/Vidaia/thor_request_dart"
       relative: false
     source: path
     version: "0.0.1"

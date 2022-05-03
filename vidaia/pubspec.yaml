@@ -47,7 +47,7 @@ dependencies:
     path: C:/Users/SayNode/Documents/GitHub/Vidaia/thor_devkit_dart
 
   thor_request_dart:
-    path: C:/Users/SayNode/Documents/GitHub/Vidaia/thor-request.dart/thor_request_dart
+    path: C:/Users/SayNode/Documents/GitHub/Vidaia/thor_request_dart
 
 dev_dependencies:
   flutter_test:
