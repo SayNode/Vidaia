@@ -1,13 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'dart:math' as math;
+import 'package:vidaia/pages/home/custom_border_shape.dart';
+
 import '../../widgets/vidaia_drawer.dart';
 
-//padding to the right of vidar in appbar
-const double offsetRight = 25;
-//change inset to move circle farther into appbar
-const double inset = 20;
-//change r to change circle size(r is radius)
-const double r = 50;
+
 
 class HomePageStack extends StatefulWidget {
   final List<Widget> list;
@@ -67,15 +64,15 @@ class _HomePageStackState extends State<HomePageStack> {
       ),
       drawer: const VidaiaDrawer(),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
+        items: <BottomNavigationBarItem>[
+          const BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart), label: 'History'),
+              icon: const Icon(Icons.shopping_cart), label: 'purchase'.tr()),
           BottomNavigationBarItem(
-              icon: Icon(Icons.local_offer_outlined), label: 'Redeem'),
+              icon: const Icon(Icons.local_offer_outlined), label: 'redeem'.tr()),
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
@@ -85,32 +82,5 @@ class _HomePageStackState extends State<HomePageStack> {
         children: widget.list,
       ),
     );
-  }
-}
-
-class CustomShapeBorder extends ContinuousRectangleBorder {
-  @override
-  Path getOuterPath(Rect rect, {TextDirection? textDirection}) {
-    double oHeight = rect.height - inset;
-
-    //edit this to move the circle
-    final oval = Rect.fromCenter(
-        center: Offset(rect.width - (r / 2) - offsetRight, oHeight),
-        width: r * 2,
-        height: r * 2);
-
-    Path path = Path();
-    path.lineTo(0, rect.height);
-    path.relativeLineTo(rect.width, 0);
-    path.relativeLineTo(0, -rect.height);
-
-    double h = oHeight - rect.height + r;
-    var alpha = 2 * math.acos(1 - (h / r));
-
-    path.addArc(oval, (math.pi - alpha) / 2, alpha);
-
-    path.close();
-
-    return path;
   }
 }

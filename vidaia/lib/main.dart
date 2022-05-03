@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:vidaia/pages/home/home_page_loader.dart';
 import 'package:vidaia/pages/login_page.dart';
 
 void main() async {
@@ -10,11 +11,12 @@ void main() async {
   runApp(
     EasyLocalization(
         supportedLocales: const [
-          Locale('en', 'US'),
+          Locale('en'),
+          Locale('de'),
         ],
         path:
             'assets/translations', // <-- change the path of the translation files
-        fallbackLocale: const Locale('en', 'US'),
+        fallbackLocale: const Locale('de'),
         child: MyApp()),
   );
 }
@@ -34,7 +36,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const LoginPage(),
+      
         //Localization
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
@@ -83,7 +85,9 @@ class MyApp extends StatelessWidget {
                 fontSize: 10, fontWeight: FontWeight.w400, letterSpacing: 1.5),
           ),
         ),
-        darkTheme: ThemeData.dark());
+        darkTheme: ThemeData.dark(),
+        home: HomePage2(),
+        );
         
   }
 }

@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:vidaia/main.dart';
+import 'package:vidaia/pages/settings_page.dart';
 
 class VidaiaDrawer extends StatelessWidget {
   const VidaiaDrawer({Key? key}) : super(key: key);
@@ -58,10 +60,15 @@ class VidaiaDrawer extends StatelessWidget {
                 color: primaryColorBright,
               ),
               title: Text(
-                'Settings',
+                'settings'.tr(),
                 style: Theme.of(context).textTheme.subtitle1,
               ),
-              //onTap: () => {context.router.push(const SettingsRoute())},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SettingsPage()),
+                );
+              },
             ),
           ),
           Material(

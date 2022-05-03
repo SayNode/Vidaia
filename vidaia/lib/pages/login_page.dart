@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:vidaia/main.dart';
@@ -48,8 +49,8 @@ class LoginPage extends StatelessWidget {
       padding: EdgeInsets.all(40),
       child: FlutterLogin(
         //userType: LoginUserType.name,
-        logo: AssetImage('assets/images/vidaia-live-sustainably.png'),
-        messages: LoginMessages(userHint: 'Username'),
+        logo: const AssetImage('assets/images/vidaia-live-sustainably.png'),
+        messages: LoginMessages(userHint: tr('username')),
         onLogin: _authUser,
         onSignup: _signupUser,
 

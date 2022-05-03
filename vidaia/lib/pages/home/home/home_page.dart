@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
@@ -26,10 +27,10 @@ class _HomePageState extends State<HomePage> {
       children: [
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Container(
+          child: SizedBox(
             child: Center(
               child: Text(
-                'Welcome User',
+                'welcome'.tr() + ' John',
                 style: Theme.of(context).textTheme.headline4,
                 textAlign: TextAlign.center,
               ),
@@ -44,7 +45,7 @@ class _HomePageState extends State<HomePage> {
           child: Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              "Letzte Einkäufe",
+              'lastPurchase'.tr(),
               style: Theme.of(context).textTheme.headline6,
               textAlign: TextAlign.left,
             ),
