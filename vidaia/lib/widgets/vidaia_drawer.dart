@@ -2,8 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:vidaia/main.dart';
 
-import '../utils/router.gr.dart';
-
 class VidaiaDrawer extends StatelessWidget {
   const VidaiaDrawer({Key? key}) : super(key: key);
 
@@ -49,7 +47,7 @@ class VidaiaDrawer extends StatelessWidget {
                 'Home',
                 style: Theme.of(context).textTheme.subtitle1,
               ),
-              onTap: () => {context.router.push(const HomeRoute())},
+              //onTap: () => {context.router.push(const HomeRoute())},
             ),
           ),
           Material(
@@ -63,7 +61,7 @@ class VidaiaDrawer extends StatelessWidget {
                 'Settings',
                 style: Theme.of(context).textTheme.subtitle1,
               ),
-              onTap: () => {context.router.push(const SettingsRoute())},
+              //onTap: () => {context.router.push(const SettingsRoute())},
             ),
           ),
           Material(
@@ -96,7 +94,7 @@ class VidaiaDrawer extends StatelessWidget {
                 'Logout',
                 style: Theme.of(context).textTheme.subtitle1,
               ),
-              onTap: () => {context.router.push(const LoginRoute())},
+              //onTap: () => {context.router.push(const LoginRoute())},
             ),
           ),
         ]),

@@ -54,7 +54,6 @@ dev_dependencies:
     sdk: flutter
 
   build_runner: ^2.1.4
-  auto_route_generator: ^3.0.4
   
 
   # The "flutter_lints" package below contains a set of recommended lints to

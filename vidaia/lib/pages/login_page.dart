@@ -1,8 +1,7 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:vidaia/main.dart';
-import 'package:vidaia/utils/router.gr.dart';
+import 'package:vidaia/pages/home/home_page_loader.dart';
 
 const users = {
   'a@a.com': 'password',
@@ -55,8 +54,11 @@ class LoginPage extends StatelessWidget {
         onSignup: _signupUser,
 
         onSubmitAnimationCompleted: () {
-          context.router.push(const HomeRoute());
-        },
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => HomePage2()),
+  );
+},
         onRecoverPassword: _recoverPassword,
       ),
     );

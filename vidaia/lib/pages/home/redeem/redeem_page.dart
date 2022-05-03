@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:vidaia/widgets/vidaia_scaffold.dart';
 
-class BuyHistoryPage extends StatefulWidget {
-  const BuyHistoryPage({
+class RedeemPage extends StatefulWidget {
+  const RedeemPage({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<BuyHistoryPage> createState() => _BuyHistoryPageState();
+  State<RedeemPage> createState() => _RedeemPageState();
 }
 
-class _BuyHistoryPageState extends State<BuyHistoryPage>
+class _RedeemPageState extends State<RedeemPage>
     with SingleTickerProviderStateMixin {
   List<int> items = List.generate(10, (i) => i);
   final ScrollController _scrollController = ScrollController();
@@ -37,7 +36,7 @@ class _BuyHistoryPageState extends State<BuyHistoryPage>
 
   @override
   Widget build(BuildContext context) {
-    return VidaiScaffold(body: buyHistoryPageListView());
+    return gridViewRedeem();
   }
 
   _getMoreData() async {
@@ -76,8 +75,8 @@ class _BuyHistoryPageState extends State<BuyHistoryPage>
     );
   }
 
-  Widget buyHistoryPageListView() {
-    return ListView.builder(
+  Widget gridViewRedeem() {
+    return GridView.builder(
       primary: false,
       shrinkWrap: true,
       padding: const EdgeInsets.all(20),
@@ -86,13 +85,14 @@ class _BuyHistoryPageState extends State<BuyHistoryPage>
         if (index == items.length) {
           return _loadingNewItemsIndicator();
         } else {
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
+          return Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
             child: Container(
-              height: 50,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15.0),
-                  gradient: LinearGradient(
+                  gradient: const LinearGradient(
                     begin: Alignment.topRight,
                     end: Alignment.bottomLeft,
                     colors: [
@@ -106,6 +106,11 @@ class _BuyHistoryPageState extends State<BuyHistoryPage>
       },
       //physics: NeverScrollableScrollPhysics(),
       controller: _scrollController,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
+      ),
     );
   }
 }

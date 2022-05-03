@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:vidaia/utils/router.gr.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:vidaia/pages/login_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,14 +29,12 @@ const backgroundColorDark = Color(0xFFebeeea);
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
 
-  final _appRouter = AppRouter();
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-        routerDelegate: _appRouter.delegate(),
-        routeInformationParser: _appRouter.defaultRouteParser(),
+    return MaterialApp(
+      home: const LoginPage(),
         //Localization
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
@@ -86,5 +84,6 @@ class MyApp extends StatelessWidget {
           ),
         ),
         darkTheme: ThemeData.dark());
+        
   }
 }

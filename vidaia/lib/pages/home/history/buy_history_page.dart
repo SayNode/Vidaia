@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:vidaia/widgets/vidaia_scaffold.dart';
 
-class RedeemPage extends StatefulWidget {
-  const RedeemPage({
+class BuyHistoryPage extends StatefulWidget {
+  const BuyHistoryPage({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<RedeemPage> createState() => _RedeemPageState();
+  State<BuyHistoryPage> createState() => _BuyHistoryPageState();
 }
 
-class _RedeemPageState extends State<RedeemPage>
+class _BuyHistoryPageState extends State<BuyHistoryPage>
     with SingleTickerProviderStateMixin {
   List<int> items = List.generate(10, (i) => i);
   final ScrollController _scrollController = ScrollController();
@@ -37,7 +36,7 @@ class _RedeemPageState extends State<RedeemPage>
 
   @override
   Widget build(BuildContext context) {
-    return VidaiScaffold(body: gridViewRedeem());
+    return buyHistoryPageListView();
   }
 
   _getMoreData() async {
@@ -76,8 +75,8 @@ class _RedeemPageState extends State<RedeemPage>
     );
   }
 
-  Widget gridViewRedeem() {
-    return GridView.builder(
+  Widget buyHistoryPageListView() {
+    return ListView.builder(
       primary: false,
       shrinkWrap: true,
       padding: const EdgeInsets.all(20),
@@ -86,14 +85,13 @@ class _RedeemPageState extends State<RedeemPage>
         if (index == items.length) {
           return _loadingNewItemsIndicator();
         } else {
-          return Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15.0),
-            ),
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
             child: Container(
+              height: 50,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15.0),
-                  gradient: const LinearGradient(
+                  gradient: LinearGradient(
                     begin: Alignment.topRight,
                     end: Alignment.bottomLeft,
                     colors: [
@@ -107,11 +105,6 @@ class _RedeemPageState extends State<RedeemPage>
       },
       //physics: NeverScrollableScrollPhysics(),
       controller: _scrollController,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
-      ),
     );
   }
 }

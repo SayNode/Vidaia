@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:vidaia/main.dart';
 
-class VidaiaCarouselItem extends StatelessWidget {
-  const VidaiaCarouselItem({Key? key}) : super(key: key);
+class RedeemCarouselItem extends StatelessWidget {
+  const RedeemCarouselItem({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(5),
+      margin: const EdgeInsets.all(5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15.0),
         color: backgroundColorDark,
@@ -18,12 +18,12 @@ class VidaiaCarouselItem extends StatelessWidget {
           Expanded(
             child: Container(
               width: double.maxFinite,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
                   topRight: Radius.circular(15),
                   topLeft: Radius.circular(15),
                 ),
-                gradient: const LinearGradient(
+                gradient: LinearGradient(
                   begin: Alignment.topRight,
                   end: Alignment.bottomLeft,
                   colors: [
@@ -37,7 +37,7 @@ class VidaiaCarouselItem extends StatelessWidget {
           Expanded(
             flex: 2,
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
                   bottomRight: Radius.circular(15),
                   bottomLeft: Radius.circular(15),
