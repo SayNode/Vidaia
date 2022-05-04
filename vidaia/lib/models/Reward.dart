@@ -4,17 +4,17 @@ part 'Reward.g.dart';
 
 @JsonSerializable()
 class Reward {
-  final String? name;
+  final String name;
 
-  final String? image;
+  final String image;
 
-  final String? url;
+  final String url;
 
-  final int? cost;
+  final int cost;
 
-  final String? description;
+  final String description;
 
-  final String? seller_address;
+  final String seller_address;
 
   factory Reward.fromJson(Map<String, dynamic> json) => _$RewardFromJson(json);
 

@@ -49,6 +49,7 @@ dependencies:
   thor_request_dart:
     path: assets/packages/thor_request_dart
   json_serializable: ^6.2.0
+  get_it: ^7.2.0
 
 dev_dependencies:
   flutter_test:
@@ -79,6 +80,7 @@ flutter:
     - assets/translations/
     - assets/images/vidaia-live-sustainably.png
     - assets/packages/
+    - assets/data/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

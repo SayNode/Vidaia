@@ -1,26 +1,22 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:vidaia/main.dart';
+import 'package:vidaia/models/Product.dart';
+import 'package:vidaia/repositories/dataRepository.dart';
 
 import '../redeem/widgets/redeem_crousel_item.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  DataRepository dataRepository = getIt.get<DataRepository>();
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -52,24 +48,26 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         CarouselSlider(
-          options: CarouselOptions(
-            pageSnapping: false,
-            scrollPhysics: PageScrollPhysics(),
-            height: 150,
-            viewportFraction: 0.5,
-            autoPlay: false,
-            autoPlayInterval: Duration(seconds: 2),
-            autoPlayAnimationDuration: Duration(seconds: 1),
-            enableInfiniteScroll: false,
-          ),
-          items: [
-            RedeemCarouselItem(),
-            RedeemCarouselItem(),
-            RedeemCarouselItem(),
-            RedeemCarouselItem(),
-          ],
-        ),
+            options: CarouselOptions(
+              pageSnapping: false,
+              scrollPhysics: PageScrollPhysics(),
+              height: 150,
+              viewportFraction: 0.5,
+              autoPlay: false,
+              autoPlayInterval: Duration(seconds: 2),
+              autoPlayAnimationDuration: Duration(seconds: 1),
+              enableInfiniteScroll: false,
+            ),
+            items: getCarrouselItems()),
       ],
     );
+  }
+
+  List<Widget> getCarrouselItems() {
+    List<Widget> items = [];
+    for (Product prod in dataRepository.products) {
+      items.add(RedeemCarouselItem(prod));
+    }
+    return items;
   }
 }

@@ -7,12 +7,12 @@ part of 'Reward.dart';
 // **************************************************************************
 
 Reward _$RewardFromJson(Map<String, dynamic> json) => Reward(
-      json['name'] as String?,
-      json['image'] as String?,
-      json['url'] as String?,
-      json['cost'] as int?,
-      json['description'] as String?,
-      json['seller_address'] as String?,
+      json['name'] as String,
+      json['image'] as String,
+      json['url'] as String,
+      json['cost'] as int,
+      json['description'] as String,
+      json['seller_address'] as String,
     );
 
 Map<String, dynamic> _$RewardToJson(Reward instance) => <String, dynamic>{

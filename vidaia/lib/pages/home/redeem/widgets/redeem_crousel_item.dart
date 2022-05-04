@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:vidaia/main.dart';
+import 'package:vidaia/models/Product.dart';
 
 class RedeemCarouselItem extends StatelessWidget {
-  const RedeemCarouselItem({Key? key}) : super(key: key);
+  Product prod;
+
+  RedeemCarouselItem(this.prod, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -52,15 +55,14 @@ class RedeemCarouselItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Migros Burgdorf",
+                        prod.name!,
                         style: Theme.of(context).textTheme.subtitle1,
                       ),
                       Text(
                         "13.4.2022",
                         style: Theme.of(context).textTheme.subtitle2,
                       ),
-                      Text("Collected 10 Vidar",
-                          style: Theme.of(context).textTheme.bodyText1),
+                      Text("Collected 10 Vidar", style: Theme.of(context).textTheme.bodyText1),
                     ],
                   ),
                 ),

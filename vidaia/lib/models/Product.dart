@@ -4,11 +4,11 @@ part 'Product.g.dart';
 
 @JsonSerializable()
 class Product {
-  final String? name;
+  final String name;
 
-  final String? image;
+  final String image;
 
-  final String? url;
+  final String url;
 
   final int? tokens;
 

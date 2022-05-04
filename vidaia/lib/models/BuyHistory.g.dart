@@ -7,9 +7,9 @@ part of 'BuyHistory.dart';
 // **************************************************************************
 
 BuyHistory _$BuyHistoryFromJson(Map<String, dynamic> json) => BuyHistory(
-      json['userId'] as String?,
-      (json['history'] as List<dynamic>?)
-          ?.map((e) => Map<String, String>.from(e as Map))
+      json['userId'] as String,
+      (json['history'] as List<dynamic>)
+          .map((e) => HistoryEntry.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
