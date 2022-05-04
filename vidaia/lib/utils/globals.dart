@@ -7,3 +7,4 @@ bool loginStatus = false;
 List<String>? mnemonicPhrase;
 Uint8List? privateKey;
 Wallet? wallet;
+
