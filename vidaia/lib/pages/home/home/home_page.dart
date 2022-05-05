@@ -72,8 +72,8 @@ class _HomePageState extends State<HomePage> {
             RedeemCarouselItem(),
           ],
         ),
-        StreamBuilder<double>(
-          initialData: 0.0,
+        StreamBuilder<BigInt>(
+          //initialData: 0.0,
           stream: checkBalance(),
           builder: (context, snapshot) {
             switch (snapshot.connectionState) {
@@ -90,6 +90,19 @@ class _HomePageState extends State<HomePage> {
             }
           },
         ),
+        ElevatedButton(
+            onPressed: () {
+              transferVidar(1, '0x00bab3d8de4ebbefb07d53b1ff8c0f2434bd616d',
+                  'https://testnet.veblocks.net');
+              print(address);
+            },
+            child: Text('send 1 vid')),
+        ElevatedButton(
+            onPressed: () {
+              setPriv();
+            },
+            child: Text('set priv')),
+
         /*
         StreamBuilder(
           stream: checkBalance(),

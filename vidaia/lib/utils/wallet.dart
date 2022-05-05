@@ -1,8 +1,9 @@
 import 'dart:convert';
-import 'dart:typed_data';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:thor_devkit_dart/crypto/mnemonic.dart';
+import 'package:thor_devkit_dart/crypto/secp256k1.dart';
 import 'package:thor_devkit_dart/utils.dart';
+import 'package:thor_devkit_dart/crypto/address.dart';
 import 'package:thor_request_dart/connect.dart';
 import 'package:thor_request_dart/contract.dart';
 import 'package:thor_request_dart/wallet.dart';
@@ -16,8 +17,26 @@ createNewWallet() async {
 
   //derive privat key from words and save it on local device
   var priv = Mnemonic.derivePrivateKey(words);
+  global.address =
+      Address.publicKeyToAddressString(derivePublicKeyFromBytes(priv, false));
 
   await storage.write(key: "privateKey", value: bytesToHex(priv));
+}
+
+//TODO: remove this for release
+Future<String?> getpriv() async {
+  final storage = FlutterSecureStorage();
+  final String? priv = await storage.read(key: 'privateKey');
+  return priv;
+}
+
+
+//TODO: remove this for release
+setPriv() async {
+  final storage = FlutterSecureStorage();
+  final priv =
+      '68afea4a4d35f7555ac1d4c6b9e29199213410edfb534cb544a52301b98aa33f';
+  await storage.write(key: "privateKey", value: priv);
 }
 
 recoverWalletFromWords(List<String> words) async {
@@ -29,18 +48,22 @@ recoverWalletFromWords(List<String> words) async {
 }
 
 Future<Map> transferVidar(int value, String address, String url) async {
-final storage = FlutterSecureStorage();
+  final storage = FlutterSecureStorage();
   Connect connect = Connect(url);
   final String? priv = await storage.read(key: 'privateKey');
   Wallet wallet = Wallet(hexToBytes(priv!));
-  return connect.transferToken(wallet, address,
-      '0x6e21867DB6572756e778883E17e7595b7f363310', BigInt.from(value));
+  var toVidar = BigInt.parse('DE0B6B3A7640000', radix: 16);
+
+  BigInt vidar = BigInt.from(value) * toVidar;
+
+  return await connect.transferToken(wallet, address,
+      '0x6e21867DB6572756e778883E17e7595b7f363310', vidar);
 }
 
-Stream<double> checkBalance() => Stream.periodic(Duration(seconds: 1))
+Stream<BigInt> checkBalance() => Stream.periodic(Duration(seconds: 1))
     .asyncMap((_) => _getBalance(global.address!));
 
-Future<double> _getBalance(String address) async {
+Future<BigInt> _getBalance(String address) async {
   Connect connect = Connect('https://testnet.veblocks.net');
 
   String jString = """{
@@ -77,5 +100,5 @@ Future<double> _getBalance(String address) async {
   var devidor = BigInt.parse('DE0B6B3A7640000', radix: 16);
   var vidar = wei / devidor;
 
-  return vidar;
+  return BigInt.from(vidar);
 }

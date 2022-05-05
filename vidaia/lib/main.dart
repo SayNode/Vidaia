@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:vidaia/pages/home/home_page_loader.dart';
+import 'package:vidaia/pages/login_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -85,7 +86,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
         darkTheme: ThemeData.dark(),
-        home: HomePage2(),
+        home: LoginPage(),
         );
         
   }

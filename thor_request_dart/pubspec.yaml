@@ -19,7 +19,7 @@ dependencies:
   #thor devkit dependencies
   pointycastle: ^3.5.2
   thor_devkit_dart:
-    path: C:/Users/SayNode/Documents/GitHub/Vidaia/thor_devkit_dart
+    path: C:/Users/SayNode/Documents/GitHub/thor-devkit.dart/thor_devkit_dart
 
 
 dev_dependencies:
