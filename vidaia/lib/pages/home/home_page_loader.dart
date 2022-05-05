@@ -25,7 +25,7 @@ class _HomePage2State extends State<HomePage2> {
     isDataLoaded = dataRepository.init();
   }
 
-  final _pages = [HomePage(), RedeemPage(), BuyHistoryPage()];
+  final _pages = [HomePage(), BuyHistoryPage(), RedeemPage()];
 
   @override
   Widget build(BuildContext context) {
