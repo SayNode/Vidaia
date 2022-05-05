@@ -4,9 +4,9 @@ import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:vidaia/pages/home/home_page_loader.dart';
 import 'package:vidaia/repositories/dataRepository.dart';
+import 'package:vidaia/pages/login_page.dart';
 
 GetIt getIt = GetIt.instance;
-import 'package:vidaia/pages/login_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -73,10 +73,10 @@ class MyApp extends StatelessWidget {
           button: GoogleFonts.quicksand(fontSize: 14, fontWeight: FontWeight.w500, letterSpacing: 1.25),
           caption: GoogleFonts.quicksand(fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: 0.4),
           overline: GoogleFonts.quicksand(fontSize: 10, fontWeight: FontWeight.w400, letterSpacing: 1.5),
-        ),),
-        darkTheme: ThemeData.dark(),
-        home: LoginPage(),
-        );
-        
+        ),
+      ),
+      darkTheme: ThemeData.dark(),
+      home: LoginPage(),
+    );
   }
 }
