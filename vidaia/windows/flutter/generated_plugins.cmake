@@ -3,6 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  flutter_secure_storage_windows
   r_crypto
   url_launcher_windows
 )

@@ -9,7 +9,9 @@ import 'package:vidaia/pages/home/home/widgets/new_product_tile.dart';
 import 'package:vidaia/repositories/dataRepository.dart';
 import 'package:vidaia/utils/constants.dart';
 
-import '../redeem/widgets/redeem_reward_tile.dart';
+import 'package:vidaia/utils/globals.dart';
+
+import '../../../utils/wallet.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -64,6 +66,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         CarouselSlider(
+
             options: CarouselOptions(
               height: MediaQuery.of(context).size.height  *0.28,
               pageSnapping: false,
@@ -75,6 +78,53 @@ class _HomePageState extends State<HomePage> {
               enableInfiniteScroll: false,
             ),
             items: getCarrouselItems()),
+
+        StreamBuilder<BigInt>(
+          //initialData: 0.0,
+          stream: checkBalance(),
+          builder: (context, snapshot) {
+            switch (snapshot.connectionState) {
+              case ConnectionState.waiting:
+                return CircularProgressIndicator();
+              default:
+                if (snapshot.hasError) {
+                  return Text(snapshot.error.toString());
+                } else {
+                  final balance = snapshot.data.toString();
+
+                  return Text(balance);
+                }
+            }
+          },
+        ),
+        ElevatedButton(
+            onPressed: () {
+              transferVidar(1, '0x00bab3d8de4ebbefb07d53b1ff8c0f2434bd616d',
+                  'https://testnet.veblocks.net');
+              print(address);
+            },
+            child: Text('send 1 vid')),
+        ElevatedButton(
+            onPressed: () {
+              setPriv();
+            },
+            child: Text('set priv')),
+
+        /*
+        StreamBuilder(
+          stream: checkBalance(),
+          builder: (ctx, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting)
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+
+            final balance = snapshot.data.toString();
+
+            return Text(balance);
+          },
+        ),
+        */
       ],
     );
   }

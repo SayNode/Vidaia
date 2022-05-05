@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:vidaia/main.dart';
 import 'package:vidaia/pages/home/home_page_loader.dart';
+import 'package:vidaia/utils/globals.dart';
+import 'package:vidaia/utils/wallet.dart';
 
 const users = {
   'a@a.com': 'password',
@@ -35,8 +37,14 @@ class LoginPage extends StatelessWidget {
     });
   }
 
-  Future<String?> _signupUser(SignupData data) {
+  Future<String?> _signupUser(SignupData data) async{
     debugPrint('Signup Name: ${data.name}, Password: ${data.password}');
+    username = data.name;
+    password = data.password;
+    createNewWallet();
+    debugPrint(address);
+    var p = await getpriv();
+    debugPrint(p);
     return Future.delayed(loginTime).then((_) {
       return null;
     });
@@ -48,9 +56,9 @@ class LoginPage extends StatelessWidget {
       color: primaryColor,
       padding: const EdgeInsets.all(40),
       child: FlutterLogin(
-        //userType: LoginUserType.name,
+        userType: LoginUserType.name,
         logo: const AssetImage('assets/images/vidaia-live-sustainably.png'),
-        messages: LoginMessages(userHint: tr('username')),
+        messages: LoginMessages(userHint: tr('username'), passwordHint: 'password'.tr()),
         onLogin: _authUser,
         onSignup: _signupUser,
 

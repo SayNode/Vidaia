@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:vidaia/utils/constants.dart';
+import 'package:vidaia/pages/home/custom_border_shape.dart';
+import 'package:vidaia/utils/wallet.dart';
 
 import '../../widgets/vidaia_drawer.dart';
 
