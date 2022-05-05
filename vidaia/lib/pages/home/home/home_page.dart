@@ -1,7 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:thor_request_dart/connect.dart';
+import 'package:vidaia/utils/globals.dart';
 
+import '../../../utils/wallet.dart';
 import '../redeem/widgets/redeem_crousel_item.dart';
 
 class HomePage extends StatefulWidget {
@@ -69,6 +72,39 @@ class _HomePageState extends State<HomePage> {
             RedeemCarouselItem(),
           ],
         ),
+        StreamBuilder<double>(
+          initialData: 0.0,
+          stream: checkBalance(),
+          builder: (context, snapshot) {
+            switch (snapshot.connectionState) {
+              case ConnectionState.waiting:
+                return CircularProgressIndicator();
+              default:
+                if (snapshot.hasError) {
+                  return Text(snapshot.error.toString());
+                } else {
+                  final balance = snapshot.data.toString();
+
+                  return Text(balance);
+                }
+            }
+          },
+        ),
+        /*
+        StreamBuilder(
+          stream: checkBalance(),
+          builder: (ctx, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting)
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+
+            final balance = snapshot.data.toString();
+
+            return Text(balance);
+          },
+        ),
+        */
       ],
     );
   }

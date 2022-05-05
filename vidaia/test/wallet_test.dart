@@ -8,10 +8,14 @@ void main() {
 
   });
 
-    test('transfer vidar test', () async {
+    test('checkBalance', () async {
     
+    //var a = await _getBalance('0x17ACC76e4685AEA9d574705163E871b83e36697f');
+    
+    //print(a);
 
   });
+
 
 
 

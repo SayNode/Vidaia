@@ -1,10 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:vidaia/pages/home/custom_border_shape.dart';
+import 'package:vidaia/utils/wallet.dart';
 
 import '../../widgets/vidaia_drawer.dart';
-
-
 
 class HomePageStack extends StatefulWidget {
   final List<Widget> list;
@@ -49,12 +48,12 @@ class _HomePageStackState extends State<HomePageStack> {
               decoration: const BoxDecoration(
                   color: Colors.orange, shape: BoxShape.circle),
               child: Column(
-                children: const [
-                  Expanded(child: Icon(Icons.monetization_on_outlined)),
+                children: [
+                  const Expanded(child: Icon(Icons.monetization_on_outlined)),
                   Expanded(
                     child: Padding(
-                      padding: EdgeInsets.all(8),
-                      child: Text("37,37 VID"),
+                      padding: const EdgeInsets.all(8),
+                      child: Text('37 VID'),
                     ),
                   )
                 ],
@@ -73,7 +72,8 @@ class _HomePageStackState extends State<HomePageStack> {
           BottomNavigationBarItem(
               icon: const Icon(Icons.shopping_cart), label: 'purchase'.tr()),
           BottomNavigationBarItem(
-              icon: const Icon(Icons.local_offer_outlined), label: 'redeem'.tr()),
+              icon: const Icon(Icons.local_offer_outlined),
+              label: 'redeem'.tr()),
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
