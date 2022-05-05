@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'dart:io';
-
+import 'dart:typed_data';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:thor_devkit_dart/crypto/mnemonic.dart';
 import 'package:thor_devkit_dart/utils.dart';
 import 'package:thor_request_dart/connect.dart';
@@ -8,43 +8,33 @@ import 'package:thor_request_dart/contract.dart';
 import 'package:thor_request_dart/wallet.dart';
 import 'package:vidaia/utils/globals.dart' as global;
 
-//TODO: change this to a secure save method for the words nd the key
-createNewWallet() {
-  assert(global.mnemonicPhrase == null);
-  assert(global.privateKey == null);
-
+createNewWallet() async {
   //generate mnemonic phrase and save it on local device
   List<String> words = Mnemonic.generate();
-  global.mnemonicPhrase = words;
+  final storage = FlutterSecureStorage();
+  await storage.write(key: "mnemonicPhrase", value: words.join(' '));
 
   //derive privat key from words and save it on local device
   var priv = Mnemonic.derivePrivateKey(words);
 
-  //TODO: check if priv really needs to be saved
-  global.privateKey = priv;
-  global.wallet = Wallet(priv);
+  await storage.write(key: "privateKey", value: bytesToHex(priv));
 }
 
-//TODO: change this to a secure save method for the words nd the key
-recoverWalletFromWords(List<String> words) {
-  assert(global.mnemonicPhrase == null);
-  assert(global.privateKey == null);
-  assert(global.wallet == null);
+recoverWalletFromWords(List<String> words) async {
+  final storage = FlutterSecureStorage();
+  await storage.write(key: "mnemonicPhrase", value: words.join(' '));
 
-  //save mnemonic phrase  on local device
-  global.mnemonicPhrase = words;
-
-  //derive privat key from words and save it on local device
   var priv = Mnemonic.derivePrivateKey(words);
-  global.privateKey = priv;
+  await storage.write(key: "privateKey", value: bytesToHex(priv));
 }
 
-Future<Map> transferVidar(int value, String address, String url) {
-  assert(global.wallet != null);
+Future<Map> transferVidar(int value, String address, String url) async {
+final storage = FlutterSecureStorage();
   Connect connect = Connect(url);
-  //TODO: replace 'tokenContractAddress' with the address for vidar
-  return connect.transferToken(
-      global.wallet!, address, 'tokenContractAddress', BigInt.from(value));
+  final String? priv = await storage.read(key: 'privateKey');
+  Wallet wallet = Wallet(hexToBytes(priv!));
+  return connect.transferToken(wallet, address,
+      '0x6e21867DB6572756e778883E17e7595b7f363310', BigInt.from(value));
 }
 
 Stream<double> checkBalance() => Stream.periodic(Duration(seconds: 1))

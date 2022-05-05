@@ -33,6 +33,7 @@ dependencies:
   flutter_login: ^3.2.0
   easy_localization: ^3.0.0
   carousel_slider: ^4.0.0
+  flutter_secure_storage: ^5.0.2
 
 
   # The following adds the Cupertino Icons font to your application.
