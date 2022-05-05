@@ -1,0 +1,66 @@
+[
+    {
+        "name": "Reward 1",
+        "image": "https://image.migros.ch/mo-boxed/v-w-480-h-360/f33b0e11faee131a15f7c3ce7f5233ead19edefc/milch-extra.jpg",
+        "url": "https://produkte.migros.ch/spargeln-gruen-275401911300",
+        "cost": 200,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque gravida lectus sit amet suscipit sollicitudin. Etiam nisi orci, volutpat in ante et, commodo vehicula nisi. Duis eget nisi non ante posuere sodales sit amet non est. Ut pellentesque nulla ac pellentesque dignissim. Donec tincidunt, est molestie interdum eleifend,",
+        "seller_address": "this is the seller address"
+    },
+    {
+        "name": "Reward 2",
+        "image": "https://image.migros.ch/2017-large/000cfe4cf938a299ff64d3bd20255a200707cf37/gurke.jpg",
+        "url": "https://produkte.migros.ch/spargeln-gruen-275401911300",
+        "cost": 500,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque gravida lectus sit amet suscipit sollicitudin. Etiam nisi orci, volutpat in ante et, commodo vehicula nisi. Duis eget nisi non ante posuere sodales sit amet non est. Ut pellentesque nulla ac pellentesque dignissim. Donec tincidunt, est molestie interdum eleifend,",
+        "seller_address": "this is the seller address"
+    },
+    {
+        "name": "Reward 3",
+        "image": "https://image.migros.ch/mo-boxed/v-w-480-h-360/f33b0e11faee131a15f7c3ce7f5233ead19edefc/milch-extra.jpg",
+        "url": "https://produkte.migros.ch/spargeln-gruen-275401911300",
+        "cost": 25,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque gravida lectus sit amet suscipit sollicitudin. Etiam nisi orci, volutpat in ante et, commodo vehicula nisi. Duis eget nisi non ante posuere sodales sit amet non est. Ut pellentesque nulla ac pellentesque dignissim. Donec tincidunt, est molestie interdum eleifend,",
+        "seller_address": "this is the seller address"
+    },
+    {
+        "name": "Reward 2",
+        "image": "https://image.migros.ch/2017-large/9a7bd79007a05ed445f5df04b4e022d1a77cfbeb/spargeln-gruen.jpg",
+        "url": "https://produkte.migros.ch/spargeln-gruen-275401911300",
+        "cost": 500,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque gravida lectus sit amet suscipit sollicitudin. Etiam nisi orci, volutpat in ante et, commodo vehicula nisi. Duis eget nisi non ante posuere sodales sit amet non est. Ut pellentesque nulla ac pellentesque dignissim. Donec tincidunt, est molestie interdum eleifend,",
+        "seller_address": "this is the seller address"
+    },
+    {
+        "name": "Reward 3",
+        "image": "https://image.migros.ch/2017-large/000cfe4cf938a299ff64d3bd20255a200707cf37/gurke.jpg",
+        "url": "https://produkte.migros.ch/spargeln-gruen-275401911300",
+        "cost": 25,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque gravida lectus sit amet suscipit sollicitudin. Etiam nisi orci, volutpat in ante et, commodo vehicula nisi. Duis eget nisi non ante posuere sodales sit amet non est. Ut pellentesque nulla ac pellentesque dignissim. Donec tincidunt, est molestie interdum eleifend,",
+        "seller_address": "this is the seller address"
+    },
+    {
+        "name": "Reward 2",
+        "image": "https://image.migros.ch/2017-large/000cfe4cf938a299ff64d3bd20255a200707cf37/gurke.jpg",
+        "url": "https://produkte.migros.ch/spargeln-gruen-275401911300",
+        "cost": 500,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque gravida lectus sit amet suscipit sollicitudin. Etiam nisi orci, volutpat in ante et, commodo vehicula nisi. Duis eget nisi non ante posuere sodales sit amet non est. Ut pellentesque nulla ac pellentesque dignissim. Donec tincidunt, est molestie interdum eleifend,",
+        "seller_address": "this is the seller address"
+    },
+    {
+        "name": "Reward 3",
+        "image": "https://image.migros.ch/2017-large/000cfe4cf938a299ff64d3bd20255a200707cf37/gurke.jpg",
+        "url": "https://produkte.migros.ch/spargeln-gruen-275401911300",
+        "cost": 25,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque gravida lectus sit amet suscipit sollicitudin. Etiam nisi orci, volutpat in ante et, commodo vehicula nisi. Duis eget nisi non ante posuere sodales sit amet non est. Ut pellentesque nulla ac pellentesque dignissim. Donec tincidunt, est molestie interdum eleifend,",
+        "seller_address": "this is the seller address"
+    },
+    {
+        "name": "Reward 4",
+        "image": "https://image.migros.ch/2017-large/9a7bd79007a05ed445f5df04b4e022d1a77cfbeb/spargeln-gruen.jpg",
+        "url": "https://produkte.migros.ch/spargeln-gruen-275401911300",
+        "cost": 97,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque gravida lectus sit amet suscipit sollicitudin. Etiam nisi orci, volutpat in ante et, commodo vehicula nisi. Duis eget nisi non ante posuere sodales sit amet non est. Ut pellentesque nulla ac pellentesque dignissim. Donec tincidunt, est molestie interdum eleifend,",
+        "seller_address": "this is the seller address"
+    }
+]

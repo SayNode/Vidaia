@@ -9,8 +9,7 @@ class BuyHistoryPage extends StatefulWidget {
   State<BuyHistoryPage> createState() => _BuyHistoryPageState();
 }
 
-class _BuyHistoryPageState extends State<BuyHistoryPage>
-    with SingleTickerProviderStateMixin {
+class _BuyHistoryPageState extends State<BuyHistoryPage> with SingleTickerProviderStateMixin {
   List<int> items = List.generate(10, (i) => i);
   final ScrollController _scrollController = ScrollController();
   bool isPerformingRequest = false;
@@ -20,8 +19,7 @@ class _BuyHistoryPageState extends State<BuyHistoryPage>
     super.initState();
 
     _scrollController.addListener(() {
-      if (_scrollController.position.pixels ==
-          _scrollController.position.maxScrollExtent) {
+      if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
         _getMoreData();
       }
     });
@@ -42,17 +40,12 @@ class _BuyHistoryPageState extends State<BuyHistoryPage>
   _getMoreData() async {
     if (!isPerformingRequest) {
       setState(() => isPerformingRequest = true);
-      List<int> newEntries = await requestData(
-          items.length, items.length + 10); //returns empty list
+      List<int> newEntries = await requestData(items.length, items.length + 10); //returns empty list
       if (newEntries.isEmpty) {
         double edge = 50.0;
-        double offsetFromBottom = _scrollController.position.maxScrollExtent -
-            _scrollController.position.pixels;
+        double offsetFromBottom = _scrollController.position.maxScrollExtent - _scrollController.position.pixels;
         if (offsetFromBottom < edge) {
-          _scrollController.animateTo(
-              _scrollController.offset - (edge - offsetFromBottom),
-              duration: const Duration(milliseconds: 500),
-              curve: Curves.easeOut);
+          _scrollController.animateTo(_scrollController.offset - (edge - offsetFromBottom), duration: const Duration(milliseconds: 500), curve: Curves.easeOut);
         }
       }
 

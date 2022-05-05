@@ -45,10 +45,13 @@ dependencies:
 
   # Change this once the devkit is public  
   thor_devkit_dart:
-    path: C:/Users/SayNode/Documents/GitHub/Vidaia/thor_devkit_dart
+    path: assets/packages/thor_devkit_dart
 
   thor_request_dart:
-    path: C:/Users/SayNode/Documents/GitHub/Vidaia/thor_request_dart
+    path: assets/packages/thor_request_dart
+  json_serializable: ^6.2.0
+  get_it: ^7.2.0
+  url_launcher: ^6.1.0
 
 dev_dependencies:
   flutter_test:
@@ -78,6 +81,8 @@ flutter:
   assets:
     - assets/translations/
     - assets/images/vidaia-live-sustainably.png
+    - assets/packages/
+    - assets/data/
     - assets/abi/ABI.json
 
 

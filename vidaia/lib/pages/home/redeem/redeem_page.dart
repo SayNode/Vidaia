@@ -1,4 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:vidaia/main.dart';
+import 'package:vidaia/models/Reward.dart';
+import 'package:vidaia/pages/home/redeem/widgets/redeem_reward_tile.dart';
+import 'package:vidaia/repositories/dataRepository.dart';
 
 class RedeemPage extends StatefulWidget {
   const RedeemPage({
@@ -9,114 +14,52 @@ class RedeemPage extends StatefulWidget {
   State<RedeemPage> createState() => _RedeemPageState();
 }
 
-class _RedeemPageState extends State<RedeemPage>
-    with SingleTickerProviderStateMixin {
-  List<int> items = List.generate(10, (i) => i);
-  final ScrollController _scrollController = ScrollController();
+class _RedeemPageState extends State<RedeemPage> with SingleTickerProviderStateMixin {
+  DataRepository dataRepository = getIt.get<DataRepository>();
+
+  late List<Reward> items = [];
   bool isPerformingRequest = false;
 
   @override
   void initState() {
     super.initState();
-
-    _scrollController.addListener(() {
-      if (_scrollController.position.pixels ==
-          _scrollController.position.maxScrollExtent) {
-        _getMoreData();
-      }
-    });
+    items = dataRepository.rewards;
   }
 
   @override
   void dispose() {
-    _scrollController.dispose();
-
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return gridViewRedeem();
-  }
-
-  _getMoreData() async {
-    if (!isPerformingRequest) {
-      setState(() => isPerformingRequest = true);
-      List<int> newEntries = await requestData(
-          items.length, items.length + 10); //returns empty list
-      if (newEntries.isEmpty) {
-        double edge = 50.0;
-        double offsetFromBottom = _scrollController.position.maxScrollExtent -
-            _scrollController.position.pixels;
-        if (offsetFromBottom < edge) {
-          _scrollController.animateTo(
-              _scrollController.offset - (edge - offsetFromBottom),
-              duration: const Duration(milliseconds: 500),
-              curve: Curves.easeOut);
-        }
-      }
-
-      setState(() {
-        items.addAll(newEntries);
-        isPerformingRequest = false;
-      });
-    }
-  }
-
-  Widget _loadingNewItemsIndicator() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Center(
-        child: Opacity(
-          opacity: isPerformingRequest ? 1.0 : 0.0,
-          child: const CircularProgressIndicator(),
+    return ListView(children: [
+      Container(
+        padding: EdgeInsets.only(left: 40, bottom: 10),
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            'Rewards'.tr(),
+            style: Theme.of(context).textTheme.headline6,
+            textAlign: TextAlign.left,
+          ),
         ),
       ),
-    );
+      GridView.builder(
+        primary: false,
+        shrinkWrap: true,
+        padding: const EdgeInsets.all(20),
+        itemCount: items.length,
+        itemBuilder: (context, index) {
+          return RedeemRewardTile(items[index]);
+        },
+        //physics: NeverScrollableScrollPhysics(),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+        ),
+      )
+    ]);
   }
-
-  Widget gridViewRedeem() {
-    return GridView.builder(
-      primary: false,
-      shrinkWrap: true,
-      padding: const EdgeInsets.all(20),
-      itemCount: items.length + 1,
-      itemBuilder: (context, index) {
-        if (index == items.length) {
-          return _loadingNewItemsIndicator();
-        } else {
-          return Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-            child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15.0),
-                  gradient: const LinearGradient(
-                    begin: Alignment.topRight,
-                    end: Alignment.bottomLeft,
-                    colors: [
-                      Color(0xFF0b3b2d),
-                      Color(0xFF112823),
-                    ],
-                  )),
-            ),
-          );
-        }
-      },
-      //physics: NeverScrollableScrollPhysics(),
-      controller: _scrollController,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
-      ),
-    );
-  }
-}
-
-Future<List<int>> requestData(int from, int to) async {
-  return Future.delayed(const Duration(seconds: 1), () {
-    return List.generate(to - from, (i) => i + from);
-  });
 }

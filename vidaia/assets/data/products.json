@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Bio Bananen",
+        "image": "https://image.migros.ch/2017-large/a8e660d7512e82775f671621dae585878749cdaa/bio-bananen.jpg",
+        "url": "https://produkte.migros.ch/bio-bananen",
+        "tokens": 5
+    },
+    {
+        "name": "Spargeln grün",
+        "image": "https://image.migros.ch/2017-large/9a7bd79007a05ed445f5df04b4e022d1a77cfbeb/spargeln-gruen.jpg",
+        "url": "https://produkte.migros.ch/spargeln-gruen-275401911300",
+        "tokens": 5
+    },
+    {
+        "name": "Gurke",
+        "image": "https://image.migros.ch/2017-large/000cfe4cf938a299ff64d3bd20255a200707cf37/gurke.jpg",
+        "url": "https://produkte.migros.ch/gurke-271500513200",
+        "tokens": 5
+    },
+    {
+        "name": "Milchschokolade Extra",
+        "image": "https://image.migros.ch/mo-boxed/v-w-480-h-360/f33b0e11faee131a15f7c3ce7f5233ead19edefc/milch-extra.jpg",
+        "url": "https://www.migros.ch/de/product/100124500000",
+        "tokens": 2
+    },
+    {
+        "name": "Rindshackfleisch",
+        "image": "https://image.migros.ch/mo-boxed/v-w-480-h-360/2e2985957352bbe540d3b781f9d2e6db34fd0dc5/m-classic-rinds-hackfleisch.jpg",
+        "url": "https://www.migros.ch/de/product/220220040092",
+        "tokens": 1
+    }
+]
