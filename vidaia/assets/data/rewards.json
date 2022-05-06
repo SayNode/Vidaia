@@ -1,62 +1,62 @@
 [
     {
-        "name": "Reward 1",
-        "image": "https://image.migros.ch/mo-boxed/v-w-480-h-360/f33b0e11faee131a15f7c3ce7f5233ead19edefc/milch-extra.jpg",
-        "url": "https://produkte.migros.ch/spargeln-gruen-275401911300",
+        "name": "Plant a tree",
+        "image": "https://sustainabletravel.org/wp-content/uploads/Blog-Image-Planting-Tree-Seedling.jpg",
+        "url": "https://onetreeplanted.org/pages/donate-crypto#:~:text=Crypto%20currency%20and%20bitcoin%20donations,tax%20on%20the%20appreciated%20amount.",
         "cost": 200,
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque gravida lectus sit amet suscipit sollicitudin. Etiam nisi orci, volutpat in ante et, commodo vehicula nisi. Duis eget nisi non ante posuere sodales sit amet non est. Ut pellentesque nulla ac pellentesque dignissim. Donec tincidunt, est molestie interdum eleifend,",
+        "description": "One Tree Planted is a global reforestation charity that plants trees around the world! We want to make it simple for anyone to help the environment by planting trees. Since 2014, One Tree Planted has more than doubled the number of trees planted each year, and is working with partners across 43+ countries in North America, Latin America, Africa, Asia, Europe and the Pacific. Together with your support, we're on a mission to restore forests, create habitat for biodiversity, and make a positive social impact around the world. Every dollar donated plants one tree. ",
         "seller_address": "this is the seller address"
     },
     {
-        "name": "Reward 2",
-        "image": "https://image.migros.ch/2017-large/000cfe4cf938a299ff64d3bd20255a200707cf37/gurke.jpg",
-        "url": "https://produkte.migros.ch/spargeln-gruen-275401911300",
+        "name": "Offset CO2",
+        "image": "https://www.wander-lust.nl/wp-content/uploads/2018/02/thomas-richter-56177-unsplash-e1519639946556.jpg",
+        "url": "https://moss.earth/",
         "cost": 500,
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque gravida lectus sit amet suscipit sollicitudin. Etiam nisi orci, volutpat in ante et, commodo vehicula nisi. Duis eget nisi non ante posuere sodales sit amet non est. Ut pellentesque nulla ac pellentesque dignissim. Donec tincidunt, est molestie interdum eleifend,",
+        "description": "Our routine impacts the planet daily. Our transportation, food, consumption, and energy use all emit greenhouse gases and contribute to global warming. Do your part by offsetting your carbon footprint.",
         "seller_address": "this is the seller address"
     },
     {
-        "name": "Reward 3",
-        "image": "https://image.migros.ch/mo-boxed/v-w-480-h-360/f33b0e11faee131a15f7c3ce7f5233ead19edefc/milch-extra.jpg",
+        "name": "5% discount",
+        "image": "https://magitex.com.ua/image/catalog/goods/Emily/sertifikat-na-skidku-5-na-sleduyushchuyu-pokupku-1612282002.jpg",
+        "url": "https://cumulus.migros.ch/de.html",
+        "cost": 25,
+        "description": "Get a voucher for 5% off your next purchase with one of our partner organisations.",
+        "seller_address": "this is the seller address"
+    },
+    {
+        "name": "10$ voucher",
+        "image": "https://reisetopia.ch/wp-content/uploads/2020/08/SBB-zug.jpg",
+        "url": "https://commerce.sbb.ch/de/gutscheine.html",
+        "cost": 2000,
+        "description": "Get a 10.- voucher for your next ticket purchase.",
+        "seller_address": "this is the seller address"
+    },
+    {
+        "name": "20% skicard",
+        "image": "https://swisstombola.ch/media/clnews/400x300/14488685781114428285.png",
+        "url": "https://ski.ticketcorner.ch/de/ticketcorner-skicard/skicard-2",
+        "cost": 25,
+        "description": "The Ticketcorner Skicard – the key to ski tickets in about 60 ski resorts. The Skicard serves as a data carrier for your ski ticket. Each ski ticket purchased must in any case and always be assigned to a Skicard. The Skicard can be reused for future bookings. This is how it works: Order a Skicard now and be properly equipped as you start the winter sports season. Afterwards, you'll not only be able to book a ski ticket for about 60 ski resorts at any time, you'll also benefit from lots of attractive price reductions. As an alternative to mailing, you can also buy your Skicard at any k kiosk, avec shop or Press & Books store. IMPORTANT: After receiving the Skicard, be sure to assign the ski ticket via App or under «Ski tickets» to the new Skicard!",
+        "seller_address": "this is the seller address"
+    },
+    {
+        "name": "30% voucher",
+        "image": "https://www.stucard.ch/data/cache/img/210226_webmood_brack-partnercms-398_1651798901.5.png",
+        "url": "https://www.brack.ch/",
+        "cost": 500,
+        "description": "Unter dem Motto «besser online einkaufen» bietet dir BRACK.CH exklusive Rabatte und Preise auf Lifestyle- und IT-Produkte, die dich in deinem täglichen Leben unterstützen.",
+        "seller_address": "this is the seller address"
+    },
+    {
+        "name": "Aspargus",
+        "image": "https://image.migros.ch/2017-large/000cfe4cf938a299ff64d3bd20255a200707cf37/gurke.jpg",
         "url": "https://produkte.migros.ch/spargeln-gruen-275401911300",
         "cost": 25,
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque gravida lectus sit amet suscipit sollicitudin. Etiam nisi orci, volutpat in ante et, commodo vehicula nisi. Duis eget nisi non ante posuere sodales sit amet non est. Ut pellentesque nulla ac pellentesque dignissim. Donec tincidunt, est molestie interdum eleifend,",
         "seller_address": "this is the seller address"
     },
     {
-        "name": "Reward 2",
-        "image": "https://image.migros.ch/2017-large/9a7bd79007a05ed445f5df04b4e022d1a77cfbeb/spargeln-gruen.jpg",
-        "url": "https://produkte.migros.ch/spargeln-gruen-275401911300",
-        "cost": 500,
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque gravida lectus sit amet suscipit sollicitudin. Etiam nisi orci, volutpat in ante et, commodo vehicula nisi. Duis eget nisi non ante posuere sodales sit amet non est. Ut pellentesque nulla ac pellentesque dignissim. Donec tincidunt, est molestie interdum eleifend,",
-        "seller_address": "this is the seller address"
-    },
-    {
-        "name": "Reward 3",
-        "image": "https://image.migros.ch/2017-large/000cfe4cf938a299ff64d3bd20255a200707cf37/gurke.jpg",
-        "url": "https://produkte.migros.ch/spargeln-gruen-275401911300",
-        "cost": 25,
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque gravida lectus sit amet suscipit sollicitudin. Etiam nisi orci, volutpat in ante et, commodo vehicula nisi. Duis eget nisi non ante posuere sodales sit amet non est. Ut pellentesque nulla ac pellentesque dignissim. Donec tincidunt, est molestie interdum eleifend,",
-        "seller_address": "this is the seller address"
-    },
-    {
-        "name": "Reward 2",
-        "image": "https://image.migros.ch/2017-large/000cfe4cf938a299ff64d3bd20255a200707cf37/gurke.jpg",
-        "url": "https://produkte.migros.ch/spargeln-gruen-275401911300",
-        "cost": 500,
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque gravida lectus sit amet suscipit sollicitudin. Etiam nisi orci, volutpat in ante et, commodo vehicula nisi. Duis eget nisi non ante posuere sodales sit amet non est. Ut pellentesque nulla ac pellentesque dignissim. Donec tincidunt, est molestie interdum eleifend,",
-        "seller_address": "this is the seller address"
-    },
-    {
-        "name": "Reward 3",
-        "image": "https://image.migros.ch/2017-large/000cfe4cf938a299ff64d3bd20255a200707cf37/gurke.jpg",
-        "url": "https://produkte.migros.ch/spargeln-gruen-275401911300",
-        "cost": 25,
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque gravida lectus sit amet suscipit sollicitudin. Etiam nisi orci, volutpat in ante et, commodo vehicula nisi. Duis eget nisi non ante posuere sodales sit amet non est. Ut pellentesque nulla ac pellentesque dignissim. Donec tincidunt, est molestie interdum eleifend,",
-        "seller_address": "this is the seller address"
-    },
-    {
-        "name": "Reward 4",
+        "name": "Aspargus",
         "image": "https://image.migros.ch/2017-large/9a7bd79007a05ed445f5df04b4e022d1a77cfbeb/spargeln-gruen.jpg",
         "url": "https://produkte.migros.ch/spargeln-gruen-275401911300",
         "cost": 97,
