@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
             child: Text(
               'Catchy headline comes here, '.tr(),
-              style: TextStyle(fontSize: 18, color: SECONDARY),
+              style: TextStyle(fontSize: 18, color: PRIMARY_LIGHT),
               textAlign: TextAlign.center,
             )),
         const Padding(padding: EdgeInsets.symmetric(vertical: 20)),
@@ -66,9 +66,8 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         CarouselSlider(
-
             options: CarouselOptions(
-              height: MediaQuery.of(context).size.height  *0.28,
+              height: MediaQuery.of(context).size.height * 0.28,
               pageSnapping: false,
               scrollPhysics: PageScrollPhysics(),
               viewportFraction: 0.6,
@@ -78,29 +77,9 @@ class _HomePageState extends State<HomePage> {
               enableInfiniteScroll: false,
             ),
             items: getCarrouselItems()),
-
-        StreamBuilder<BigInt>(
-          //initialData: 0.0,
-          stream: checkBalance(),
-          builder: (context, snapshot) {
-            switch (snapshot.connectionState) {
-              case ConnectionState.waiting:
-                return CircularProgressIndicator();
-              default:
-                if (snapshot.hasError) {
-                  return Text(snapshot.error.toString());
-                } else {
-                  final balance = snapshot.data.toString();
-
-                  return Text(balance);
-                }
-            }
-          },
-        ),
         ElevatedButton(
             onPressed: () {
-              transferVidar(1, '0x00bab3d8de4ebbefb07d53b1ff8c0f2434bd616d',
-                  'https://testnet.veblocks.net');
+              transferVidar(1, '0x00bab3d8de4ebbefb07d53b1ff8c0f2434bd616d', 'https://testnet.veblocks.net');
               print(address);
             },
             child: Text('send 1 vid')),
