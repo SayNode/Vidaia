@@ -36,22 +36,44 @@ class _HomePageStackState extends State<HomePageStack> {
       backgroundColor: BACKGROUND,
       key: scaffoldKey,
       drawerEnableOpenDragGesture: false,
-      drawer: const VidaiaDrawer(),
+      drawer: VidaiaDrawer(),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         elevation: 0,
         backgroundColor: BACKGROUND,
         toolbarHeight: 90,
-        title: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          IconButton(
-            icon: Center(child: Icon(Icons.menu, color: PRIMARY)),
-            onPressed: () => scaffoldKey.currentState?.openDrawer(),
-          ),
-          Text("Vidaia", style: TextStyle(color: PRIMARY_DARK)),
-          IconButton(
-            icon: Center(child: Icon(Icons.currency_exchange_outlined, color: PRIMARY)),
-            onPressed: () => scaffoldKey.currentState?.openDrawer(),
-          ),
+        title: Stack(alignment: AlignmentDirectional.centerEnd, children: [
+          const Center(child: Text("Vidaia", style: TextStyle(color: PRIMARY_DARK))),
+          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            IconButton(
+              icon: const Center(child: Icon(Icons.menu, color: PRIMARY)),
+              onPressed: () => scaffoldKey.currentState?.openDrawer(),
+            ),
+            StreamBuilder<BigInt>(
+              //initialData: 0.0,
+              stream: checkBalance(),
+              builder: (context, snapshot) {
+                switch (snapshot.connectionState) {
+                  case ConnectionState.waiting:
+                    return Container(
+                        width: 20,
+                        height: 20,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                          color: PRIMARY_LIGHT,
+                        ));
+                  default:
+                    if (snapshot.hasError) {
+                      return Text(snapshot.error.toString());
+                    } else {
+                      final balance = snapshot.data.toString();
+
+                      return Text(balance, style: TextStyle(color: PRIMARY_DARK, fontSize: 15));
+                    }
+                }
+              },
+            ),
+          ]),
         ]),
         centerTitle: true,
       ),

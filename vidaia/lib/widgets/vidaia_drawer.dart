@@ -3,17 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:vidaia/main.dart';
 import 'package:vidaia/pages/home/home_page_loader.dart';
 import 'package:vidaia/pages/settings_page.dart';
+import 'package:vidaia/repositories/dataRepository.dart';
+import 'package:vidaia/utils/constants.dart';
 
 class VidaiaDrawer extends StatelessWidget {
-  const VidaiaDrawer({Key? key}) : super(key: key);
+  VidaiaDrawer({Key? key}) : super(key: key);
+
+  DataRepository dataRepository = getIt.get<DataRepository>();
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
       backgroundColor: Colors.grey.shade200,
       child: Padding(
-        padding:
-            const EdgeInsets.only(left: 20, right: 20, top: 50, bottom: 20),
+        padding: const EdgeInsets.only(left: 20, right: 20, top: 50, bottom: 20),
         child: Column(children: [
           Row(
             children: [
@@ -28,22 +31,22 @@ class VidaiaDrawer extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  'UserName',
+                  dataRepository.userinfo.displayName,
                   style: Theme.of(context).textTheme.headline6,
                 ),
               )
             ],
           ),
           const Divider(
-            color: primaryColorBright,
+            color: CLICKED,
             thickness: 1,
           ),
           Material(
             type: MaterialType.transparency,
             child: ListTile(
               leading: const Icon(
-                Icons.home,
-                color: primaryColorBright,
+                Icons.home_outlined,
+                color: PRIMARY_LIGHT,
               ),
               title: Text(
                 'Home',
@@ -61,8 +64,8 @@ class VidaiaDrawer extends StatelessWidget {
             type: MaterialType.transparency,
             child: ListTile(
               leading: const Icon(
-                Icons.settings,
-                color: primaryColorBright,
+                Icons.settings_outlined,
+                color: PRIMARY_LIGHT,
               ),
               title: Text(
                 'settings'.tr(),
@@ -81,7 +84,7 @@ class VidaiaDrawer extends StatelessWidget {
             child: ListTile(
               leading: const Icon(
                 Icons.question_mark_rounded,
-                color: primaryColorBright,
+                color: PRIMARY_LIGHT,
               ),
               title: Text(
                 'FAQ',
@@ -90,9 +93,25 @@ class VidaiaDrawer extends StatelessWidget {
               onTap: () => {null},
             ),
           ),
+          const Divider(
+            color: CLICKED,
+            thickness: 1,
+          ),
+          Text(
+            'Connect profile',
+            style: Theme.of(context).textTheme.subtitle1,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              IconButton(onPressed: () {}, icon: Icon(Icons.local_grocery_store_outlined, color: PRIMARY_DARK)),
+              IconButton(onPressed: () {}, icon: Icon(Icons.shopping_bag_outlined, color: PRIMARY_DARK)),
+              IconButton(onPressed: () {}, icon: Icon(Icons.shopping_basket_outlined, color: PRIMARY_DARK))
+            ],
+          ),
           Expanded(child: Container()),
           const Divider(
-            color: primaryColorBright,
+            color: CLICKED,
             thickness: 1,
           ),
           Material(

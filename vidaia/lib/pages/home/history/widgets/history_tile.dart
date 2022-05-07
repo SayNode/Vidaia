@@ -1,15 +1,18 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:vidaia/main.dart';
+import 'package:vidaia/models/HistoryEntry.dart';
 import 'package:vidaia/models/Product.dart';
+import 'package:vidaia/repositories/dataRepository.dart';
 import 'package:vidaia/utils/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/link.dart';
 
-class NewProductTile extends StatelessWidget {
-  Product prod;
+class HistoryTile extends StatelessWidget {
+  HistoryEntry item;
+  DataRepository dataRepository = getIt.get<DataRepository>();
 
-  NewProductTile(this.prod, {Key? key}) : super(key: key);
+  HistoryTile(this.item, {Key? key}) : super(key: key);
 
   Future<void> _launchInBrowser(Uri url) async {
     if (!await launchUrl(
@@ -31,16 +34,20 @@ class NewProductTile extends StatelessWidget {
               color: Colors.white,
             ),
             child: Stack(children: [
-              Padding(
-                  padding: EdgeInsets.all(15),
-                  child: Center(
-                      child: Image.network(
-                    prod.image,
-                    fit: BoxFit.contain,
-                  ))),
-              Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Row(children: [
+                Padding(
+                    padding: EdgeInsets.only(top: 5, bottom: 5, left: 20),
+                    child: Container(
+                        width: MediaQuery.of(context).size.width / 8,
+                        child: Center(
+                            child: Image.network(
+                          item.product.image,
+                          fit: BoxFit.contain,
+                        )))),
+              ]),
+              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 Expanded(
-                  flex: 7,
+                  flex: 2,
                   child: Container(
                     decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(
@@ -52,13 +59,15 @@ class NewProductTile extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                    flex: 3,
+                    flex: 5,
                     child: Container(
                         width: double.maxFinite,
                         decoration: const BoxDecoration(
                             borderRadius: BorderRadius.only(
                               bottomRight: Radius.circular(15),
                               bottomLeft: Radius.circular(15),
+                              topLeft: Radius.circular(15),
+                              topRight: Radius.circular(15),
                             ),
                             color: Color.fromARGB(169, 94, 160, 124)),
                         child: Container(
@@ -76,14 +85,21 @@ class NewProductTile extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    prod.name,
+                                    item.product.name,
                                     style: Theme.of(context).textTheme.subtitle1,
                                     overflow: TextOverflow.ellipsis,
                                   ),
-                                  Text(
-                                    "Vidar " + prod.tokens.toString(),
-                                    style: Theme.of(context).textTheme.subtitle2,
-                                  ),
+                                  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                                    Text(
+                                      "Vidar " + item.product.tokens.toString(),
+                                      style: Theme.of(context).textTheme.subtitle2,
+                                    ),
+                                    Text(
+                                      item.date.toString(),
+                                      style: Theme.of(context).textTheme.subtitle2,
+                                    ),
+                                    SizedBox(),
+                                  ]),
                                 ],
                               ),
                             ),
@@ -92,7 +108,7 @@ class NewProductTile extends StatelessWidget {
                                 child: IconButton(
                                   icon: Icon(Icons.arrow_forward, color: Colors.black),
                                   onPressed: () {
-                                    _launchInBrowser(Uri.parse(prod.url));
+                                    _launchInBrowser(Uri.parse(item.product.url));
                                   },
                                 ))
                           ]),

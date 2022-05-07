@@ -49,7 +49,7 @@ class RedeemRewardTile extends StatelessWidget {
                               bottomRight: Radius.circular(15),
                               bottomLeft: Radius.circular(15),
                             ),
-                            color: Color.fromARGB(121, 65, 92, 77)),
+                            color: Color.fromARGB(169, 94, 160, 124)),
                         child: Container(
                           padding: const EdgeInsets.all(10),
                           decoration: const BoxDecoration(

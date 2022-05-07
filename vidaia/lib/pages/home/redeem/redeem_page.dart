@@ -18,7 +18,6 @@ class _RedeemPageState extends State<RedeemPage> with SingleTickerProviderStateM
   DataRepository dataRepository = getIt.get<DataRepository>();
 
   late List<Reward> items = [];
-  bool isPerformingRequest = false;
 
   @override
   void initState() {
