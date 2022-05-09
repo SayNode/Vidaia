@@ -3,6 +3,7 @@
     "history": [
         {
             "date": "10-10-222",
+            "isReceived": true,
             "product": {
                 "name": "product 2",
                 "image": "https://image.migros.ch/mo-boxed/v-w-480-h-360/2e2985957352bbe540d3b781f9d2e6db34fd0dc5/m-classic-rinds-hackfleisch.jpg",
@@ -12,6 +13,8 @@
         },
         {
             "date": "05-07-222",
+            "isReceived": false,
+
             "product": {
                 "name": "Test",
                 "image": "https://image.migros.ch/2017-large/9a7bd79007a05ed445f5df04b4e022d1a77cfbeb/spargeln-gruen.jpg",
@@ -20,6 +23,8 @@
             }
         },{
             "date": "05-07-222",
+            "isReceived": true,
+
             "product": {
                 "name": "Test",
                 "image": "https://image.migros.ch/mo-boxed/v-w-480-h-360/f33b0e11faee131a15f7c3ce7f5233ead19edefc/milch-extra.jpg",
@@ -28,6 +33,8 @@
             }
         },{
             "date": "05-07-222",
+            "isReceived": true,
+
             "product": {
                 "name": "Test",
                 "image": "https://image.migros.ch/mo-boxed/v-w-480-h-360/f33b0e11faee131a15f7c3ce7f5233ead19edefc/milch-extra.jpg",
@@ -36,6 +43,8 @@
             }
         },{
             "date": "05-07-222",
+            "isReceived": false,
+
             "product": {
                 "name": "Test",
                 "image": "https://image.migros.ch/2017-large/9a7bd79007a05ed445f5df04b4e022d1a77cfbeb/spargeln-gruen.jpg",
@@ -45,6 +54,130 @@
         },
         {
             "date": "10-10-2222",
+            "isReceived": false,
+
+            "product": {
+                "name": "product 2",
+                "image": "https://image.migros.ch/mo-boxed/v-w-480-h-360/f33b0e11faee131a15f7c3ce7f5233ead19edefc/milch-extra.jpg",
+                "url": "https://www.tesla.com/",
+                "tokens": 500
+            }
+        },{
+            "date": "10-10-222",
+            "isReceived": true,
+            "product": {
+                "name": "product 2",
+                "image": "https://image.migros.ch/mo-boxed/v-w-480-h-360/2e2985957352bbe540d3b781f9d2e6db34fd0dc5/m-classic-rinds-hackfleisch.jpg",
+                "url": "https://www.tesla.com/",
+                "tokens": 500
+            }
+        },
+        {
+            "date": "05-07-222",
+            "isReceived": false,
+
+            "product": {
+                "name": "Test",
+                "image": "https://image.migros.ch/2017-large/9a7bd79007a05ed445f5df04b4e022d1a77cfbeb/spargeln-gruen.jpg",
+                "url": "https://www.tesla.com/",
+                "tokens": 500
+            }
+        },{
+            "date": "05-07-222",
+            "isReceived": true,
+
+            "product": {
+                "name": "Test",
+                "image": "https://image.migros.ch/mo-boxed/v-w-480-h-360/f33b0e11faee131a15f7c3ce7f5233ead19edefc/milch-extra.jpg",
+                "url": "https://www.tesla.com/",
+                "tokens": 500
+            }
+        },{
+            "date": "05-07-222",
+            "isReceived": true,
+
+            "product": {
+                "name": "Test",
+                "image": "https://image.migros.ch/mo-boxed/v-w-480-h-360/f33b0e11faee131a15f7c3ce7f5233ead19edefc/milch-extra.jpg",
+                "url": "https://www.tesla.com/",
+                "tokens": 500
+            }
+        },{
+            "date": "05-07-222",
+            "isReceived": false,
+
+            "product": {
+                "name": "Test",
+                "image": "https://image.migros.ch/2017-large/9a7bd79007a05ed445f5df04b4e022d1a77cfbeb/spargeln-gruen.jpg",
+                "url": "https://www.tesla.com/",
+                "tokens": 500
+            }
+        },
+        {
+            "date": "10-10-2222",
+            "isReceived": false,
+
+            "product": {
+                "name": "product 2",
+                "image": "https://image.migros.ch/mo-boxed/v-w-480-h-360/f33b0e11faee131a15f7c3ce7f5233ead19edefc/milch-extra.jpg",
+                "url": "https://www.tesla.com/",
+                "tokens": 500
+            }
+        },{
+            "date": "10-10-222",
+            "isReceived": true,
+            "product": {
+                "name": "product 2",
+                "image": "https://image.migros.ch/mo-boxed/v-w-480-h-360/2e2985957352bbe540d3b781f9d2e6db34fd0dc5/m-classic-rinds-hackfleisch.jpg",
+                "url": "https://www.tesla.com/",
+                "tokens": 500
+            }
+        },
+        {
+            "date": "05-07-222",
+            "isReceived": false,
+
+            "product": {
+                "name": "Test",
+                "image": "https://image.migros.ch/2017-large/9a7bd79007a05ed445f5df04b4e022d1a77cfbeb/spargeln-gruen.jpg",
+                "url": "https://www.tesla.com/",
+                "tokens": 500
+            }
+        },{
+            "date": "05-07-222",
+            "isReceived": true,
+
+            "product": {
+                "name": "Test",
+                "image": "https://image.migros.ch/mo-boxed/v-w-480-h-360/f33b0e11faee131a15f7c3ce7f5233ead19edefc/milch-extra.jpg",
+                "url": "https://www.tesla.com/",
+                "tokens": 500
+            }
+        },{
+            "date": "05-07-222",
+            "isReceived": true,
+
+            "product": {
+                "name": "Test",
+                "image": "https://image.migros.ch/mo-boxed/v-w-480-h-360/f33b0e11faee131a15f7c3ce7f5233ead19edefc/milch-extra.jpg",
+                "url": "https://www.tesla.com/",
+                "tokens": 500
+            }
+        },{
+            "date": "05-07-222",
+            "isReceived": false,
+
+            "product": {
+                "name": "Test",
+                "image": "https://image.migros.ch/2017-large/9a7bd79007a05ed445f5df04b4e022d1a77cfbeb/spargeln-gruen.jpg",
+                "url": "https://www.tesla.com/",
+                "tokens": 500
+            }
+        },
+        {
+            "date": "10-10-2222",
+            "isReceived": false,
+
             "product": {
                 "name": "product 2",
                 "image": "https://image.migros.ch/mo-boxed/v-w-480-h-360/f33b0e11faee131a15f7c3ce7f5233ead19edefc/milch-extra.jpg",

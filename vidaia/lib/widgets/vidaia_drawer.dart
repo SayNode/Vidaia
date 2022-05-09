@@ -17,7 +17,9 @@ class VidaiaDrawer extends StatelessWidget {
       backgroundColor: Colors.grey.shade200,
       child: Padding(
         padding: const EdgeInsets.only(left: 20, right: 20, top: 50, bottom: 20),
-        child: Column(children: [
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
           Row(
             children: [
               CircleAvatar(
@@ -97,17 +99,41 @@ class VidaiaDrawer extends StatelessWidget {
             color: CLICKED,
             thickness: 1,
           ),
-          Text(
+          SizedBox(height: 10),
+          Padding(
+                padding: const EdgeInsets.only(left: 12.0),
+                child: Text(
             'Connect profile',
-            style: Theme.of(context).textTheme.subtitle1,
+            style: Theme.of(context).textTheme.titleMedium,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              IconButton(onPressed: () {}, icon: Icon(Icons.local_grocery_store_outlined, color: PRIMARY_DARK)),
-              IconButton(onPressed: () {}, icon: Icon(Icons.shopping_bag_outlined, color: PRIMARY_DARK)),
-              IconButton(onPressed: () {}, icon: Icon(Icons.shopping_basket_outlined, color: PRIMARY_DARK))
-            ],
+              ),
+          Material(
+            type: MaterialType.transparency,
+            child: ListTile(
+              leading: const Icon(
+                Icons.local_grocery_store_outlined,
+                color: PRIMARY_LIGHT,
+              ),
+              title: Text(
+                'migros',
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
+              onTap: () => {null},
+            ),
+          ),
+          Material(
+            type: MaterialType.transparency,
+            child: ListTile(
+              leading: const Icon(
+                Icons.local_grocery_store_outlined,
+                color: PRIMARY_LIGHT,
+              ),
+              title: Text(
+                'coop',
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
+              onTap: () => {null},
+            ),
           ),
           Expanded(child: Container()),
           const Divider(
