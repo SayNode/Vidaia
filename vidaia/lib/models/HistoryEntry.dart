@@ -9,8 +9,10 @@ class HistoryEntry {
 
   final String date;
 
+  final bool isReceived;
+
   factory HistoryEntry.fromJson(Map<String, dynamic> json) => _$HistoryEntryFromJson(json);
 
-  HistoryEntry(this.product, this.date);
+  HistoryEntry(this.product, this.date, this.isReceived);
   Map<String, dynamic> toJson() => _$HistoryEntryToJson(this);
 }

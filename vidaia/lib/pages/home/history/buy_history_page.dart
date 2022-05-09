@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:contained_tab_bar_view/contained_tab_bar_view.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:vidaia/main.dart';
@@ -36,7 +37,7 @@ class _BuyHistoryPageState extends State<BuyHistoryPage> with SingleTickerProvid
 
   @override
   Widget build(BuildContext context) {
-    return ListView(children: [
+    return Column(children: [
       Container(
         padding: EdgeInsets.only(left: 40, bottom: 10),
         child: Align(
@@ -58,22 +59,57 @@ class _BuyHistoryPageState extends State<BuyHistoryPage> with SingleTickerProvid
           ]),
         ),
       ),
-      GridView.builder(
-        primary: false,
-        shrinkWrap: true,
-        padding: const EdgeInsets.all(20),
-        itemCount: items.length,
-        itemBuilder: (context, index) {
-          return HistoryTile(items[index]);
-        },
-        //physics: NeverScrollableScrollPhysics(),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 1,
-          childAspectRatio: 4 / 1,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
+      Expanded(
+        child: ContainedTabBarView(
+          tabs: [
+            Padding(padding: const EdgeInsets.only(top: 10, left: 30, bottom: 10, right: 30), child: Text('Received', style: Theme.of(context).textTheme.subtitle1)),
+            Padding(padding: const EdgeInsets.only(top: 10, left: 30, bottom: 10, right: 30), child: Text('Spent', style: Theme.of(context).textTheme.subtitle1)),
+          ],
+          tabBarProperties: TabBarProperties(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 32.0,
+                vertical: 8.0,
+              ),
+              labelColor: Colors.white,
+              unselectedLabelColor: BACKGROUND_SHADE,
+              indicatorColor: BUTTON),
+          views: [
+            GridView.builder(
+              primary: false,
+              shrinkWrap: true,
+              padding: const EdgeInsets.all(20),
+              itemCount: dataRepository.getReceived().length,
+              itemBuilder: (context, index) {
+                return HistoryTile(dataRepository.getReceived()[index], true);
+              },
+              //physics: NeverScrollableScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 1,
+                childAspectRatio: 4 / 1,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+              ),
+            ),
+            GridView.builder(
+              primary: false,
+              shrinkWrap: true,
+              padding: const EdgeInsets.all(20),
+              itemCount: dataRepository.getSpent().length,
+              itemBuilder: (context, index) {
+                return HistoryTile(dataRepository.getSpent()[index], false);
+              },
+              //physics: NeverScrollableScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 1,
+                childAspectRatio: 4 / 1,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+              ),
+            ),
+          ],
+          onChange: (index) => print(index),
         ),
-      )
+      ),
     ]);
   }
 }

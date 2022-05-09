@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart' as rootBundle;
 import 'package:vidaia/models/BuyHistory.dart';
+import 'package:vidaia/models/HistoryEntry.dart';
 import 'package:vidaia/models/Reward.dart';
 import 'package:vidaia/models/User.dart';
 import 'package:vidaia/models/Product.dart';
@@ -60,5 +61,13 @@ class DataRepository {
     final data = json.decode(jsondata) as dynamic;
 
     return BuyHistory.fromJson(data);
+  }
+
+  List<HistoryEntry> getReceived() {
+    return history.history.where((element) => element.isReceived).toList();
+  }
+
+  List<HistoryEntry> getSpent() {
+    return history.history.where((element) => !element.isReceived).toList();
   }
 }

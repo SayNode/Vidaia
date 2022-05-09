@@ -10,9 +10,10 @@ import 'package:url_launcher/link.dart';
 
 class HistoryTile extends StatelessWidget {
   HistoryEntry item;
+  bool isReceived;
   DataRepository dataRepository = getIt.get<DataRepository>();
 
-  HistoryTile(this.item, {Key? key}) : super(key: key);
+  HistoryTile(this.item, this.isReceived, {Key? key}) : super(key: key);
 
   Future<void> _launchInBrowser(Uri url) async {
     if (!await launchUrl(
@@ -62,14 +63,14 @@ class HistoryTile extends StatelessWidget {
                     flex: 5,
                     child: Container(
                         width: double.maxFinite,
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                             borderRadius: BorderRadius.only(
                               bottomRight: Radius.circular(15),
                               bottomLeft: Radius.circular(15),
                               topLeft: Radius.circular(15),
                               topRight: Radius.circular(15),
                             ),
-                            color: Color.fromARGB(169, 94, 160, 124)),
+                            color: isReceived ? Color.fromARGB(169, 94, 160, 124) : SPEND),
                         child: Container(
                           padding: const EdgeInsets.all(10),
                           decoration: const BoxDecoration(
