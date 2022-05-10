@@ -187,10 +187,12 @@ class _RedeemInfoPageState extends State<RedeemInfoPage> {
                           widget.reward.cost.toString() + ' VID',
                           style: TextStyle(fontSize: 16, color: PRIMARY),
                         ),
-                        onTap: () => transferVidar(
+                        onTap: () { transferVidar(
                             widget.reward.cost,
                             '0x00bab3d8de4ebbefb07d53b1ff8c0f2434bd616d',
-                            'https://testnet.veblocks.net'),
+                            'https://testnet.veblocks.net');
+                            confirmPurchase(context);
+                            }
                       ),
                     ),
                   )
