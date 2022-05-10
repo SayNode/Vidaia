@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 25),
             child: Row(
               children: [
                 Text(
@@ -53,15 +53,15 @@ class _HomePageState extends State<HomePage> {
               ],
             )),
         Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 30),
             child: Text(
-              'Catchy headline comes here, '.tr(),
+              'Never refuse to reuse'.tr(),
               style: TextStyle(fontSize: 18, color: PRIMARY_LIGHT),
               textAlign: TextAlign.center,
             )),
         const Padding(padding: EdgeInsets.symmetric(vertical: 20)),
         Container(
-          padding: EdgeInsets.only(left: 40, bottom: 10),
+          padding: EdgeInsets.only(left: 30, bottom: 10),
           child: Align(
             alignment: Alignment.centerLeft,
             child: Text(
@@ -73,9 +73,8 @@ class _HomePageState extends State<HomePage> {
         ),
         CarouselSlider(
             options: CarouselOptions(
-              height: MediaQuery.of(context).size.height * 0.28,
+              height: MediaQuery.of(context).size.height * 0.35,
               pageSnapping: false,
-              scrollPhysics: PageScrollPhysics(),
               viewportFraction: 0.6,
               autoPlay: false,
               autoPlayInterval: Duration(seconds: 2),

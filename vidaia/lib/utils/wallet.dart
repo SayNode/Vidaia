@@ -30,7 +30,6 @@ Future<String?> getpriv() async {
   return priv;
 }
 
-
 //TODO: remove this for release
 setPriv() async {
   final storage = FlutterSecureStorage();
@@ -56,8 +55,8 @@ Future<Map> transferVidar(int value, String address, String url) async {
 
   BigInt vidar = BigInt.from(value) * toVidar;
 
-  return await connect.transferToken(wallet, address,
-      '0x6e21867DB6572756e778883E17e7595b7f363310', vidar);
+  return await connect.transferToken(
+      wallet, address, '0x6e21867DB6572756e778883E17e7595b7f363310', vidar);
 }
 
 Stream<BigInt> checkBalance() => Stream.periodic(Duration(seconds: 1))

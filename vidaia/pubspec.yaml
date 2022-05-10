@@ -85,6 +85,10 @@ flutter:
     - assets/packages/
     - assets/data/
     - assets/abi/ABI.json
+    - assets/images/Me.jpg
+    - assets/images/migros.png
+    - assets/images/coop.png
+    - assets/images/vidar.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

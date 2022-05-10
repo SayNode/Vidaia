@@ -40,14 +40,6 @@
         "seller_address": "this is the seller address"
     },
     {
-        "name": "30% voucher",
-        "image": "https://www.stucard.ch/data/cache/img/210226_webmood_brack-partnercms-398_1651798901.5.png",
-        "url": "https://www.brack.ch/",
-        "cost": 500,
-        "description": "Unter dem Motto «besser online einkaufen» bietet dir BRACK.CH exklusive Rabatte und Preise auf Lifestyle- und IT-Produkte, die dich in deinem täglichen Leben unterstützen.",
-        "seller_address": "this is the seller address"
-    },
-    {
         "name": "Aspargus",
         "image": "https://image.migros.ch/2017-large/000cfe4cf938a299ff64d3bd20255a200707cf37/gurke.jpg",
         "url": "https://produkte.migros.ch/spargeln-gruen-275401911300",

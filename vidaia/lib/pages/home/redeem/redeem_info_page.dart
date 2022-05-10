@@ -181,11 +181,11 @@ class _RedeemInfoPageState extends State<RedeemInfoPage> {
                         contentPadding: EdgeInsets.all(8),
                         title: Text(
                           widget.reward.name,
-                          style: TextStyle(fontSize: 18, color: Colors.white),
+                          style: TextStyle(fontSize: 18, color: PRIMARY),
                         ),
                         trailing: Text(
                           widget.reward.cost.toString() + ' VID',
-                          style: TextStyle(fontSize: 16, color: Colors.white),
+                          style: TextStyle(fontSize: 16, color: PRIMARY),
                         ),
                         onTap: () => transferVidar(
                             widget.reward.cost,

@@ -16,14 +16,14 @@ class VidaiaDrawer extends StatelessWidget {
     return Drawer(
       backgroundColor: Colors.grey.shade200,
       child: Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20, top: 50, bottom: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+        padding:
+            const EdgeInsets.only(left: 20, right: 20, top: 50, bottom: 20),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(
             children: [
               CircleAvatar(
                 backgroundColor: primaryColorBright,
+                foregroundImage: AssetImage("assets/images/Me.jpg"),
                 radius: 35.0,
               ),
               const SizedBox(
@@ -101,21 +101,21 @@ class VidaiaDrawer extends StatelessWidget {
           ),
           SizedBox(height: 10),
           Padding(
-                padding: const EdgeInsets.only(left: 12.0),
-                child: Text(
-            'Connect profile',
-            style: Theme.of(context).textTheme.titleMedium,
+            padding: const EdgeInsets.only(left: 12.0),
+            child: Text(
+              'Connect profile',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
           ),
-              ),
           Material(
             type: MaterialType.transparency,
             child: ListTile(
-              leading: const Icon(
-                Icons.local_grocery_store_outlined,
-                color: PRIMARY_LIGHT,
+              leading: Image(
+                image: AssetImage("assets/images/migros.png"),
+                height: 25,
               ),
               title: Text(
-                'migros',
+                'Migros',
                 style: Theme.of(context).textTheme.subtitle1,
               ),
               onTap: () => {null},
@@ -124,12 +124,13 @@ class VidaiaDrawer extends StatelessWidget {
           Material(
             type: MaterialType.transparency,
             child: ListTile(
-              leading: const Icon(
-                Icons.local_grocery_store_outlined,
-                color: PRIMARY_LIGHT,
+              leading: Image(
+                image: AssetImage("assets/images/coop.png"),
+                height: 25,
+                width: 30,
               ),
               title: Text(
-                'coop',
+                'Coop',
                 style: Theme.of(context).textTheme.subtitle1,
               ),
               onTap: () => {null},
