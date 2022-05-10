@@ -8,8 +8,12 @@ import 'package:thor_devkit_dart/transaction.dart';
 import 'package:thor_devkit_dart/types/clause.dart';
 import 'package:thor_devkit_dart/types/reserved.dart';
 import 'package:thor_devkit_dart/utils.dart';
+import 'package:thor_request_dart/codec.dart';
 import 'package:thor_request_dart/contract.dart';
 import 'package:thor_request_dart/wallet.dart';
+
+import 'package:rlp/rlp.dart';
+
 
 Map injectRevertReason(Map emulateResponse) {
   if (emulateResponse["reverted"] == true && emulateResponse["data"] != "0x") {
@@ -32,7 +36,7 @@ Map calcEmulateTxBody(String caller, Map txBody, {String? gaspayer}) {
   var eClauses = [];
   for (var clause in txBody['clauses']) {
     if (clause is String) {
-      var c = json.decode(clause);
+      Map c = json.decode(clause);
 
       eClauses.add(
           {'to': c['to'], 'value': c['value'].toString(), 'data': c['data']});
@@ -192,7 +196,6 @@ Map inject_decoded_event(Map event_dict, Contract contract) {
 ///Extract vm gases from a batch of emulated executions.
 List<int> read_vm_gases(List emulatedResponses) {
   List<int> results = [];
-  print(emulatedResponses);
   for (var item in emulatedResponses) {
     if (item["gasUsed"] is int) {
       results.add(item["gasUsed"]);
@@ -219,7 +222,6 @@ int calcGas(int vmGas, int intrinsicGas) {
 
 ///Build signed transaction from tx body
 Transaction calcTxSigned(Wallet wallet, Map txBody) {
-  print(txBody);
   Transaction tx = Transaction.fromJsonString(json.encode(txBody));
   //var message_hash = tx.getSigningHash(null);
   var msgHash = blake2b256([tx.encode()]);
@@ -240,8 +242,7 @@ String calcTxSignedEncoded(Wallet wallet, Map txBody) {
 }
 
 Transaction calc_tx_signed_with_fee_delegation(
-    Wallet caller, Wallet payer, Map tx_body) {
-  Transaction tx = Transaction.fromJsonString(json.encode(tx_body));
+    Wallet caller, Wallet payer, Transaction tx) {
   assert(tx.isDelegated() == true);
 
   var callerHash = tx.getSigningHash(null);
@@ -262,5 +263,16 @@ Transaction calc_tx_signed_with_fee_delegation(
 //TODO: return proper encoded data
 ///ABI encode params according to types
 Uint8List buildParams(List<String> types, List args) {
-  return Uint8List.fromList([]);
+  if (types.length != args.length) {
+    throw Exception('types and args length has to be the same');
+  }
+
+  List<int> out = [];
+
+  for (var i = 0; i < types.length; i++) {
+    out.addAll(encodeType(types[i], args[i]));
+  }
+
+
+  return Uint8List.fromList(out);
 }
