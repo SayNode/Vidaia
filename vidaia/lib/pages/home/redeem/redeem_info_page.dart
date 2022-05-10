@@ -4,6 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:vidaia/models/Reward.dart';
 import 'package:vidaia/utils/constants.dart';
 import 'package:vidaia/widgets/roundedButton.dart';
+import 'package:vidaia/utils/wallet.dart';
 
 class RedeemInfoPage extends StatefulWidget {
   final Reward reward;
@@ -37,74 +38,103 @@ class _RedeemInfoPageState extends State<RedeemInfoPage> {
         body: Stack(
           children: [
             Expanded(
-                child: Column(mainAxisAlignment: MainAxisAlignment.start, crossAxisAlignment: CrossAxisAlignment.start, children: [
-              ColorFiltered(
-                  colorFilter: ColorFilter.mode(BACKGROUND_SHADE, BlendMode.modulate),
-                  child: Container(
-                      width: MediaQuery.of(context).size.width * 0.66,
-                      height: MediaQuery.of(context).size.height * 0.33,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(bottomRight: Radius.circular(50), topRight: Radius.circular(50)),
-                        color: Colors.white,
-                      ),
-                      child: Center(
-                          child: Padding(
-                              padding: EdgeInsets.all(50),
-                              child: Image.network(
-                                widget.reward.image,
-                                fit: BoxFit.fill,
-                              ))))),
-              Padding(
-                  padding: EdgeInsets.only(left: 25, top: 20),
-                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                    Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                      Text(
-                        widget.reward.name,
-                        style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(right: 25, top: 20),
-                        child: Text(
-                          "Cost: " + widget.reward.cost.toString(),
-                          style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700, color: PRIMARY_LIGHT),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ]),
-                    Text(
-                      widget.reward.description,
-                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
-                    ),
-                    Row(children: [
-                      RoundedButton(
-                          colour: BUTTON,
-                          width: 50,
-                          child: Text(
-                            "Buy now",
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black,
-                            ),
-                          ),
-                          onPressed: () {}),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      RoundedButton(
-                          colour: PRIMARY,
-                          width: 20,
-                          child: Icon(
-                            Icons.info_outlined,
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                  ColorFiltered(
+                      colorFilter: ColorFilter.mode(
+                          BACKGROUND_SHADE, BlendMode.modulate),
+                      child: Container(
+                          width: MediaQuery.of(context).size.width * 0.66,
+                          height: MediaQuery.of(context).size.height * 0.33,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                                bottomRight: Radius.circular(50),
+                                topRight: Radius.circular(50)),
                             color: Colors.white,
                           ),
-                          onPressed: () {
-                            _launchInBrowser(Uri.parse(widget.reward.url));
-                          })
-                    ]),
-                  ])),
-            ])),
+                          child: Center(
+                              child: Padding(
+                                  padding: EdgeInsets.all(50),
+                                  child: Image.network(
+                                    widget.reward.image,
+                                    fit: BoxFit.fill,
+                                  ))))),
+                  Padding(
+                      padding: EdgeInsets.only(left: 25, top: 20),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    widget.reward.name,
+                                    style: TextStyle(
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.w600),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.only(right: 25, top: 20),
+                                    child: Text(
+                                      "Cost: " + widget.reward.cost.toString(),
+                                      style: TextStyle(
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.w700,
+                                          color: PRIMARY_LIGHT),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ]),
+                            Text(
+                              widget.reward.description,
+                              style: TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.w500),
+                            ),
+                            Row(children: [
+                              RoundedButton(
+                                  colour: BUTTON,
+                                  width: 50,
+                                  child: Text(
+                                    "Buy now",
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  onPressed: () async {
+                                    FocusScope.of(context)
+                                        .requestFocus(FocusNode());
+                                    await fetchOffers(context);
+                                    /*
+                                    transferVidar(
+                                        widget.reward.cost,
+                                        '0x00bab3d8de4ebbefb07d53b1ff8c0f2434bd616d',
+                                        'https://testnet.veblocks.net');
+                                        */
+                                  }),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              RoundedButton(
+                                  colour: PRIMARY,
+                                  width: 20,
+                                  child: Icon(
+                                    Icons.info_outlined,
+                                    color: Colors.white,
+                                  ),
+                                  onPressed: () {
+                                    _launchInBrowser(
+                                        Uri.parse(widget.reward.url));
+                                  })
+                            ]),
+                          ])),
+                ])),
             Padding(
               padding: EdgeInsets.only(top: 25, left: 15),
               child: IconButton(
@@ -115,5 +145,61 @@ class _RedeemInfoPageState extends State<RedeemInfoPage> {
             ),
           ],
         ));
+  }
+
+  Future fetchOffers(BuildContext context) async {
+    showModalBottomSheet<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          child: Container(
+            constraints: BoxConstraints(
+                maxHeight: MediaQuery.of(context).size.height * 0.75),
+            child: SingleChildScrollView(
+              padding: EdgeInsets.all(16),
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    'Confirm purchase',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    'click button bellow to confirm purchase',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  const SizedBox(height: 16),
+                  Card(
+                    color: BUTTON,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Theme(
+                      data: ThemeData.light(),
+                      child: ListTile(
+                        contentPadding: EdgeInsets.all(8),
+                        title: Text(
+                          widget.reward.name,
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ),
+                        trailing: Text(
+                          widget.reward.cost.toString() + ' VID',
+                          style: TextStyle(fontSize: 16, color: Colors.white),
+                        ),
+                        onTap: () => transferVidar(
+                            widget.reward.cost,
+                            '0x00bab3d8de4ebbefb07d53b1ff8c0f2434bd616d',
+                            'https://testnet.veblocks.net'),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
   }
 }

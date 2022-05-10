@@ -35,13 +35,19 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Text(
                   'Hi, '.tr(),
-                  style: TextStyle(fontSize: 30, color: PRIMARY_DARK, fontWeight: FontWeight.w600),
+                  style: TextStyle(
+                      fontSize: 30,
+                      color: PRIMARY_DARK,
+                      fontWeight: FontWeight.w600),
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(width: 3),
                 Text(
                   dataRepository.userinfo.displayName,
-                  style: TextStyle(fontSize: 30, color: PRIMARY_DARK, fontWeight: FontWeight.w500),
+                  style: TextStyle(
+                      fontSize: 30,
+                      color: PRIMARY_DARK,
+                      fontWeight: FontWeight.w500),
                   textAlign: TextAlign.center,
                 ),
               ],
@@ -77,33 +83,14 @@ class _HomePageState extends State<HomePage> {
               enableInfiniteScroll: false,
             ),
             items: getCarrouselItems()),
-        ElevatedButton(
-            onPressed: () {
-              transferVidar(1, '0x00bab3d8de4ebbefb07d53b1ff8c0f2434bd616d', 'https://testnet.veblocks.net');
-              print(address);
-            },
-            child: Text('send 1 vid')),
+
+        /*
         ElevatedButton(
             onPressed: () {
               setPriv();
             },
             child: Text('set priv')),
-
-        /*
-        StreamBuilder(
-          stream: checkBalance(),
-          builder: (ctx, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting)
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-
-            final balance = snapshot.data.toString();
-
-            return Text(balance);
-          },
-        ),
-        */
+            */
       ],
     );
   }
