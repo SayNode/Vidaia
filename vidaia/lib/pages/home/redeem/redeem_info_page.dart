@@ -33,126 +33,138 @@ class _RedeemInfoPageState extends State<RedeemInfoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: BACKGROUND,
+          iconTheme: IconThemeData(
+            color: Colors.black,
+          ),
+        ),
         backgroundColor: BACKGROUND,
         drawerEnableOpenDragGesture: false,
         body: SingleChildScrollView(
-          child: Stack(
-            children: [
-              Expanded(
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                    ColorFiltered(
-                        colorFilter: ColorFilter.mode(
-                            BACKGROUND_SHADE, BlendMode.modulate),
-                        child: Container(
-                            width: MediaQuery.of(context).size.width * 0.66,
-                            height: MediaQuery.of(context).size.height * 0.33,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                  bottomRight: Radius.circular(50),
-                                  topRight: Radius.circular(50)),
-                              color: Colors.white,
-                            ),
-                            child: Center(
-                                child: Padding(
-                                    padding: EdgeInsets.all(40),
-                                    child: ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(20.0),
-                                        child: Image.network(
-                                          widget.reward.image,
-                                          fit: BoxFit.fill,
-                                        )))))),
-                    Padding(
-                        padding: EdgeInsets.only(left: 25, top: 20),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      widget.reward.name,
-                                      style: TextStyle(
-                                          fontSize: 25,
-                                          fontWeight: FontWeight.w600),
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                    Padding(
-                                      padding:
-                                          EdgeInsets.only(right: 25, top: 20),
-                                      child: Text(
-                                        "Cost: " +
-                                            widget.reward.cost.toString(),
+          child: Padding(
+            padding: const EdgeInsets.only(top: 0),
+            child: Stack(
+              children: [
+                Expanded(
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                      ColorFiltered(
+                          colorFilter: ColorFilter.mode(
+                              BACKGROUND_SHADE, BlendMode.modulate),
+                          child: Container(
+                              width: MediaQuery.of(context).size.width * 0.66,
+                              height: MediaQuery.of(context).size.height * 0.33,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                    bottomRight: Radius.circular(50),
+                                    topRight: Radius.circular(50)),
+                                color: Colors.white,
+                              ),
+                              child: Center(
+                                  child: Padding(
+                                      padding: EdgeInsets.all(40),
+                                      child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(20.0),
+                                          child: Image.network(
+                                            widget.reward.image,
+                                            fit: BoxFit.fill,
+                                          )))))),
+                      Padding(
+                          padding: EdgeInsets.only(left: 25, top: 20),
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        widget.reward.name,
                                         style: TextStyle(
-                                            fontSize: 22,
-                                            fontWeight: FontWeight.w700,
-                                            color: PRIMARY_LIGHT),
+                                            fontSize: 25,
+                                            fontWeight: FontWeight.w600),
                                         overflow: TextOverflow.ellipsis,
                                       ),
-                                    ),
-                                  ]),
-                              Container(
-                                padding: EdgeInsets.only(right: 20),
-                                child: Text(
-                                  widget.reward.description,
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                              ),
-                              Row(children: [
-                                RoundedButton(
-                                    colour: BUTTON,
-                                    width: 50,
-                                    child: Text(
-                                      "Buy now",
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w600,
-                                        color: Colors.black,
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.only(right: 25, top: 20),
+                                        child: Text(
+                                          "Cost: " +
+                                              widget.reward.cost.toString(),
+                                          style: TextStyle(
+                                              fontSize: 22,
+                                              fontWeight: FontWeight.w700,
+                                              color: PRIMARY_LIGHT),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
                                       ),
-                                    ),
-                                    onPressed: () async {
-                                      FocusScope.of(context)
-                                          .requestFocus(FocusNode());
-                                      await fetchOffers(context);
-                                      /*
-                                      transferVidar(
-                                          widget.reward.cost,
-                                          '0x00bab3d8de4ebbefb07d53b1ff8c0f2434bd616d',
-                                          'https://testnet.veblocks.net');
-                                          */
-                                    }),
-                                SizedBox(
-                                  width: 20,
+                                    ]),
+                                Container(
+                                  padding: EdgeInsets.only(right: 20),
+                                  child: Text(
+                                    widget.reward.description,
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500),
+                                  ),
                                 ),
-                                RoundedButton(
-                                    colour: PRIMARY,
+                                Row(children: [
+                                  RoundedButton(
+                                      colour: BUTTON,
+                                      width: 50,
+                                      child: Text(
+                                        "Buy now",
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      onPressed: () async {
+                                        FocusScope.of(context)
+                                            .requestFocus(FocusNode());
+                                        await fetchOffers(context);
+                                        /*
+                                        transferVidar(
+                                            widget.reward.cost,
+                                            '0x00bab3d8de4ebbefb07d53b1ff8c0f2434bd616d',
+                                            'https://testnet.veblocks.net');
+                                            */
+                                      }),
+                                  SizedBox(
                                     width: 20,
-                                    child: Icon(
-                                      Icons.info_outlined,
-                                      color: Colors.white,
-                                    ),
-                                    onPressed: () {
-                                      _launchInBrowser(
-                                          Uri.parse(widget.reward.url));
-                                    })
-                              ]),
-                            ])),
-                  ])),
-              Padding(
-                padding: EdgeInsets.only(top: 25, left: 15),
-                child: IconButton(
-                    icon: Center(child: Icon(Icons.arrow_back, color: PRIMARY)),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    }),
-              ),
-            ],
+                                  ),
+                                  RoundedButton(
+                                      colour: PRIMARY,
+                                      width: 20,
+                                      child: Icon(
+                                        Icons.info_outlined,
+                                        color: Colors.white,
+                                      ),
+                                      onPressed: () {
+                                        _launchInBrowser(
+                                            Uri.parse(widget.reward.url));
+                                      })
+                                ]),
+                              ])),
+                    ])),
+                /*
+                Padding(
+                  padding: EdgeInsets.only(top: 25, left: 15),
+                  child: IconButton(
+                      icon: Center(child: Icon(Icons.arrow_back, color: PRIMARY)),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      }),
+                ),
+                */
+              ],
+            ),
           ),
         ));
   }
@@ -188,22 +200,22 @@ class _RedeemInfoPageState extends State<RedeemInfoPage> {
                     child: Theme(
                       data: ThemeData.light(),
                       child: ListTile(
-                        contentPadding: EdgeInsets.all(8),
-                        title: Text(
-                          widget.reward.name,
-                          style: TextStyle(fontSize: 18, color: PRIMARY),
-                        ),
-                        trailing: Text(
-                          widget.reward.cost.toString() + ' VID',
-                          style: TextStyle(fontSize: 16, color: PRIMARY),
-                        ),
-                        onTap: () { transferVidar(
-                            widget.reward.cost,
-                            '0x00bab3d8de4ebbefb07d53b1ff8c0f2434bd616d',
-                            'https://testnet.veblocks.net');
+                          contentPadding: EdgeInsets.all(8),
+                          title: Text(
+                            widget.reward.name,
+                            style: TextStyle(fontSize: 18, color: PRIMARY),
+                          ),
+                          trailing: Text(
+                            widget.reward.cost.toString() + ' VID',
+                            style: TextStyle(fontSize: 16, color: PRIMARY),
+                          ),
+                          onTap: () {
+                            transferVidar(
+                                widget.reward.cost,
+                                '0x00bab3d8de4ebbefb07d53b1ff8c0f2434bd616d',
+                                'https://testnet.veblocks.net');
                             confirmPurchase(context);
-                            }
-                      ),
+                          }),
                     ),
                   )
                 ],
