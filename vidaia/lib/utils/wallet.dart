@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:thor_devkit_dart/crypto/mnemonic.dart';
 import 'package:thor_devkit_dart/crypto/secp256k1.dart';
@@ -30,7 +31,6 @@ Future<String?> getpriv() async {
   return priv;
 }
 
-
 //TODO: remove this for release
 setPriv() async {
   final storage = FlutterSecureStorage();
@@ -47,6 +47,24 @@ recoverWalletFromWords(List<String> words) async {
   await storage.write(key: "privateKey", value: bytesToHex(priv));
 }
 
+Future<String> getWords() async {
+  final storage = FlutterSecureStorage();
+  var out = await storage.read(key: "mnemonicPhrase");
+  return out.toString();
+}
+
+getWordButtons() async {
+  final storage = FlutterSecureStorage();
+  var words = await storage.read(key: "mnemonicPhrase");
+  List<TextButton> wordButtons = [];
+  List<String> wordsList = words!.split(" ");
+  for (var word in wordsList) {
+    wordButtons.add(TextButton(onPressed: null, child: Text(word)));
+  }
+
+  return wordButtons;
+}
+
 Future<Map> transferVidar(int value, String address, String url) async {
   final storage = FlutterSecureStorage();
   Connect connect = Connect(url);
@@ -56,8 +74,8 @@ Future<Map> transferVidar(int value, String address, String url) async {
 
   BigInt vidar = BigInt.from(value) * toVidar;
 
-  return await connect.transferToken(wallet, address,
-      '0x6e21867DB6572756e778883E17e7595b7f363310', vidar);
+  return await connect.transferToken(
+      wallet, address, '0x6e21867DB6572756e778883E17e7595b7f363310', vidar);
 }
 
 Stream<BigInt> checkBalance() => Stream.periodic(Duration(seconds: 1))
@@ -101,4 +119,73 @@ Future<BigInt> _getBalance(String address) async {
   var vidar = wei / devidor;
 
   return BigInt.from(vidar);
+}
+
+showMnemonicAlert(BuildContext context) {
+  // set up the buttons
+  Widget cancelButton = TextButton(
+    child: Text("Reminde me Later"),
+    onPressed: () {
+      Navigator.pop(context);
+    },
+  );
+  Widget continueButton = TextButton(
+    child: Text("Back up now"),
+    onPressed: () {
+      Navigator.pop(context);
+      showMnemonicWordsAlert(context);
+    },
+  );
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("Seed Worts not backed up"),
+    content: Text("Would you like to write down your seed words now?"),
+    actions: [
+      cancelButton,
+      continueButton,
+    ],
+  );
+  // show the dialog
+  showDialog(
+    barrierDismissible: false,
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
+
+showMnemonicWordsAlert(BuildContext context) async {
+  // set up the buttons
+  Widget cancelButton = TextButton(
+    child: Text("Cancel"),
+    onPressed: () {
+      Navigator.pop(context);
+    },
+  );
+  Widget continueButton = TextButton(
+    child: Text("Finished"),
+    onPressed: () {
+      global.mnemonicNoted = true;
+      Navigator.pop(context);
+    },
+  );
+  // set up the AlertDialog
+  AlertDialog seed = AlertDialog(
+    title: Text("Mnemonic Words"),
+    content: Text(await getWords()),
+    //actions: await getWordButtons(),
+    actions: [
+      cancelButton,
+      continueButton,
+    ],
+  );
+  // show the dialog
+  showDialog(
+    barrierDismissible: false,
+    context: context,
+    builder: (BuildContext context) {
+      return seed;
+    },
+  );
 }

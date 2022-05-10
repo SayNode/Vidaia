@@ -37,9 +37,9 @@ class HistoryTile extends StatelessWidget {
             child: Stack(children: [
               Row(children: [
                 Padding(
-                    padding: EdgeInsets.only(top: 5, bottom: 5, left: 20),
+                    padding: EdgeInsets.only(top: 2, bottom: 2, left: 10),
                     child: Container(
-                        width: MediaQuery.of(context).size.width / 8,
+                        width: MediaQuery.of(context).size.width / 5,
                         child: Center(
                             child: Image.network(
                           item.product.image,
@@ -70,7 +70,9 @@ class HistoryTile extends StatelessWidget {
                               topLeft: Radius.circular(15),
                               topRight: Radius.circular(15),
                             ),
-                            color: isReceived ? Color.fromARGB(169, 94, 160, 124) : SPEND),
+                            color: isReceived
+                                ? Color.fromARGB(169, 94, 160, 124)
+                                : BUTTON),
                         child: Container(
                           padding: const EdgeInsets.all(10),
                           decoration: const BoxDecoration(
@@ -78,41 +80,57 @@ class HistoryTile extends StatelessWidget {
                               Radius.circular(15),
                             ),
                           ),
-                          child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                            Expanded(
-                              flex: 5,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    item.product.name,
-                                    style: Theme.of(context).textTheme.subtitle1,
-                                    overflow: TextOverflow.ellipsis,
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  flex: 5,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        item.product.name,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .subtitle1,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                      Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              "Vidar " +
+                                                  item.product.tokens
+                                                      .toString(),
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .subtitle2,
+                                            ),
+                                            Text(
+                                              item.date.toString(),
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .subtitle2,
+                                            ),
+                                            SizedBox(),
+                                          ]),
+                                    ],
                                   ),
-                                  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                                    Text(
-                                      "Vidar " + item.product.tokens.toString(),
-                                      style: Theme.of(context).textTheme.subtitle2,
-                                    ),
-                                    Text(
-                                      item.date.toString(),
-                                      style: Theme.of(context).textTheme.subtitle2,
-                                    ),
-                                    SizedBox(),
-                                  ]),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                                flex: 1,
-                                child: IconButton(
-                                  icon: Icon(Icons.arrow_forward, color: Colors.black),
-                                  onPressed: () {
-                                    _launchInBrowser(Uri.parse(item.product.url));
-                                  },
-                                ))
-                          ]),
+                                ),
+                                Expanded(
+                                    flex: 1,
+                                    child: IconButton(
+                                      icon: Icon(Icons.arrow_forward,
+                                          color: Colors.black),
+                                      onPressed: () {
+                                        _launchInBrowser(
+                                            Uri.parse(item.product.url));
+                                      },
+                                    ))
+                              ]),
                         )))
               ]),
             ])));

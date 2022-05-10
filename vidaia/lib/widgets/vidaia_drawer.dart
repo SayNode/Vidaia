@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:vidaia/main.dart';
 import 'package:vidaia/pages/home/home_page_loader.dart';
+import 'package:vidaia/pages/login_page.dart';
 import 'package:vidaia/pages/settings_page.dart';
 import 'package:vidaia/repositories/dataRepository.dart';
 import 'package:vidaia/utils/constants.dart';
@@ -16,14 +17,14 @@ class VidaiaDrawer extends StatelessWidget {
     return Drawer(
       backgroundColor: Colors.grey.shade200,
       child: Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20, top: 50, bottom: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+        padding:
+            const EdgeInsets.only(left: 20, right: 20, top: 50, bottom: 20),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(
             children: [
               CircleAvatar(
                 backgroundColor: primaryColorBright,
+                foregroundImage: AssetImage("assets/images/Me.jpg"),
                 radius: 35.0,
               ),
               const SizedBox(
@@ -101,21 +102,21 @@ class VidaiaDrawer extends StatelessWidget {
           ),
           SizedBox(height: 10),
           Padding(
-                padding: const EdgeInsets.only(left: 12.0),
-                child: Text(
-            'Connect profile',
-            style: Theme.of(context).textTheme.titleMedium,
+            padding: const EdgeInsets.only(left: 12.0),
+            child: Text(
+              'Connect profile',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
           ),
-              ),
           Material(
             type: MaterialType.transparency,
             child: ListTile(
-              leading: const Icon(
-                Icons.local_grocery_store_outlined,
-                color: PRIMARY_LIGHT,
+              leading: Image(
+                image: AssetImage("assets/images/migros.png"),
+                height: 25,
               ),
               title: Text(
-                'migros',
+                'Migros',
                 style: Theme.of(context).textTheme.subtitle1,
               ),
               onTap: () => {null},
@@ -124,12 +125,13 @@ class VidaiaDrawer extends StatelessWidget {
           Material(
             type: MaterialType.transparency,
             child: ListTile(
-              leading: const Icon(
-                Icons.local_grocery_store_outlined,
-                color: PRIMARY_LIGHT,
+              leading: Image(
+                image: AssetImage("assets/images/coop.png"),
+                height: 25,
+                width: 30,
               ),
               title: Text(
-                'coop',
+                'Coop',
                 style: Theme.of(context).textTheme.subtitle1,
               ),
               onTap: () => {null},
@@ -143,16 +145,18 @@ class VidaiaDrawer extends StatelessWidget {
           Material(
             type: MaterialType.transparency,
             child: ListTile(
-              leading: const Icon(
-                Icons.logout_rounded,
-                color: primaryColorBright,
-              ),
-              title: Text(
-                'Logout',
-                style: Theme.of(context).textTheme.subtitle1,
-              ),
-              //onTap: () => {context.router.push(const LoginRoute())},
-            ),
+                leading: const Icon(
+                  Icons.logout_rounded,
+                  color: primaryColorBright,
+                ),
+                title: Text(
+                  'Logout',
+                  style: Theme.of(context).textTheme.subtitle1,
+                ),
+                onTap: () => {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => LoginPage()))
+                    }),
           ),
         ]),
       ),

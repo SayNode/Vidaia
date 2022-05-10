@@ -37,7 +37,7 @@ class LoginPage extends StatelessWidget {
     });
   }
 
-  Future<String?> _signupUser(SignupData data) async{
+  Future<String?> _signupUser(SignupData data) async {
     debugPrint('Signup Name: ${data.name}, Password: ${data.password}');
     username = data.name;
     password = data.password;
@@ -54,20 +54,35 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: primaryColor,
-      padding: const EdgeInsets.all(40),
       child: FlutterLogin(
         userType: LoginUserType.name,
         logo: const AssetImage('assets/images/vidaia-live-sustainably.png'),
-        messages: LoginMessages(userHint: tr('username'), passwordHint: 'password'.tr()),
+<<<<<<< HEAD
+        messages: LoginMessages(userHint: 'Email', passwordHint: 'password'.tr()),
+=======
+        messages: LoginMessages(
+            userHint: tr('username'), passwordHint: 'password'.tr()),
+>>>>>>> 75a57e05b37824002c79ba5eef3da83f0aa4b1ab
         onLogin: _authUser,
         onSignup: _signupUser,
-
         onSubmitAnimationCompleted: () {
+<<<<<<< HEAD
   Navigator.push(
     context,
     MaterialPageRoute(builder: (context) => HomePage2()),
   );
+  if (!mnemonicNoted) {
+    showMnemonicAlert(context);
+  }
+  
 },
+=======
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => HomePage2()),
+          );
+        },
+>>>>>>> 75a57e05b37824002c79ba5eef3da83f0aa4b1ab
         onRecoverPassword: _recoverPassword,
       ),
     );
