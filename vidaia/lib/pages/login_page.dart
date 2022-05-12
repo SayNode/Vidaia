@@ -52,26 +52,30 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: primaryColor,
-      child: FlutterLogin(
-        userType: LoginUserType.name,
-        logo: const AssetImage('assets/images/vidaia-live-sustainably.png'),
-        messages:
-            LoginMessages(userHint: 'Email', passwordHint: 'password'.tr()),
-        onLogin: _authUser,
-        onSignup: _signupUser,
-        onSubmitAnimationCompleted: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => HomePage2()),
-          );
-          if (!mnemonicNoted) {
-            showMnemonicAlert(context);
-          }
-        },
-        onRecoverPassword: _recoverPassword,
-      ),
+    return Column(
+      children: [
+        Container(
+          color: primaryColor,
+          child: FlutterLogin(
+            userType: LoginUserType.name,
+            logo: const AssetImage('assets/images/vidaia-live-sustainably.png'),
+            messages:
+                LoginMessages(userHint: 'Email', passwordHint: 'password'.tr()),
+            onLogin: _authUser,
+            onSignup: _signupUser,
+            onSubmitAnimationCompleted: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomePage2()),
+              );
+              if (!mnemonicNoted) {
+                showMnemonicAlert(context);
+              }
+            },
+            onRecoverPassword: _recoverPassword,
+          ),
+        ),
+      ],
     );
   }
 }

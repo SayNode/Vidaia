@@ -2,9 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:vidaia/pages/home/home_page_loader.dart';
+import 'package:vidaia/pages/auth0_testing_page.dart';
 import 'package:vidaia/repositories/dataRepository.dart';
-import 'package:vidaia/pages/login_page.dart';
 
 GetIt getIt = GetIt.instance;
 
@@ -35,10 +34,14 @@ const primaryColorDark = Color(0xFF112823);
 const backgroundColor = Color(0xFFf8faf7);
 const backgroundColorDark = Color(0xFFebeeea);
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -91,7 +94,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       darkTheme: ThemeData.dark(),
-      home: HomePage2(),
+      home: Auth0TestPage(),
     );
   }
 }
