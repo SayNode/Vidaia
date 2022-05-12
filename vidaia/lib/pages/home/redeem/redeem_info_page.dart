@@ -139,12 +139,22 @@ class _RedeemInfoPageState extends State<RedeemInfoPage> {
                                   SizedBox(
                                     width: 20,
                                   ),
+
+                                  /*
+                                  IconButton(onPressed: () {
+                                        _launchInBrowser(
+                                            Uri.parse(widget.reward.url));
+                                      }, icon: Icon(
+                                        Icons.info_outlined,
+                                        color: Colors.black,
+                                      )),
+                                      */
                                   RoundedButton(
                                       colour: PRIMARY,
                                       width: 20,
-                                      child: Icon(
-                                        Icons.info_outlined,
-                                        color: Colors.white,
+                                      child: Text(
+                                        'More Information',
+                                        style: TextStyle(color: Colors.white),
                                       ),
                                       onPressed: () {
                                         _launchInBrowser(
