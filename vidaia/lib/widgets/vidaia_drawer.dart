@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:vidaia/main.dart';
+import 'package:vidaia/pages/exchange/exchange_page_loader.dart';
 import 'package:vidaia/pages/home/home_page_loader.dart';
 import 'package:vidaia/pages/login_page.dart';
 import 'package:vidaia/pages/settings_page.dart';
@@ -78,6 +79,25 @@ class VidaiaDrawer extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const SettingsPage()),
+                );
+              },
+            ),
+          ),
+          Material(
+            type: MaterialType.transparency,
+            child: ListTile(
+              leading: const Icon(
+                Icons.currency_exchange,
+                color: PRIMARY_LIGHT,
+              ),
+              title: Text(
+                'Send and Receive'.tr(),
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ExchangePage()),
                 );
               },
             ),

@@ -12,6 +12,7 @@ bool loginStatus = false;
 List<String>? mnemonicPhrase;
 Uint8List? privateKey;
 Wallet? wallet;
+String? qrCode;
 
 bool mnemonicNoted = false;
 
