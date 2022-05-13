@@ -90,15 +90,18 @@ class _SendPageState extends State<SendPage> {
             child: Text('set address')),
         ElevatedButton(
             onPressed: () async {
+              onLoading(context);
               var res;
               try {
                 res = await transferVidar(int.parse(valueController.text),
                     addressController.text, 'https://testnet.veblocks.net');
               } on InvalidAddressException {
+                Navigator.pop(context);
                 oneButtonPopup(context, Text('Transaction Failed'),
                     Text('The Address is not valid'));
               } finally {
                 if (res.containsKey('id')) {
+                  Navigator.pop(context);
                   txConfirmedAlert(context, res['id']);
                 } else {
                   txError(context);

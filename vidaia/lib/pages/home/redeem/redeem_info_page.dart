@@ -5,6 +5,9 @@ import 'package:vidaia/models/Reward.dart';
 import 'package:vidaia/utils/constants.dart';
 import 'package:vidaia/widgets/roundedButton.dart';
 import 'package:vidaia/utils/wallet.dart';
+import '../../../utils/invalid_Address_Exception.dart';
+import '../../../utils/popups.dart';
+
 
 class RedeemInfoPage extends StatefulWidget {
   final Reward reward;
@@ -210,22 +213,37 @@ class _RedeemInfoPageState extends State<RedeemInfoPage> {
                     child: Theme(
                       data: ThemeData.light(),
                       child: ListTile(
-                          contentPadding: EdgeInsets.all(8),
-                          title: Text(
-                            widget.reward.name,
-                            style: TextStyle(fontSize: 18, color: PRIMARY),
-                          ),
-                          trailing: Text(
-                            widget.reward.cost.toString() + ' VID',
-                            style: TextStyle(fontSize: 16, color: PRIMARY),
-                          ),
-                          onTap: () {
-                            transferVidar(
+                        contentPadding: EdgeInsets.all(8),
+                        title: Text(
+                          widget.reward.name,
+                          style: TextStyle(fontSize: 18, color: PRIMARY),
+                        ),
+                        trailing: Text(
+                          widget.reward.cost.toString() + ' VID',
+                          style: TextStyle(fontSize: 16, color: PRIMARY),
+                        ),
+                        onTap: () async {
+                          onLoading(context);
+                          late Map res;
+                          try {
+                            res = await transferVidar(
                                 widget.reward.cost,
                                 '0x00bab3d8de4ebbefb07d53b1ff8c0f2434bd616d',
                                 'https://testnet.veblocks.net');
-                            confirmPurchase(context);
-                          }),
+                                
+                          } on InvalidAddressException {
+                            oneButtonPopup(context, Text('Transaction Failed'),
+                                Text('The Address is not valid'));
+                          } finally {
+                            if (res.containsKey('id')) {
+                              Navigator.pop(context);
+                              confirmPurchase(context);
+                            } else {
+                              txError(context);
+                            }
+                          }
+                        },
+                      ),
                     ),
                   )
                 ],

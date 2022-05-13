@@ -6,6 +6,7 @@ import 'package:vidaia/models/HistoryEntry.dart';
 import 'package:vidaia/models/Reward.dart';
 import 'package:vidaia/models/User.dart';
 import 'package:vidaia/models/Product.dart';
+import 'package:vidaia/utils/globals.dart' as globals;
 
 class DataRepository {
   //can be split up in seperate repositories in the future if needd
@@ -45,9 +46,20 @@ class DataRepository {
     return list.map((e) => Reward.fromJson(e)).toList();
   }
 
+/*
   Future<User> loadUser() async {
     //read json file
     final jsondata = await rootBundle.rootBundle.loadString('assets/data/user.json');
+    //decode json data as list
+    final data = json.decode(jsondata) as dynamic;
+
+    return User.fromJson(data);
+  }
+  */
+
+    Future<User> loadUser() async {
+    //read json file
+    final jsondata = globals.user;
     //decode json data as list
     final data = json.decode(jsondata) as dynamic;
 

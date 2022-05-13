@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -5,6 +7,7 @@ import 'package:vidaia/pages/profile_testing.dart';
 import 'package:vidaia/utils/auth0.dart';
 import 'package:vidaia/utils/globals.dart' as globals;
 
+import '../utils/wallet.dart';
 import 'home/home_page_loader.dart';
 import 'login_testing.dart';
 
@@ -56,6 +59,13 @@ class _Auth0TestPageState extends State<Auth0TestPage> {
 
       final idToken = parseIdToken(result!.idToken!);
       final profile = await getUserDetails(result.accessToken!);
+      print('-------------------> '+json.encode(profile));
+      var name = profile['name'];
+      globals.user = """{
+    "userId": "1",
+    "displayName": "$name",
+    "walletAdress": "0x0..."
+}""";
 
       await secureStorage.write(
           key: 'refresh_token', value: result.refreshToken);
@@ -70,6 +80,9 @@ class _Auth0TestPageState extends State<Auth0TestPage> {
         context,
         MaterialPageRoute(builder: (context) => HomePage2()),
       );
+      if (!globals.mnemonicNoted) {
+        showMnemonicAlert(context);
+      }
     } catch (e, s) {
       print('login error: $e - stack: $s');
 

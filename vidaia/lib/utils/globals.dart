@@ -22,6 +22,11 @@ bool isBusy = false;
 bool isLoggedIn = false;
 String? name;
 String? picture;
+String user = """{
+    "userId": "W_Liechti",
+    "displayName": "Werner Liechti",
+    "walletAdress": "www.comits.be"
+}""";
 
 
 //priv c337cf0b3c7c3e4b7f5480b985724e0f221120554459b5c247870d2789726089
