@@ -239,6 +239,7 @@ class _RedeemInfoPageState extends State<RedeemInfoPage> {
                               Navigator.pop(context);
                               confirmPurchase(context);
                             } else {
+                              Navigator.pop(context);
                               txError(context);
                             }
                           }
