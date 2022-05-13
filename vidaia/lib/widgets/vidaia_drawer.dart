@@ -6,6 +6,7 @@ import 'package:vidaia/pages/home/home_page_loader.dart';
 import 'package:vidaia/pages/login_page.dart';
 import 'package:vidaia/pages/settings_page.dart';
 import 'package:vidaia/repositories/dataRepository.dart';
+import 'package:vidaia/utils/auth0.dart';
 import 'package:vidaia/utils/constants.dart';
 
 class VidaiaDrawer extends StatelessWidget {
@@ -174,8 +175,7 @@ class VidaiaDrawer extends StatelessWidget {
                   style: Theme.of(context).textTheme.subtitle1,
                 ),
                 onTap: () => {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => LoginPage()))
+                      logoutAction(context)
                     }),
           ),
         ]),

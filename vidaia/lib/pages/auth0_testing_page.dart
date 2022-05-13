@@ -3,8 +3,11 @@ import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:vidaia/pages/profile_testing.dart';
 import 'package:vidaia/utils/auth0.dart';
+import 'package:vidaia/utils/globals.dart' as globals;
 
+import 'home/home_page_loader.dart';
 import 'login_testing.dart';
+
 final FlutterAppAuth appAuth = FlutterAppAuth();
 final FlutterSecureStorage secureStorage = const FlutterSecureStorage();
 const AUTH0_DOMAIN = 'saynode.eu.auth0.com';
@@ -14,7 +17,6 @@ const AUTH0_REDIRECT_URI = 'com.auth0.vidaia://login-callback';
 const AUTH0_ISSUER = 'https://$AUTH0_DOMAIN';
 
 class Auth0TestPage extends StatefulWidget {
-
   Auth0TestPage();
 
   @override
@@ -22,42 +24,34 @@ class Auth0TestPage extends StatefulWidget {
 }
 
 class _Auth0TestPageState extends State<Auth0TestPage> {
-     bool isBusy = false;
-  bool isLoggedIn = false;
   String errorMessage = '';
-  String? name;
-  String? picture;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Auth0 Test'),
-        ),
-        body: Center(
-          child: isBusy
-              ? CircularProgressIndicator()
-              : isLoggedIn
-                  ? Profile(logoutAction, name!, picture!)
-                  : Login(loginAction, errorMessage),
-        ),
-      );
+      appBar: AppBar(
+        title: Text('Auth0 Test'),
+      ),
+      body: Center(
+        child: globals.isBusy
+            ? CircularProgressIndicator()
+            : Login(loginAction, errorMessage),
+      ),
+    );
   }
-    Future<void> loginAction() async {
+
+  Future<void> loginAction() async {
     setState(() {
-      isBusy = true;
+      globals.isBusy = true;
       errorMessage = '';
     });
 
     try {
       final AuthorizationTokenResponse? result =
           await appAuth.authorizeAndExchangeCode(
-        AuthorizationTokenRequest(
-          AUTH0_CLIENT_ID,
-          AUTH0_REDIRECT_URI,
-          issuer: 'https://$AUTH0_DOMAIN',
-          scopes: ['openid', 'profile', 'offline_access'],
-          // promptValues: ['login']
-        ),
+        AuthorizationTokenRequest(AUTH0_CLIENT_ID, AUTH0_REDIRECT_URI,
+            issuer: 'https://$AUTH0_DOMAIN',
+            scopes: ['openid', 'profile', 'offline_access'],
+            promptValues: ['login']),
       );
 
       final idToken = parseIdToken(result!.idToken!);
@@ -67,30 +61,27 @@ class _Auth0TestPageState extends State<Auth0TestPage> {
           key: 'refresh_token', value: result.refreshToken);
 
       setState(() {
-        isBusy = false;
-        isLoggedIn = true;
-        name = idToken['name'];
-        picture = profile['picture'];
+        globals.isBusy = false;
+        globals.isLoggedIn = true;
+        globals.name = idToken['globals.name'];
+        globals.picture = profile['globals.picture'];
       });
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HomePage2()),
+      );
     } catch (e, s) {
       print('login error: $e - stack: $s');
 
       setState(() {
-        isBusy = false;
-        isLoggedIn = false;
+        globals.isBusy = false;
+        globals.isLoggedIn = false;
         errorMessage = e.toString();
       });
     }
   }
 
-  void logoutAction() async {
-    await secureStorage.delete(key: 'refresh_token');
-    setState(() {
-      isLoggedIn = false;
-      isBusy = false;
-    });
-  }
-   @override
+  @override
   void initState() {
     initAction();
     super.initState();
@@ -101,7 +92,7 @@ class _Auth0TestPageState extends State<Auth0TestPage> {
     if (storedRefreshToken == null) return;
 
     setState(() {
-      isBusy = true;
+      globals.isBusy = true;
     });
 
     try {
@@ -118,14 +109,14 @@ class _Auth0TestPageState extends State<Auth0TestPage> {
       secureStorage.write(key: 'refresh_token', value: response.refreshToken);
 
       setState(() {
-        isBusy = false;
-        isLoggedIn = true;
-        name = idToken['name'];
-        picture = profile['picture'];
+        globals.isBusy = false;
+        globals.isLoggedIn = true;
+        globals.name = idToken['globals.name'];
+        globals.picture = profile['globals.picture'];
       });
     } catch (e, s) {
       print('error on refresh token: $e - stack: $s');
-      logoutAction();
+      logoutAction(context);
     }
   }
 }
