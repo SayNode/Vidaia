@@ -1,4 +1,4 @@
-package com.example.vidaia
+package ch.saynode.vidaia
 
 import io.flutter.embedding.android.FlutterActivity
 

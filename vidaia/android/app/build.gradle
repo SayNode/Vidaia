@@ -43,11 +43,12 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.vidaia"
-        minSdkVersion 18
+        applicationId "ch.saynode.vidaia"
+        minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        manifestPlaceHolders = ['appAuthRedirectScheme': 'ch.saynode.vidaia']
     }
 
     buildTypes {
