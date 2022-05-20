@@ -64,8 +64,7 @@ class AuthService {
       headers: {'Authorization': 'Bearer $auth0AccessToken'},
     );
 
-    debugPrint(
-        'logout: ${response.request} ${response.statusCode} ${response.body}');
+    debugPrint('logout: ${response.request} ${response.statusCode} ${response.body}');
 
     return 'logout: ${response.request} ${response.statusCode} ${response.body}';
   }
@@ -82,8 +81,7 @@ class AuthService {
         /// possible values login, none, consent, select_account
       );
 
-      final AuthorizationTokenResponse? result =
-          await appAuth.authorizeAndExchangeCode(
+      final AuthorizationTokenResponse? result = await appAuth.authorizeAndExchangeCode(
         authorizationTokenRequest,
       );
 
@@ -111,28 +109,35 @@ class AuthService {
   }
 
   Future<Auth0User> getUserDetails(String accessToken) async {
+    Auth0User auth0user;
+
     final url = Uri.https(
       AUTH0_DOMAIN,
       '/userinfo',
     );
 
-    final response = await http.get(
+    final responseAuth0UserInfo = await http.get(
       url,
       headers: {'Authorization': 'Bearer $accessToken'},
     );
 
-    print('getUserDetails ${response.body}');
+    print('getUserDetails ${responseAuth0UserInfo.body}');
 
-    if (response.statusCode == 200) {
-      return Auth0User.fromJson(jsonDecode(response.body));
+    if (responseAuth0UserInfo.statusCode == 200) {
+      auth0user = Auth0User.fromJson(jsonDecode(responseAuth0UserInfo.body));
+    } else {
+      throw Exception('Failed to get user details');
+    }
+
+    if (responseAuth0UserInfo.statusCode == 200) {
+      return auth0user;
     } else {
       throw Exception('Failed to get user details');
     }
   }
 
   Future<String> _setLocalVariables(result) async {
-    final bool isValidResult =
-        result != null && result.accessToken != null && result.idToken != null;
+    final bool isValidResult = result != null && result.accessToken != null && result.idToken != null;
 
     if (isValidResult) {
       auth0AccessToken = result.accessToken;

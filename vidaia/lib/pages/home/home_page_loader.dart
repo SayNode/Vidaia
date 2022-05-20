@@ -39,7 +39,7 @@ class _HomePage2State extends State<HomePage2> {
           isDataLoaded, //Future that returns bool
         ]),
         builder: (BuildContext context, AsyncSnapshot<List<bool>> snapshot) {
-          if (snapshot.connectionState == ConnectionState.done && AuthService.instance.profile!.id.isNotEmpty && snapshot.data?[0] == true) {
+          if (snapshot.connectionState == ConnectionState.done && AuthService.instance.profile != null && AuthService.instance.profile!.id.isNotEmpty && snapshot.data?[0] == true) {
             return HomePageStack(_pages);
           } else if (snapshot.connectionState == ConnectionState.done && snapshot.hasError) {
             return Padding(
@@ -49,7 +49,7 @@ class _HomePage2State extends State<HomePage2> {
                 style: TextStyle(fontSize: 20),
               ),
             );
-          } else if (snapshot.data?[0] == false) {
+          } else if (AuthService.instance.profile == null || AuthService.instance.profile!.id.isEmpty) {
             return const LoginPage();
           } else {
             return Center(
