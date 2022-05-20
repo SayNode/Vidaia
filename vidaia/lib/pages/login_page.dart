@@ -71,60 +71,68 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: primaryColor,
-      child: Column(
-        children: [
-          // FlutterLogin(
-          //   userType: LoginUserType.name,
-          //   logo: const AssetImage('assets/images/vidaia-live-sustainably.png'),
-          //   messages:
-          //       LoginMessages(userHint: 'Email', passwordHint: 'password'.tr()),
-          //   onLogin: _authUser,
-          //   onSignup: _signupUser,
-          //   onSubmitAnimationCompleted: () {
-          //     Navigator.push(
-          //       context,
-          //       MaterialPageRoute(builder: (context) => HomePage2()),
-          //     );
-          //     if (!mnemonicNoted) {
-          //       showMnemonicAlert(context);
-          //     }
-          //   },
-          //   onRecoverPassword: _recoverPassword,
-          // ),
-          TextButton(
-            onPressed: loginAction,
-            child: const Text('Auth0 Login | Register'),
+      decoration: const BoxDecoration(
+        image: DecorationImage(alignment: Alignment.centerLeft, image: AssetImage('assets/images/plant_background.jpeg'), fit: BoxFit.cover),
+      ),
+      child: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(colors: [DARK_GRADIENT, TRANSPARENT_GRADIENT], begin: Alignment.bottomCenter, end: Alignment.center),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(30.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              if (isProgressing)
+                CircularProgressIndicator()
+              else if (!isLoggedIn)
+                Column(
+                  children: [
+                    const Text(
+                      'Have it greener with Vidaia.',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(fontSize: 25, color: TEXT_WHITE, decoration: TextDecoration.none),
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    ElevatedButton(
+                      onPressed: loginAction,
+                      child: const Text('Login | Register'),
+                      style: elevatedButtonStyle,
+                    ),
+                    const SizedBox(height: 10),
+                    OutlinedButton(
+                      onPressed: loginAction,
+                      child: const Text('Skip for now'),
+                      style: outlinedButtonStyle,
+                    ),
+                    const SizedBox(height: 30),
+                  ],
+                )
+              else
+                Expanded(
+                  child: Center(
+                      child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Welcome $name',
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(color: TEXT_WHITE, decoration: TextDecoration.none),
+                      ),
+                      const Icon(
+                        Icons.done,
+                        color: PRIMARY_LIGHT,
+                        size: 130.0,
+                      ),
+                    ],
+                  )),
+                ),
+            ],
           ),
-          if (isProgressing)
-            CircularProgressIndicator()
-          else if (!isLoggedIn)
-            TextButton(
-              onPressed: loginAction,
-              child: const Text('Auth0 Login | Register'),
-            )
-          else
-            Expanded(
-              child: Center(
-                  child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    'Welcome $name',
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                        color: TEXT_WHITE, decoration: TextDecoration.none),
-                  ),
-                  const Icon(
-                    Icons.done,
-                    color: PRIMARY_LIGHT,
-                    size: 130.0,
-                  ),
-                ],
-              )),
-            ),
-        ],
+        ),
       ),
     );
   }

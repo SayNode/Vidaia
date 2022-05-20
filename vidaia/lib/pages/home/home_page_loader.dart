@@ -3,7 +3,9 @@ import 'package:vidaia/main.dart';
 import 'package:vidaia/pages/home/history/buy_history_page.dart';
 import 'package:vidaia/pages/home/home/home_page.dart';
 import 'package:vidaia/pages/home/redeem/redeem_page.dart';
+import 'package:vidaia/pages/login_page.dart';
 import 'package:vidaia/repositories/dataRepository.dart';
+import 'package:vidaia/services/auth_service.dart';
 
 import 'home_page_stack.dart';
 
@@ -16,12 +18,14 @@ class HomePage2 extends StatefulWidget {
 
 class _HomePage2State extends State<HomePage2> {
   late Future<bool> isDataLoaded;
+  late Future<bool> isUserLogged;
 
   DataRepository dataRepository = getIt.get<DataRepository>();
 
   @override
   void initState() {
     super.initState();
+    // isUserLogged = AuthService.instance.init();
     isDataLoaded = dataRepository.init();
   }
 
@@ -29,10 +33,13 @@ class _HomePage2State extends State<HomePage2> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<bool>(
-        future: isDataLoaded,
-        builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-          if (snapshot.connectionState == ConnectionState.done && snapshot.data == true) {
+    return FutureBuilder<List<bool>>(
+        future: Future.wait([
+          // isUserLogged, //Future that returns bool
+          isDataLoaded, //Future that returns bool
+        ]),
+        builder: (BuildContext context, AsyncSnapshot<List<bool>> snapshot) {
+          if (snapshot.connectionState == ConnectionState.done && AuthService.instance.profile!.id.isNotEmpty && snapshot.data?[0] == true) {
             return HomePageStack(_pages);
           } else if (snapshot.connectionState == ConnectionState.done && snapshot.hasError) {
             return Padding(
@@ -42,6 +49,8 @@ class _HomePage2State extends State<HomePage2> {
                 style: TextStyle(fontSize: 20),
               ),
             );
+          } else if (snapshot.data?[0] == false) {
+            return const LoginPage();
           } else {
             return Center(
               child: Column(

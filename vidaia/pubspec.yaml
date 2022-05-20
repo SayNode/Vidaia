@@ -92,6 +92,7 @@ flutter:
     - assets/images/migros.png
     - assets/images/coop.png
     - assets/images/vidar.png
+    - assets/images/plant_background.jpeg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
