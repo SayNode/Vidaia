@@ -5,6 +5,7 @@ import 'package:vidaia/pages/home/home_page_loader.dart';
 import 'package:vidaia/pages/login_page.dart';
 import 'package:vidaia/pages/settings_page.dart';
 import 'package:vidaia/repositories/dataRepository.dart';
+import 'package:vidaia/services/auth_service.dart';
 import 'package:vidaia/utils/constants.dart';
 
 class VidaiaDrawer extends StatelessWidget {
@@ -153,10 +154,11 @@ class VidaiaDrawer extends StatelessWidget {
                   'Logout',
                   style: Theme.of(context).textTheme.subtitle1,
                 ),
-                onTap: () => {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => LoginPage()))
-                    }),
+                onTap: () async {
+                  await AuthService.instance.logout();
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => LoginPage()));
+                }),
           ),
         ]),
       ),

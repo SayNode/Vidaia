@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:vidaia/main.dart';
 import 'package:vidaia/pages/home/home_page_loader.dart';
+import 'package:vidaia/utils/constants.dart';
 import 'package:vidaia/utils/globals.dart';
 import 'package:vidaia/utils/wallet.dart';
 import 'package:vidaia/services/auth_service.dart';
@@ -103,7 +104,26 @@ class _LoginPageState extends State<LoginPage> {
               child: const Text('Auth0 Login | Register'),
             )
           else
-            Text('Welcome $name'),
+            Expanded(
+              child: Center(
+                  child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'Welcome $name',
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        color: TEXT_WHITE, decoration: TextDecoration.none),
+                  ),
+                  const Icon(
+                    Icons.done,
+                    color: PRIMARY_LIGHT,
+                    size: 130.0,
+                  ),
+                ],
+              )),
+            ),
         ],
       ),
     );

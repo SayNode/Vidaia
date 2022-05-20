@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
 import 'package:flutter_appauth/flutter_appauth.dart';
@@ -44,13 +45,41 @@ class AuthService {
     }
   }
 
+  Future<String> logout() async {
+    await secureStorage.delete(key: REFRESH_TOKEN_KEY);
+    final url = Uri.https(
+      AUTH0_DOMAIN,
+      '/v2/logout',
+      {
+        'client_id': AUTH0_CLIENT_ID,
+        'federated': '',
+        // 'returnTo': 'YOUR_RETURN_LOGOUT_URL'
+      },
+    );
+
+    debugPrint('logout url: ' + url.toString());
+
+    final response = await http.get(
+      url,
+      headers: {'Authorization': 'Bearer $auth0AccessToken'},
+    );
+
+    debugPrint(
+        'logout: ${response.request} ${response.statusCode} ${response.body}');
+
+    return 'logout: ${response.request} ${response.statusCode} ${response.body}';
+  }
+
   Future<String> login() async {
     try {
       final authorizationTokenRequest = AuthorizationTokenRequest(
         AUTH0_CLIENT_ID,
         AUTH0_REDIRECT_URI,
         issuer: AUTH0_ISSUER,
-        scopes: ['openid', 'profile', 'offline_access', 'email'],
+        scopes: ['openid', 'profile', 'email'], // offline_access
+        promptValues: ['login'],
+
+        /// possible values login, none, consent, select_account
       );
 
       final AuthorizationTokenResponse? result =
