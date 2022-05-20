@@ -12,7 +12,9 @@ HistoryEntry _$HistoryEntryFromJson(Map<String, dynamic> json) => HistoryEntry(
       json['isReceived'] as bool,
     );
 
-Map<String, dynamic> _$HistoryEntryToJson(HistoryEntry instance) => <String, dynamic>{
+Map<String, dynamic> _$HistoryEntryToJson(HistoryEntry instance) =>
+    <String, dynamic>{
       'product': instance.product,
       'date': instance.date,
+      'isReceived': instance.isReceived,
     };

@@ -5,14 +5,31 @@ import 'package:vidaia/main.dart';
 import 'package:vidaia/pages/home/home_page_loader.dart';
 import 'package:vidaia/utils/globals.dart';
 import 'package:vidaia/utils/wallet.dart';
+import 'package:vidaia/services/auth_service.dart';
 
 const users = {
   'a@a.com': 'password',
 };
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   Duration get loginTime => const Duration(milliseconds: 2250);
+  bool isProgressing = false;
+  bool isLoggedIn = false;
+  String errorMessage = '';
+  String? name;
+
+  @override
+  void initState() {
+    initAction();
+    super.initState();
+  }
 
   Future<String?> _authUser(LoginData data) {
     debugPrint('Name: ${data.name}, Password: ${data.password}');
@@ -54,24 +71,86 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: primaryColor,
-      child: FlutterLogin(
-        userType: LoginUserType.name,
-        logo: const AssetImage('assets/images/vidaia-live-sustainably.png'),
-        messages:
-            LoginMessages(userHint: 'Email', passwordHint: 'password'.tr()),
-        onLogin: _authUser,
-        onSignup: _signupUser,
-        onSubmitAnimationCompleted: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => HomePage2()),
-          );
-          if (!mnemonicNoted) {
-            showMnemonicAlert(context);
-          }
-        },
-        onRecoverPassword: _recoverPassword,
+      child: Column(
+        children: [
+          // FlutterLogin(
+          //   userType: LoginUserType.name,
+          //   logo: const AssetImage('assets/images/vidaia-live-sustainably.png'),
+          //   messages:
+          //       LoginMessages(userHint: 'Email', passwordHint: 'password'.tr()),
+          //   onLogin: _authUser,
+          //   onSignup: _signupUser,
+          //   onSubmitAnimationCompleted: () {
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(builder: (context) => HomePage2()),
+          //     );
+          //     if (!mnemonicNoted) {
+          //       showMnemonicAlert(context);
+          //     }
+          //   },
+          //   onRecoverPassword: _recoverPassword,
+          // ),
+          TextButton(
+            onPressed: loginAction,
+            child: const Text('Auth0 Login | Register'),
+          ),
+          if (isProgressing)
+            CircularProgressIndicator()
+          else if (!isLoggedIn)
+            TextButton(
+              onPressed: loginAction,
+              child: const Text('Auth0 Login | Register'),
+            )
+          else
+            Text('Welcome $name'),
+        ],
       ),
     );
+  }
+
+  setSuccessAuthState() {
+    setState(() {
+      isProgressing = false;
+      isLoggedIn = true;
+      name = AuthService.instance.idToken?.name;
+    });
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => HomePage2()),
+    );
+  }
+
+  setLoadingState() {
+    setState(() {
+      isProgressing = true;
+      errorMessage = '';
+    });
+  }
+
+  Future<void> loginAction() async {
+    setLoadingState();
+    final message = await AuthService.instance.login();
+    if (message == 'Success') {
+      setSuccessAuthState();
+    } else {
+      setState(() {
+        isProgressing = false;
+        errorMessage = message;
+      });
+    }
+  }
+
+  initAction() async {
+    setLoadingState();
+    final bool isAuth = await AuthService.instance.init();
+    if (isAuth) {
+      setSuccessAuthState();
+    } else {
+      setState(() {
+        isProgressing = false;
+      });
+    }
   }
 }
