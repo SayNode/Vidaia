@@ -18,14 +18,13 @@ class VidaiaDrawer extends StatelessWidget {
     return Drawer(
       backgroundColor: Colors.grey.shade200,
       child: Padding(
-        padding:
-            const EdgeInsets.only(left: 20, right: 20, top: 50, bottom: 20),
+        padding: const EdgeInsets.only(left: 20, right: 20, top: 50, bottom: 20),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(
             children: [
               CircleAvatar(
                 backgroundColor: primaryColorBright,
-                foregroundImage: AssetImage("assets/images/Me.jpg"),
+                backgroundImage: NetworkImage(dataRepository.userinfo.picture),
                 radius: 35.0,
               ),
               const SizedBox(
@@ -33,9 +32,10 @@ class VidaiaDrawer extends StatelessWidget {
                 height: 100,
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.only(left: 8, right: 0, top: 8, bottom: 8),
                 child: Text(
-                  dataRepository.userinfo.displayName,
+                  dataRepository.userinfo.name,
+                  overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.headline6,
                 ),
               )
@@ -156,8 +156,7 @@ class VidaiaDrawer extends StatelessWidget {
                 ),
                 onTap: () async {
                   await AuthService.instance.logout();
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => LoginPage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
                 }),
           ),
         ]),

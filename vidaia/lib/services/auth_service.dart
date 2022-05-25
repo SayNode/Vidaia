@@ -9,9 +9,10 @@ import 'package:vidaia/models/auth0_id_token.dart';
 import 'package:vidaia/models/auth0_user.dart';
 
 class AuthService {
-  Auth0User? profile;
+  Auth0User profile = Auth0User(nickname: '', name: '', email: '', picture: '', updatedAt: '', sub: '');
   Auth0IdToken? idToken;
   String? auth0AccessToken;
+  bool isLoggedIn = false;
 
   static final AuthService instance = AuthService._internal();
   factory AuthService() => instance;
@@ -22,6 +23,7 @@ class AuthService {
 
   Future<bool> init() async {
     final storedRefreshToken = await secureStorage.read(key: REFRESH_TOKEN_KEY);
+    debugPrint('storedRefreshToken ' + storedRefreshToken.toString());
 
     if (storedRefreshToken == null) {
       return false;
@@ -37,6 +39,8 @@ class AuthService {
         ),
       );
       final String setResult = await _setLocalVariables(result);
+      isLoggedIn = true;
+      debugPrint('isLoggedIn' + isLoggedIn.toString());
       return setResult == 'Success';
     } catch (e, s) {
       print('error on Refresh Token: $e - stack: $s');
@@ -75,7 +79,7 @@ class AuthService {
         AUTH0_CLIENT_ID,
         AUTH0_REDIRECT_URI,
         issuer: AUTH0_ISSUER,
-        scopes: ['openid', 'profile', 'email'], // offline_access
+        scopes: ['openid', 'profile', 'email', 'offline_access'],
         promptValues: ['login'],
 
         /// possible values login, none, consent, select_account
@@ -143,17 +147,37 @@ class AuthService {
       auth0AccessToken = result.accessToken;
       idToken = parseIdToken(result.idToken!);
       profile = await getUserDetails(result.accessToken!);
-
       if (result.refreshToken != null) {
         await secureStorage.write(
           key: REFRESH_TOKEN_KEY,
           value: result.refreshToken,
         );
+        String? refreshTokenKeyFromStorage = await secureStorage.read(key: REFRESH_TOKEN_KEY);
+        debugPrint('auth_service | REFRESH_TOKEN_KEY in storage is ' + refreshTokenKeyFromStorage!);
       }
-
+      isLoggedIn = true;
       return 'Success';
     } else {
       return 'Something is Wrong!';
     }
+  }
+
+  Future<bool> updateUserWalletAddress(String walletAddress) async {
+    final url = Uri.https(
+      AUTH0_DOMAIN,
+      '/userinfo',
+    );
+
+    final responseAuth0UserInfo = await http.patch(url, headers: {
+      'Authorization': 'Bearer $auth0AccessToken'
+    }, body: {
+      "user_metadata": {"wallet_address": walletAddress}
+    }).catchError((onError) {
+      debugPrint(onError);
+    });
+    if (responseAuth0UserInfo.statusCode == 200) {
+      return true;
+    }
+    return false;
   }
 }

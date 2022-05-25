@@ -39,7 +39,9 @@ class _HomePage2State extends State<HomePage2> {
           isDataLoaded, //Future that returns bool
         ]),
         builder: (BuildContext context, AsyncSnapshot<List<bool>> snapshot) {
-          if (snapshot.connectionState == ConnectionState.done && AuthService.instance.profile != null && AuthService.instance.profile!.id.isNotEmpty && snapshot.data?[0] == true) {
+          bool autoLogin = snapshot.connectionState == ConnectionState.done && AuthService.instance.isLoggedIn && snapshot.data?[0] == true;
+          debugPrint('autologin ' + autoLogin.toString() + ' ' + (snapshot.connectionState == ConnectionState.done).toString() + ' ' + AuthService.instance.profile.id.isNotEmpty.toString() + ' ' + (snapshot.data?[0] == true).toString());
+          if (autoLogin) {
             return HomePageStack(_pages);
           } else if (snapshot.connectionState == ConnectionState.done && snapshot.hasError) {
             return Padding(

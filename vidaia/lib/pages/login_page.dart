@@ -7,6 +7,7 @@ import 'package:vidaia/utils/constants.dart';
 import 'package:vidaia/utils/globals.dart';
 import 'package:vidaia/utils/wallet.dart';
 import 'package:vidaia/services/auth_service.dart';
+import 'package:vidaia/utils/globals.dart' as global;
 
 const users = {
   'a@a.com': 'password',
@@ -137,12 +138,19 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  setSuccessAuthState() {
+  setSuccessAuthState() async {
     setState(() {
       isProgressing = false;
       isLoggedIn = true;
       name = AuthService.instance.idToken?.name;
     });
+
+    if (AuthService.instance.profile.walletAddress.isEmpty) {
+      AuthService.instance.profile.walletAddress = await createNewWallet();
+      await AuthService.instance.updateUserWalletAddress(AuthService.instance.profile.walletAddress);
+    } else {
+      global.address = AuthService.instance.profile.walletAddress;
+    }
 
     Navigator.push(
       context,

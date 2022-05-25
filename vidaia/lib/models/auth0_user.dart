@@ -18,14 +18,16 @@ class Auth0User {
   @JsonKey(name: 'updated_at')
   final String updatedAt;
 
+  @JsonKey(name: 'https://vidaia.saynode.ch/wallet_address')
+  String walletAddress = '';
+
   // userID getter to understand it easier
   String get id => sub;
   final String sub;
 
   final String email;
 
-  factory Auth0User.fromJson(Map<String, dynamic> json) =>
-      _$Auth0UserFromJson(json);
+  factory Auth0User.fromJson(Map<String, dynamic> json) => _$Auth0UserFromJson(json);
 
   Map<String, dynamic> toJson() => _$Auth0UserToJson(this);
 }

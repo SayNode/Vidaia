@@ -13,13 +13,15 @@ Auth0User _$Auth0UserFromJson(Map<String, dynamic> json) => Auth0User(
       picture: json['picture'] as String,
       updatedAt: json['updated_at'] as String,
       sub: json['sub'] as String,
-    );
+    )..walletAddress =
+        json['https://vidaia.saynode.ch/wallet_address'] as String;
 
 Map<String, dynamic> _$Auth0UserToJson(Auth0User instance) => <String, dynamic>{
       'nickname': instance.nickname,
       'name': instance.name,
       'picture': instance.picture,
       'updated_at': instance.updatedAt,
+      'https://vidaia.saynode.ch/wallet_address': instance.walletAddress,
       'sub': instance.sub,
       'email': instance.email,
     };
