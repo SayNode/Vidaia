@@ -51,7 +51,7 @@ class _HomePage2State extends State<HomePage2> {
                 style: TextStyle(fontSize: 20),
               ),
             );
-          } else if (AuthService.instance.profile == null || AuthService.instance.profile!.id.isEmpty) {
+          } else if (AuthService.instance.profile == null || AuthService.instance.profile.id.isEmpty) {
             return const LoginPage();
           } else {
             return Center(

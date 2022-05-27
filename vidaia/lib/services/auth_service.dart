@@ -1,12 +1,16 @@
 import 'dart:convert';
+import 'dart:html';
+import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
 import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:thor_devkit_dart/utils.dart';
 import 'package:vidaia/helpers/constants.dart';
 import 'package:vidaia/models/auth0_id_token.dart';
 import 'package:vidaia/models/auth0_user.dart';
+import 'package:pkce/pkce.dart';
 
 class AuthService {
   Auth0User profile = Auth0User(nickname: '', name: '', email: '', picture: '', updatedAt: '', sub: '');
@@ -79,7 +83,7 @@ class AuthService {
         AUTH0_CLIENT_ID,
         AUTH0_REDIRECT_URI,
         issuer: AUTH0_ISSUER,
-        scopes: ['openid', 'profile', 'email', 'offline_access'],
+        scopes: ['openid', 'profile', 'email', 'offline_access', 'update:current_user_metadata', 'create:current_user_metadata'],
         promptValues: ['login'],
 
         /// possible values login, none, consent, select_account
@@ -162,22 +166,39 @@ class AuthService {
     }
   }
 
-  Future<bool> updateUserWalletAddress(String walletAddress) async {
+  Future<bool> updateUserWalletAddress(Auth0User auth0user) async {
+    /// experiments to get the Management API token
+    final pkcePair = PkcePair.generate(length: 32);
+    final code_challenge = pkcePair.codeChallenge;
+    final code_verifier = pkcePair.codeVerifier;
+    final managementApiTokenUrl = '$AUTH0_DOMAIN/authorize?response_type=code&code_challenge=$code_challenge&code_challenge_method=S256&client_id=$AUTH0_CLIENT_ID&redirect_uri=$AUTH0_REDIRECT_URI&audience=dev-jp7b9rk6.us.auth0.com';
+
+    ///
+
     final url = Uri.https(
       AUTH0_DOMAIN,
-      '/userinfo',
+      '/api/v2/users/' + auth0user.id,
     );
+
+    debugPrint('update wallet request uri.https - ' + url.toString());
+    debugPrint('update wallet auth0AccessToken -  $auth0AccessToken');
+    debugPrint('update wallet request uri.https -  $idToken');
 
     final responseAuth0UserInfo = await http.patch(url, headers: {
       'Authorization': 'Bearer $auth0AccessToken'
     }, body: {
-      "user_metadata": {"wallet_address": walletAddress}
-    }).catchError((onError) {
-      debugPrint(onError);
+      "user_metadata": jsonEncode({"wallet_address": auth0user.walletAddress})
     });
+    // .catchError((onError) {
+    //   debugPrint('error while updating the user wallet address on Auth0');
+    // });
     if (responseAuth0UserInfo.statusCode == 200) {
+      debugPrint('update wallet response 200');
       return true;
+    } else {
+      debugPrint('update wallet response ' + responseAuth0UserInfo.statusCode.toString());
+      debugPrint('update wallet response body' + responseAuth0UserInfo.body);
+      return false;
     }
-    return false;
   }
 }

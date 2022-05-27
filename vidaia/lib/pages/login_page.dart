@@ -147,7 +147,8 @@ class _LoginPageState extends State<LoginPage> {
 
     if (AuthService.instance.profile.walletAddress.isEmpty) {
       AuthService.instance.profile.walletAddress = await createNewWallet();
-      await AuthService.instance.updateUserWalletAddress(AuthService.instance.profile.walletAddress);
+      debugPrint('created wallet address is: ' + AuthService.instance.profile.walletAddress);
+      await AuthService.instance.updateUserWalletAddress(AuthService.instance.profile);
     } else {
       global.address = AuthService.instance.profile.walletAddress;
     }

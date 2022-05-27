@@ -36,15 +36,11 @@ dependencies:
   flutter_secure_storage: ^5.0.2
   http: ^0.13.4
   flutter_appauth: ^4.0.0
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   auto_route: ^3.2.4
   google_fonts: ^2.3.1
-
-
-  # Change this once the devkit is public  
+  crypto: ^3.0.2
+  pkce: ^1.1.0+1
   thor_devkit_dart:
     path: assets/packages/thor_devkit_dart
 

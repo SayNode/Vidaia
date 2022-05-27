@@ -10,6 +10,7 @@ class Auth0User {
     required this.picture,
     required this.updatedAt,
     required this.sub,
+    this.walletAddress = '',
   });
   final String nickname;
   final String name;
@@ -18,7 +19,7 @@ class Auth0User {
   @JsonKey(name: 'updated_at')
   final String updatedAt;
 
-  @JsonKey(name: 'https://vidaia.saynode.ch/wallet_address')
+  @JsonKey(name: 'https://vidaia.saynode.ch/wallet_address', defaultValue: '', includeIfNull: true)
   String walletAddress = '';
 
   // userID getter to understand it easier
