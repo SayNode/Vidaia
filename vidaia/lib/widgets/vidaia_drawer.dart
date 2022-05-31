@@ -1,10 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:vidaia/main.dart';
+import 'package:vidaia/pages/exchange/exchange_page_loader.dart';
 import 'package:vidaia/pages/home/home_page_loader.dart';
 import 'package:vidaia/pages/login_page.dart';
 import 'package:vidaia/pages/settings_page.dart';
 import 'package:vidaia/repositories/dataRepository.dart';
+
 import 'package:vidaia/services/auth_service.dart';
 import 'package:vidaia/utils/constants.dart';
 
@@ -87,6 +89,25 @@ class VidaiaDrawer extends StatelessWidget {
             type: MaterialType.transparency,
             child: ListTile(
               leading: const Icon(
+                Icons.currency_exchange,
+                color: PRIMARY_LIGHT,
+              ),
+              title: Text(
+                'Send and Receive'.tr(),
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ExchangePage()),
+                );
+              },
+            ),
+          ),
+          Material(
+            type: MaterialType.transparency,
+            child: ListTile(
+              leading: const Icon(
                 Icons.question_mark_rounded,
                 color: PRIMARY_LIGHT,
               ),
@@ -154,6 +175,7 @@ class VidaiaDrawer extends StatelessWidget {
                   'Logout',
                   style: Theme.of(context).textTheme.subtitle1,
                 ),
+
                 onTap: () async {
                   await AuthService.instance.logout();
                   Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));

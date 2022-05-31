@@ -47,6 +47,7 @@ class DataRepository {
     return list.map((e) => Reward.fromJson(e)).toList();
   }
 
+
   // Future<User> loadUser() async {
   //   //read json file
   //   final jsondata = await rootBundle.rootBundle.loadString('assets/data/user.json');

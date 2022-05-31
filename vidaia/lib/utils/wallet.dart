@@ -9,6 +9,7 @@ import 'package:thor_request_dart/connect.dart';
 import 'package:thor_request_dart/contract.dart';
 import 'package:thor_request_dart/wallet.dart';
 import 'package:vidaia/utils/globals.dart' as global;
+import 'package:vidaia/utils/invalid_Address_Exception.dart';
 
 import 'exceptions.dart';
 
@@ -71,6 +72,7 @@ getWordButtons() async {
 }
 
 Future<Map> transferVidar(int value, String address, String url) async {
+  validateAddress(address);
   final storage = FlutterSecureStorage();
   Connect connect = Connect(url);
   final String? priv = await storage.read(key: 'privateKey');
@@ -192,21 +194,44 @@ showMnemonicWordsAlert(BuildContext context) async {
   );
 }
 
-confirmPurchase(BuildContext context) {
+txConfirmedAlert(BuildContext context, String txId) {
   // set up the buttons
   Widget cancelButton = TextButton(
     child: Text("OK"),
     onPressed: () {
       Navigator.pop(context);
-      Navigator.pop(context);
+    },
+  );
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("Transction Successful"),
+    content: Text("Transaction ID: \n" + txId),
+    actions: [
+      cancelButton,
+    ],
+  );
+  // show the dialog
+  showDialog(
+    barrierDismissible: false,
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
+
+txError(BuildContext context) {
+  // set up the buttons
+  Widget cancelButton = TextButton(
+    child: Text("OK"),
+    onPressed: () {
       Navigator.pop(context);
     },
   );
-
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(
-    title: Text("Purchase Confirmed"),
-    content: Text("Thank you for your purchase. Your Reward will be sent to you by Email."),
+    title: Text("Transction Failed"),
+    content: Text("Something went wrong"),
     actions: [
       cancelButton,
     ],

@@ -39,6 +39,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   auto_route: ^3.2.4
   google_fonts: ^2.3.1
+  qr_flutter: ^4.0.0
   crypto: ^3.0.2
   pkce: ^1.1.0+1
   thor_devkit_dart:
@@ -50,8 +51,9 @@ dependencies:
   get_it: ^7.2.0
   url_launcher: ^6.1.0
   contained_tab_bar_view: ^0.8.0
+  mobile_scanner: ^1.0.0
+  flutter_appauth: ^2.4.2
   change_app_package_name: ^1.0.0
-
 
 dev_dependencies:
   flutter_test:
