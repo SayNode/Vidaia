@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:vidaia/pages/auth0_testing_page.dart';
+import 'package:vidaia/pages/login_page.dart';
 import 'package:vidaia/repositories/dataRepository.dart';
 
 GetIt getIt = GetIt.instance;
@@ -94,7 +94,7 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
       darkTheme: ThemeData.dark(),
-      home: Auth0TestPage(),
+      home: LoginPage(),
     );
   }
 }

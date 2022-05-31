@@ -46,8 +46,8 @@ android {
 
 
         applicationId "ch.saynode.vidaia"
-        minSdkVersion 18
-        targetSdkVersion 28
+        minSdkVersion 21
+        targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         manifestPlaceholders += [appAuthRedirectScheme: 'ch.saynode.vidaia']
