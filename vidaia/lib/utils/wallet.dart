@@ -10,6 +10,8 @@ import 'package:thor_request_dart/contract.dart';
 import 'package:thor_request_dart/wallet.dart';
 import 'package:vidaia/utils/globals.dart' as global;
 
+import 'exceptions.dart';
+
 createNewWallet() async {
   //generate mnemonic phrase and save it on local device
   List<String> words = Mnemonic.generate();
@@ -40,8 +42,8 @@ setPriv() async {
 }
 
 recoverWalletFromWords(String words) async {
-  if (!Mnemonic.validate(words.split(' '))){
-    throw Exception('Invalid Mnemonic phrase');
+  if (!Mnemonic.validate(words.split(' '))) {
+    throw InvalidSeedException('Invalid Mnemonic phrase');
   }
   final storage = FlutterSecureStorage();
   await storage.write(key: "mnemonicPhrase", value: words);
@@ -240,11 +242,41 @@ Future<void> importWallet(BuildContext context) async {
             ElevatedButton(
               child: Text('Import'),
               onPressed: () {
-                print(_textFieldController.value.text);
-                recoverWalletFromWords(_textFieldController.value.text);
+                try {
+                  recoverWalletFromWords(_textFieldController.value.text);
+                } on InvalidSeedException {
+                  invalidSeedWords(context);
+                }
               },
             ),
           ],
         );
       });
+}
+
+invalidSeedWords(BuildContext context) {
+  // set up the buttons
+  Widget cancelButton = TextButton(
+    child: Text("OK"),
+    onPressed: () {
+      Navigator.pop(context);
+    },
+  );
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("Invalid Seed Words"),
+    content: Text("Make sure you typed your mnemonic phrase correctly."),
+    actions: [
+      cancelButton,
+    ],
+  );
+  // show the dialog
+  showDialog(
+    barrierDismissible: false,
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
 }
