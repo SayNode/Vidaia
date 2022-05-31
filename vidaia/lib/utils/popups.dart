@@ -212,7 +212,7 @@ Future<void> importWallet(BuildContext context) async {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('TextField in Dialog'),
+          title: Text('Import Wallet'),
           content: TextField(
             controller: _textFieldController,
             decoration: InputDecoration(hintText: "Enter Seed-Words"),
@@ -227,7 +227,7 @@ Future<void> importWallet(BuildContext context) async {
             ElevatedButton(
               child: Text('Import'),
               onPressed: () {
-                try {
+                try { 
                   recoverWalletFromWords(_textFieldController.value.text);
                 } on InvalidSeedException {
                   invalidSeedWords(context);
