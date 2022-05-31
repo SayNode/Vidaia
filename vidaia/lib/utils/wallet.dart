@@ -39,11 +39,14 @@ setPriv() async {
   await storage.write(key: "privateKey", value: priv);
 }
 
-recoverWalletFromWords(List<String> words) async {
+recoverWalletFromWords(String words) async {
+  if (!Mnemonic.validate(words.split(' '))){
+    throw Exception('Invalid Mnemonic phrase');
+  }
   final storage = FlutterSecureStorage();
-  await storage.write(key: "mnemonicPhrase", value: words.join(' '));
+  await storage.write(key: "mnemonicPhrase", value: words);
 
-  var priv = Mnemonic.derivePrivateKey(words);
+  var priv = Mnemonic.derivePrivateKey(words.split(' '));
   await storage.write(key: "privateKey", value: bytesToHex(priv));
 }
 
@@ -214,4 +217,34 @@ confirmPurchase(BuildContext context) {
       return alert;
     },
   );
+}
+
+Future<void> importWallet(BuildContext context) async {
+  TextEditingController _textFieldController = TextEditingController();
+  return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('TextField in Dialog'),
+          content: TextField(
+            controller: _textFieldController,
+            decoration: InputDecoration(hintText: "Enter Seed-Words"),
+          ),
+          actions: <Widget>[
+            ElevatedButton(
+              child: Text('CANCEL'),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            ElevatedButton(
+              child: Text('Import'),
+              onPressed: () {
+                print(_textFieldController.value.text);
+                recoverWalletFromWords(_textFieldController.value.text);
+              },
+            ),
+          ],
+        );
+      });
 }
