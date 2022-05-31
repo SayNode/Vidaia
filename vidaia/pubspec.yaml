@@ -35,17 +35,13 @@ dependencies:
   carousel_slider: ^4.0.0
   flutter_secure_storage: ^5.0.2
   http: ^0.13.4
-
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
+  flutter_appauth: ^4.0.0
   cupertino_icons: ^1.0.2
   auto_route: ^3.2.4
   google_fonts: ^2.3.1
   qr_flutter: ^4.0.0
-
-
-  # Change this once the devkit is public  
+  crypto: ^3.0.2
+  pkce: ^1.1.0+1
   thor_devkit_dart:
     path: assets/packages/thor_devkit_dart
 
@@ -57,6 +53,7 @@ dependencies:
   contained_tab_bar_view: ^0.8.0
   mobile_scanner: ^1.0.0
   flutter_appauth: ^2.4.2
+  change_app_package_name: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -93,6 +90,7 @@ flutter:
     - assets/images/migros.png
     - assets/images/coop.png
     - assets/images/vidar.png
+    - assets/images/plant_background.jpeg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

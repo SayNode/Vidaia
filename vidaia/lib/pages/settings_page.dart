@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:vidaia/utils/wallet.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -24,45 +25,50 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
       body: Column(
         children: [
-          Text(
-            'changeLanguage'.tr(),
-            style: Theme.of(context).textTheme.headline5,
-
+          ListTile(
+            title: Text('Change Languge'),
+            trailing: SizedBox(
+              width: 100,
+              child: DropdownButton(
+                  hint: Text(
+                    'currentLanguage'.tr(),
+                  ),
+                  isExpanded: true,
+                  items: const [
+                    DropdownMenuItem<String>(
+                      value: 'de',
+                      child: Text(
+                        'Deutsch',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                    DropdownMenuItem<String>(
+                      value: 'en',
+                      child: Text(
+                        'English',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                  ],
+                  onChanged: (String? value) {
+                    setState(() {
+                      context.setLocale(Locale(value!));
+                    });
+                  }),
+            ),
           ),
-          DropdownButton(
-              hint: Text(
-                'currentLanguage'.tr(),
-              ),
-              isExpanded: true,
-              items: const [
-                DropdownMenuItem<String>(
-                  value: 'de',
-                  child: Text(
-                    'Deutsch',
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-                DropdownMenuItem<String>(
-                  value: 'en',
-                  child: Text(
-                    'English',
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-              ],
-              onChanged: (String? value) {
-                setState(() {
-                  context.setLocale(Locale(value!));
-                });
-              })
+          ListTile(
+            title: Text('Import Wallet'),
+            onTap: () {importWallet(context);},
+          )
         ],
       ),
     );
