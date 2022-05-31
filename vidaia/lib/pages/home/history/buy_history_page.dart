@@ -1,14 +1,10 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:contained_tab_bar_view/contained_tab_bar_view.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:vidaia/main.dart';
 import 'package:vidaia/models/HistoryEntry.dart';
 import 'package:vidaia/pages/home/history/widgets/history_tile.dart';
-import 'package:vidaia/pages/home/home/widgets/new_product_tile.dart';
 import 'package:vidaia/repositories/dataRepository.dart';
-
-import '../../../models/Product.dart';
 import '../../../utils/constants.dart';
 
 class BuyHistoryPage extends StatefulWidget {

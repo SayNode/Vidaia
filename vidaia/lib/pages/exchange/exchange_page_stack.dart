@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:vidaia/utils/constants.dart';
 import 'package:vidaia/utils/wallet.dart';
 
-import '../../widgets/vidaia_drawer.dart';
-
 class ExchangePageStack extends StatefulWidget {
   final List<Widget> list;
 

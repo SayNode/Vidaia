@@ -3,9 +3,6 @@ import 'package:vidaia/main.dart';
 import 'package:vidaia/pages/exchange/exchange_page_stack.dart';
 import 'package:vidaia/pages/exchange/receive/recieve_page.dart';
 import 'package:vidaia/pages/exchange/send/send_page.dart';
-import 'package:vidaia/pages/home/history/buy_history_page.dart';
-import 'package:vidaia/pages/home/home/home_page.dart';
-import 'package:vidaia/pages/home/redeem/redeem_page.dart';
 import 'package:vidaia/repositories/dataRepository.dart';
 
 class ExchangePage extends StatefulWidget {

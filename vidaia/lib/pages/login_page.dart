@@ -1,7 +1,5 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
-import 'package:vidaia/main.dart';
 import 'package:vidaia/pages/home/home_page_loader.dart';
 import 'package:vidaia/utils/constants.dart';
 import 'package:vidaia/utils/globals.dart';

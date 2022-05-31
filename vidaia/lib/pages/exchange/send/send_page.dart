@@ -1,11 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:vidaia/main.dart';
 import 'package:vidaia/pages/exchange/scan_page.dart';
-import 'package:vidaia/repositories/dataRepository.dart';
-import 'package:mobile_scanner/mobile_scanner.dart';
-import 'package:vidaia/utils/globals.dart' as global;
 import 'package:vidaia/utils/popups.dart';
 import 'package:vidaia/utils/wallet.dart';
 

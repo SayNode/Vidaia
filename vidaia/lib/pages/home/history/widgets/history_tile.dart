@@ -1,12 +1,9 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:vidaia/main.dart';
 import 'package:vidaia/models/HistoryEntry.dart';
-import 'package:vidaia/models/Product.dart';
 import 'package:vidaia/repositories/dataRepository.dart';
 import 'package:vidaia/utils/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:url_launcher/link.dart';
 
 class HistoryTile extends StatelessWidget {
   HistoryEntry item;

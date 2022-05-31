@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
-import 'package:vidaia/utils/globals.dart' as global;
 
 class ScanPage extends StatefulWidget {
   const ScanPage({Key? key}) : super(key: key);

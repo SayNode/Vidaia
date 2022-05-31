@@ -4,7 +4,6 @@ import 'package:flutter/services.dart' as rootBundle;
 import 'package:vidaia/models/BuyHistory.dart';
 import 'package:vidaia/models/HistoryEntry.dart';
 import 'package:vidaia/models/Reward.dart';
-import 'package:vidaia/models/User.dart';
 import 'package:vidaia/models/Product.dart';
 import 'package:vidaia/models/auth0_user.dart';
 import 'package:vidaia/services/auth_service.dart';

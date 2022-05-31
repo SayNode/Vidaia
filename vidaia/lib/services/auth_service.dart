@@ -1,11 +1,9 @@
 import 'dart:convert';
-import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
 import 'package:flutter_appauth/flutter_appauth.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:thor_devkit_dart/utils.dart';
 import 'package:vidaia/helpers/constants.dart';
 import 'package:vidaia/models/auth0_id_token.dart';
 import 'package:vidaia/models/auth0_user.dart';
