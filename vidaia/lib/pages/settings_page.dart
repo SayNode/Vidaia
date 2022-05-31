@@ -27,7 +27,6 @@ class _SettingsPageState extends State<SettingsPage> {
           Text(
             'changeLanguage'.tr(),
             style: Theme.of(context).textTheme.headline5,
-
           ),
           DropdownButton(
               hint: Text(

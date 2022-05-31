@@ -6,23 +6,25 @@ import 'package:vidaia/models/HistoryEntry.dart';
 import 'package:vidaia/models/Reward.dart';
 import 'package:vidaia/models/User.dart';
 import 'package:vidaia/models/Product.dart';
+import 'package:vidaia/models/auth0_user.dart';
+import 'package:vidaia/services/auth_service.dart';
 
 class DataRepository {
   //can be split up in seperate repositories in the future if needd
   late List<Product> _products;
   late List<Reward> _rewards;
   late BuyHistory _history;
-  late User _userinfo;
+  late Auth0User _userinfo;
 
   List<Product> get products => _products;
   List<Reward> get rewards => _rewards;
   BuyHistory get history => _history;
-  User get userinfo => _userinfo;
+  Auth0User get userinfo => _userinfo;
 
   Future<bool> init() async {
     _products = await loadProducts();
     _rewards = await loadRewards();
-    _userinfo = await loadUser();
+    _userinfo = AuthService.instance.profile;
     _history = await loadHistory();
     return true;
   }
@@ -45,14 +47,14 @@ class DataRepository {
     return list.map((e) => Reward.fromJson(e)).toList();
   }
 
-  Future<User> loadUser() async {
-    //read json file
-    final jsondata = await rootBundle.rootBundle.loadString('assets/data/user.json');
-    //decode json data as list
-    final data = json.decode(jsondata) as dynamic;
+  // Future<User> loadUser() async {
+  //   //read json file
+  //   final jsondata = await rootBundle.rootBundle.loadString('assets/data/user.json');
+  //   //decode json data as list
+  //   final data = json.decode(jsondata) as dynamic;
 
-    return User.fromJson(data);
-  }
+  //   return User.fromJson(data);
+  // }
 
   Future<BuyHistory> loadHistory() async {
     //read json file
