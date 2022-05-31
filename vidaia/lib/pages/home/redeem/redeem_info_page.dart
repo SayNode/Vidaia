@@ -5,7 +5,7 @@ import 'package:vidaia/models/Reward.dart';
 import 'package:vidaia/utils/constants.dart';
 import 'package:vidaia/widgets/roundedButton.dart';
 import 'package:vidaia/utils/wallet.dart';
-import '../../../utils/invalid_Address_Exception.dart';
+import '../../../utils/exceptions.dart';
 import '../../../utils/popups.dart';
 
 

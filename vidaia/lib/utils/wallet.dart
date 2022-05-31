@@ -9,7 +9,6 @@ import 'package:thor_request_dart/connect.dart';
 import 'package:thor_request_dart/contract.dart';
 import 'package:thor_request_dart/wallet.dart';
 import 'package:vidaia/utils/globals.dart' as global;
-import 'package:vidaia/utils/invalid_Address_Exception.dart';
 
 import 'exceptions.dart';
 
@@ -125,183 +124,12 @@ Future<BigInt> _getBalance(String address) async {
   return BigInt.from(vidar);
 }
 
-showMnemonicAlert(BuildContext context) {
-  // set up the buttons
-  Widget cancelButton = TextButton(
-    child: Text("Reminde me Later"),
-    onPressed: () {
-      Navigator.pop(context);
-    },
-  );
-  Widget continueButton = TextButton(
-    child: Text("Back up now"),
-    onPressed: () {
-      Navigator.pop(context);
-      showMnemonicWordsAlert(context);
-    },
-  );
-  // set up the AlertDialog
-  AlertDialog alert = AlertDialog(
-    title: Text("Seed Worts not backed up"),
-    content: Text("Would you like to write down your seed words now?"),
-    actions: [
-      cancelButton,
-      continueButton,
-    ],
-  );
-  // show the dialog
-  showDialog(
-    barrierDismissible: false,
-    context: context,
-    builder: (BuildContext context) {
-      return alert;
-    },
-  );
-}
+ void validateAddress(String address) {
+    if (address == null) {
+      throw InvalidAddressException();
+    } else if (!Address.isAddress(address)) {
+      throw InvalidAddressException("Invalid Address!");
+    }
+  }
 
-showMnemonicWordsAlert(BuildContext context) async {
-  // set up the buttons
-  Widget cancelButton = TextButton(
-    child: Text("Cancel"),
-    onPressed: () {
-      Navigator.pop(context);
-    },
-  );
-  Widget continueButton = TextButton(
-    child: Text("Finished"),
-    onPressed: () {
-      global.mnemonicNoted = true;
-      Navigator.pop(context);
-    },
-  );
-  // set up the AlertDialog
-  AlertDialog seed = AlertDialog(
-    title: Text("Mnemonic Words"),
-    content: Text(await getWords()),
-    //actions: await getWordButtons(),
-    actions: [
-      cancelButton,
-      continueButton,
-    ],
-  );
-  // show the dialog
-  showDialog(
-    barrierDismissible: false,
-    context: context,
-    builder: (BuildContext context) {
-      return seed;
-    },
-  );
-}
 
-txConfirmedAlert(BuildContext context, String txId) {
-  // set up the buttons
-  Widget cancelButton = TextButton(
-    child: Text("OK"),
-    onPressed: () {
-      Navigator.pop(context);
-    },
-  );
-  // set up the AlertDialog
-  AlertDialog alert = AlertDialog(
-    title: Text("Transction Successful"),
-    content: Text("Transaction ID: \n" + txId),
-    actions: [
-      cancelButton,
-    ],
-  );
-  // show the dialog
-  showDialog(
-    barrierDismissible: false,
-    context: context,
-    builder: (BuildContext context) {
-      return alert;
-    },
-  );
-}
-
-txError(BuildContext context) {
-  // set up the buttons
-  Widget cancelButton = TextButton(
-    child: Text("OK"),
-    onPressed: () {
-      Navigator.pop(context);
-    },
-  );
-  // set up the AlertDialog
-  AlertDialog alert = AlertDialog(
-    title: Text("Transction Failed"),
-    content: Text("Something went wrong"),
-    actions: [
-      cancelButton,
-    ],
-  );
-  // show the dialog
-  showDialog(
-    barrierDismissible: false,
-    context: context,
-    builder: (BuildContext context) {
-      return alert;
-    },
-  );
-}
-
-Future<void> importWallet(BuildContext context) async {
-  TextEditingController _textFieldController = TextEditingController();
-  return showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text('TextField in Dialog'),
-          content: TextField(
-            controller: _textFieldController,
-            decoration: InputDecoration(hintText: "Enter Seed-Words"),
-          ),
-          actions: <Widget>[
-            ElevatedButton(
-              child: Text('CANCEL'),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-            ElevatedButton(
-              child: Text('Import'),
-              onPressed: () {
-                try {
-                  recoverWalletFromWords(_textFieldController.value.text);
-                } on InvalidSeedException {
-                  invalidSeedWords(context);
-                }
-              },
-            ),
-          ],
-        );
-      });
-}
-
-invalidSeedWords(BuildContext context) {
-  // set up the buttons
-  Widget cancelButton = TextButton(
-    child: Text("OK"),
-    onPressed: () {
-      Navigator.pop(context);
-    },
-  );
-
-  // set up the AlertDialog
-  AlertDialog alert = AlertDialog(
-    title: Text("Invalid Seed Words"),
-    content: Text("Make sure you typed your mnemonic phrase correctly."),
-    actions: [
-      cancelButton,
-    ],
-  );
-  // show the dialog
-  showDialog(
-    barrierDismissible: false,
-    context: context,
-    builder: (BuildContext context) {
-      return alert;
-    },
-  );
-}

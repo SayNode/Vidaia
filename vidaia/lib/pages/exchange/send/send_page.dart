@@ -6,11 +6,11 @@ import 'package:vidaia/pages/exchange/scan_page.dart';
 import 'package:vidaia/repositories/dataRepository.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:vidaia/utils/globals.dart' as global;
-import 'package:vidaia/utils/invalid_Address_Exception.dart';
 import 'package:vidaia/utils/popups.dart';
 import 'package:vidaia/utils/wallet.dart';
 
 import '../../../utils/constants.dart';
+import '../../../utils/exceptions.dart';
 
 class SendPage extends StatefulWidget {
   const SendPage({Key? key}) : super(key: key);
