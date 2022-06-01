@@ -178,37 +178,56 @@ class AuthService {
 
   Future<bool> updateUserWalletAddress(Auth0User auth0user) async {
     /// experiments to get the Management API token
-    final pkcePair = PkcePair.generate(length: 32);
-    final code_challenge = pkcePair.codeChallenge;
-    final code_verifier = pkcePair.codeVerifier;
-    final managementApiTokenUrl =
-        '$AUTH0_DOMAIN/authorize?response_type=code&code_challenge=$code_challenge&code_challenge_method=S256&client_id=$AUTH0_CLIENT_ID&redirect_uri=$AUTH0_REDIRECT_URI&audience=dev-jp7b9rk6.us.auth0.com';
+    final managementApiTokenUrl = Uri.https(
+                                            AUTH0_DOMAIN,
+                                            '/oauth/token',
+                                          );
+    final managementAPIPostResponse = await http.post(
+        managementApiTokenUrl,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: {
+          'client_id': 'HjuGFyrQbhsSfRby4dBR0GqTTGF9ysh7',
+          'client_secret': 'l1ofwHdiClPe5YK7ICKc6B97YPFCkCR7q68iLrPdk713rT8dTw4_-HXDbQEg-_72',
+          'grant_type': 'client_credentials',
+          'audience': 'https://flutter.vidaia.ch/api/v2/',
+        }
+    );
+
+    var body = jsonDecode(managementAPIPostResponse.body);
+    var accessToken = body['access_token'];
+    debugPrint('managementAPIPostResponse.body - ' + managementAPIPostResponse.body.toString());
 
     ///
 
     final url = Uri.https(
-      AUTH0_DOMAIN,
-      '/api/v2/users/' + auth0user.id,
-    );
+                            AUTH0_DOMAIN,
+                            '/api/v2/users/' + auth0user.id,
+                            {
+                              'audience': 'https://dev-jp7b9rk6.us.auth0.com/api/v2/'
+                            }
+                          );
 
     debugPrint('update wallet request uri.https - ' + url.toString());
-    debugPrint('update wallet auth0AccessToken -  $auth0AccessToken');
+    debugPrint('update wallet auth0AccessToken -  $accessToken');
     debugPrint('update wallet request uri.https -  $idToken');
 
-    final responseAuth0UserInfo = await http.patch(url, headers: {
-      'Authorization': 'Bearer $auth0AccessToken'
-    }, body: {
-      "user_metadata": jsonEncode({"wallet_address": auth0user.walletAddress})
-    });
-    // .catchError((onError) {
-    //   debugPrint('error while updating the user wallet address on Auth0');
-    // });
+    final responseAuth0UserInfo = await http.patch(
+        url,
+        headers: {
+          'Authorization': 'Bearer $accessToken',
+          'Content-Type': 'application/json'
+        },
+        body: jsonEncode({
+          "user_metadata": {"wallet_address": auth0user.walletAddress}
+        })
+    );
     if (responseAuth0UserInfo.statusCode == 200) {
       debugPrint('update wallet response 200');
       return true;
     } else {
-      debugPrint('update wallet response ' +
-          responseAuth0UserInfo.statusCode.toString());
+      debugPrint('update wallet response ' + responseAuth0UserInfo.statusCode.toString());
       debugPrint('update wallet response body' + responseAuth0UserInfo.body);
       return false;
     }
